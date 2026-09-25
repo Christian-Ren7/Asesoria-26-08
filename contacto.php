@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name= "viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contacto | Asesoría</title>
+
+    <link rel="stylesheet" href="style.css?v=999">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                    Asesoría
+            </div>
+            <ul>
+                
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="index.php#nosotros">Nosotros</a></li>
+                <li><a href="index.php#servicios">Servicios</a></li>
+                <li><a href="contacto.php">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="contacto-pagina">
+
+        <div class="contacto-titulo">
+            <h1>Contáctanos</h1>
+            <p>
+                Estamos aquí para ayudarte. Ponte en contacto con nosotros 
+                y cuéntanos cómo podemos ayudarte a mejorar tu empresa.
+            </p>
+        </div>
+
+        <div class="contacto-contenedor">
+
+            <div class="contacto-informacion">
+                <h2>Información de contacto</h2>
+
+                <p>
+                    <strong>Teléfono:</strong> +51 900 000 000
+                </p>
+
+                <p>
+                    <strong>Correo:</strong> contacto@asesoria.pe
+                </p>
+
+                <p>
+                    <strong>Ubicación:</strong> Lima, Perú
+                </p>
+
+                <p>
+                    <strong>Horario de atención:</strong><br> 
+                    Lunes a Viernes: 9:00 a.m. - 6:00 p.m.
+                </p>
+
+                <h3>Nuestra ubicación</h3>
+
+                <p>Av. Angamos Este 489, Lima, Perú</p>
+
+                <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.9826775834945!2d-77.02912602548375!3d-12.113337643142684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8115f4e4393%3A0x73d5a109158bbc34!2sAv.%20Angamos%20Este%20487%2C%20Santiago%20de%20Surco%2015046!5e0!3m2!1ses!2spe!4v1788444283149!5m2!1ses!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+                width="100%"
+                height="180"
+                style="border:0;"
+                allowfullscreen
+                loading=lazy
+                referrerpolicy="strict-origin-when-cross-origin"
+                ></iframe>
+
+                <a href= "https://maps.app.goo.gl/NPRVyyNx2QPfT8nG7"
+                   target="_blank"
+                   class="boton-mapa">
+                    Ver Ubicación en Google maps
+                </a>
+            </div>
+
+
+            <div class="contacto-formulario">
+                <h2>Escríbenos</h2>
+                <form action="#" method="POST">
+                    <label for="nombre">Nombre: </label>
+
+                    <input 
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        placeholder="Ingresa tu nombre"
+                        required
+                    >
+
+                    <label for="correo">Correo electrónico: </label>
+
+                    <input
+                        type="email"
+                        id="correo"
+                        name="correo"
+                        placeholder="ejemplo@gmail.com"
+                        required
+                    >
+
+                    <label for="telefono">Teléfono: </label>
+
+                    <input
+                        type= "tel"
+                        id="telefono"
+                        name="telefono"
+                        placeholder="Ingresa tu teléfono"
+                    >
+
+                    <label for="mensaje">Mensaje: </label>
+
+                    <textarea
+                        id="mensaje"
+                        name="mensaje"
+                        rows="5"
+                        placeholder="Escribe tu consulta..."
+                        required
+                    ></textarea>
+
+                    <button type="submit">
+                        Enviar mensaje
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+    <div class="footer-contenido">
+
+        <div class="footer-marca">
+            <h2>Asesoría</h2>
+            <p>
+                Soluciones profesionales para mejorar
+                la gestión y el crecimiento de tu empresa.
+            </p>
+        </div>
+
+        <div class="footer-enlaces">
+            <h3>Navegación</h3>
+            <a href="index.php">Inicio</a>
+            <a href="index.php#nosotros">Nosotros</a>
+            <a href="index.php#servicios">Servicios</a>
+            <a href="contacto.php">Contacto</a>
+        </div>
+
+        <div class="footer-contacto">
+            <h3>Contacto</h3>
+            <p>Av. Angamos Este 489</p>
+            <p>Lima, Perú</p>
+            <p>contacto@asesoria.com</p>
+        </div>
+
+    </div>
+
+    <div class="footer-inferior">
+        <p>© 2026 Asesoría · Todos los derechos reservados</p>
+    </div>
+</footer>
+
+   <div class="whatsapp-container">
+
+    <!-- VENTANA DE WHATSAPP -->
+    <div class="whatsapp-info" id="whatsappInfo">
+
+        <div class="whatsapp-header">
+            <strong>Asesoría</strong>
+
+            <button class="whatsapp-close" onclick="toggleWhatsapp()">
+                ×
+            </button>
+        </div>
+
+        <div class="whatsapp-body"> 
+            
+
+            <div class="whatsapp-typing"id="typing1">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="whatsapp-message" id="mensaje1">
+                Hey 👋, bienvenido a <strong>Asesoría</strong>
+            </div>
+
+            <div class="whatsapp-typing"id="typing2">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="whatsapp-message whatsapp-message-2" id="mensaje2">
+                ¿Cómo podemos ayudarte?
+            </div>
+
+            <a href="https://wa.me/51933754085"
+               class="whatsapp-contact"
+               id="whatsappContact"
+               target="_blank">
+                <span>Abrir chat</span>
+                <span class="whatsapp-arrow">➤</span>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="whatsapp-help">
+        💬 ¿Necesitas ayuda?
+    </div>
+
+    <!-- BOTÓN FLOTANTE -->
+    <button class="whatsapp-float"
+            type="button"
+            onclick="toggleWhatsapp()"
+            aria-label="Abrir WhatsApp">
+            <img src= "assets/whatsapp.png" alt="Whatsapp">
+    </button>
+
+</div>
+
+    <script>
+        function toggleWhatsapp() {
+            const info = document.getElementById("whatsappInfo");
+            const boton = document.querySelector(".whatsapp-float");
+            const ayuda = document.querySelector(".whatsapp-help");
+
+            if (info.style.display === "block"){
+                info.style.display = "none";
+                boton.style.display = "flex";
+                ayuda.style.display = "block";
+            } else {
+                info.style.display = "block";
+                boton.style.display = "none";
+                ayuda.style.display = "none";
+
+                iniciarChat();
+            }
+        }
+
+         function iniciarChat() {
+
+            const typing1 = document.getElementById("typing1");
+            const mensaje1 = document.getElementById("mensaje1");
+            const typing2 = document.getElementById("typing2");
+            const mensaje2 = document.getElementById("mensaje2");
+
+            /* Estado inicial */
+            typing1.style.display = "flex";
+            mensaje1.style.display = "none";
+            typing2.style.display = "none";
+            mensaje2.style.display = "none";
+
+
+            /* PRIMER ... → PRIMER MENSAJE */
+            setTimeout(function() {
+
+                typing1.style.display = "none";
+                mensaje1.style.display = "block";
+
+            }, 1500);
+
+
+            /* SEGUNDO ... */
+            setTimeout(function() {
+
+                typing2.style.display = "flex";
+
+            }, 2100);
+
+
+            /* SEGUNDO ... → SEGUNDO MENSAJE */
+            setTimeout(function() {
+
+                typing2.style.display = "none";
+                mensaje2.style.display = "block";
+
+            }, 3300);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Evaluación Inicial | Asesoría</title>
+        <link rel="stylesheet" href="style.css?v=4">
+    </head>
+
+    <style>
+        .paso {
+            display: none !important;
+        }
+
+        .paso.activo {
+            display: block !important;
+        }
+    </style>
+
+    <body>
+        
+        <section class="formulario-evaluacion">
+
+            <div class="volver-contenedor">
+                <a href="index.php" class="volver">← Volver al inicio</a>
+            </div>
+
+            <!--Nuevo-->
+            <div class ="evaluacion-intro">
+                <h1>Descubre comó está  fucionanado tu negocio</h1>
+
+                <p>
+                    Reponde unas preguntas rápidas y obtén un evaluación
+                    para conocer oportunidades de mejora en tu empresa.
+                </p>
+
+                <span>⏱ Solo te tomará unos minutos</span>
+            </div>
+
+            <div class="progreso">
+                <span id="paso-texto">Paso 1 de 4</span>
+                <div class="barra-progreso">
+                    <div id="barra-progreso"></div>
+                </div>
+            </div>
+
+            <form action="http://127.0.0.1:5000/evaluar" method="POST" id="formurio-evaluacion">
+                
+                <!--Paso 1-->
+                <div class="paso activo" id="paso-1">
+                    
+                    <h2>👋 Empecemos</h2>
+
+                    <p>Primero, cuéntanos un poco sobre y tu empresa.</p>
+
+                    <label>Nombre completo:</label>
+                    <input type="text" name="nombre" maxlength="60" required>
+
+                    <label>Empresa:</label>
+                    <input type="text" name="empresa" maxlength="100" required>
+
+                    <button type="button" class="btn-siguiente" onclick="siguientePaso()">
+                        Continuar →
+                    </button>
+                </div>
+               
+                <!--Paso 2-->
+                <div class="paso" id="paso-2">
+
+                    <h2>🏢 Conozcamos tu negocio</h2>
+                    
+                    <p>Estos datos nos ayudarán a entender mejor tu empresa.</p>
+                
+                    <label>Correo electrónico:</label>
+                    <input type="email" name="correo" maxlength="60" required>
+
+                    <label>Teléfono:</label>
+                    <input type="tel" name="telefono" maxlength="9" inputmode="numeric"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                    
+                    <label>Sector de la empresa:</label>
+                    <select name="sector" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="comercio">Comercio</option>
+                        <option value="servicios">Servicios</option>
+                        <option value="industria">Industria</option>
+                        <option value="tecnologia">Tecnología</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                    
+                    <label>Número aproximado de clientes:</label>
+                    <input type="text" name="clientes" inputmode="numeric" maxlength="9" 
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+
+                    <div class="botones-paso">
+                        <button type="button" class="btn-anterior" onclick="anteriorPaso()">
+                            ← Atrás
+                        </button>
+
+                        <button type="button" class="btn-siguiente" onclick="siguientePaso()">
+                            Continuar →
+                        </button>
+                    </div>
+                </div>
+
+                <!--Paso 3-->
+                <div class="paso" id="paso-3">
+                    <h2>📊 Hablemos de tus resultados</h2>
+                    
+                    <p> 
+                        No necesitas datos exactos. Solo danos una aproximación
+                        para realizar la evaluación.
+                    </p>
+
+                    <label>Ventas aproximadas mensuales:</label>
+                    <input type="number" name="ventas" inputmode="numeric" maxlength="9" 
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+
+                    <label>Gastos aproximados mensuales:</label>
+                    <input type="text" name="gastos" inputmode="numeric" maxlength="15"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+
+                    <div class="botones-paso">
+                        <button type="button" class="btn-anterior" onclick="anteriorPaso()">
+                            ← Atrás
+                        </button>
+
+                        <button type="button" class="btn-siguiente" onclick="siguientePaso()">
+                            Continuar →
+                        </button>
+                    </div>
+                </div>
+                
+                <!--Paso 4-->
+                <div class="paso" id="paso-4">
+                    <h2>💬 ¿Qué te gustaría mejorar?</h2>
+
+                    <p>
+                        Cuéntanos cuál es el principal desafío que enfrenta
+                        actualmente tu empresa.
+                    </p>
+                    
+                    <label>Principal problema de tu empresa:</label>
+
+                    <select name="problema" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="ventas">Ventas</option>
+                        <option value="gastos">Gastos</option>
+                        <option value="organizacion">Organización</option>
+                        <option value="clientes">Clientes</option>
+                        <option value="rentabilidad">Rentabilidad</option>
+                        <option value="otro">Otro</option>
+                    </select>
+
+                    <div class="botones-paso"> 
+                        <button type="button" class="btn-anterior" onclick="anteriorPaso()"> 
+                            ← Atrás 
+                        </button> 
+
+                        <button type="submit" class="btn-finalizar"> 
+                            Obtener mi evaluación → 
+                        </button> 
+                    </div>
+                </div>
+            </form>
+
+        </section>
+        
+        <script>
+            let pasoActual= 1;
+            const totalPasos=4;
+
+            function mostrarPaso(){
+                document.querySelectorAll(".paso").forEach(paso =>{
+                    paso.classList.remove("activo");
+                });
+                document.getElementById("paso-" + pasoActual).classList.add("activo"); 
+                document.getElementById("paso-texto").textContent = "Paso " + pasoActual + " de " + totalPasos; 
+                document.getElementById("barra-progreso").style.width = (pasoActual / totalPasos * 100) + "%";
+            }
+
+            function validarPaso() { 
+                const paso = document.getElementById("paso-" + pasoActual); 
+                const campos = paso.querySelectorAll("input, select"); 
+                
+                for (const campo of campos) { 
+                    if (!campo.checkValidity()) { 
+                        campo.reportValidity(); 
+                        return false;
+                    } 
+                } 
+                return true; 
+            } 
+            function siguientePaso() { 
+                if (!validarPaso()) { 
+                    return; 
+                } 
+                if (pasoActual < totalPasos) {
+                     pasoActual++;
+                     mostrarPaso();
+                    } 
+                } 
+            function anteriorPaso() {
+                 if (pasoActual > 1) {
+                     pasoActual--;
+                      mostrarPaso(); 
+                } 
+            } 
+            mostrarPaso();
+        </script>
+    </body>
+</html>

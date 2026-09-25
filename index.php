@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Asesoría</title>
+
+    <link rel="stylesheet" href="style.css"?v=2>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                Asesoría
+            </div>
+
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <section id="inicio" class="inicio">
+
+            <div class="carrusel">
+                <img src="assets/empresa.jpg" alt="Asesoría empresarial" class="imagen-activa">
+                <img src="assets/empresa2.jpg" alt="Servicios empresariales">
+                <img src="assets/empresa3.jpg" alt="Consultoría empresarial">
+            </div>
+
+            <div class="carrusel-info">
+                <h2 id="carrusel-titulo">Impulsamos el crecimiento de tu empresa</h2>
+                <p id="carrusel-descripcion">Asesoría y soluciones para ayudarte a tomar mejores decisiones.</p>
+                
+                <a href="#servicios"
+                id="carrusel-boton"
+                class="boton-inicio">
+                    Conoce nuestros servicios
+                </a>
+                                             
+            </div>
+
+            <button class="carrusel-anterior"><</button>
+            <button class="carrusel-siguiente">></button>
+
+    </section>
+
+    <section id="nosotros" class="nosotros">
+
+    <!-- Quiénes somos + imagen -->
+    <div class="nosotros-principal">
+
+        <div class="nosotros-contenido">
+            <h2>¿Quiénes somos?</h2>
+
+            <p>
+                Somos una empresa dedicada a brindar asesoría profesional
+                para ayudar al crecimiento y desarrollo de tu negocio.
+            </p>
+
+            <p>
+                Nuestro objetivo es ofrecer soluciones prácticas y estratégicas
+                que permitan a las empresas mejorar y alcanzar sus metas.
+            </p>
+        </div>
+
+        <div class="nosotros-imagen">
+            <img src="assets/nosotros.jpg" alt="Equipo de trabajo">
+        </div>
+
+    </div>
+
+
+    <!-- Misión y Visión -->
+    <div class="nosotros-info">
+
+        <div class="info-item">
+            <h3>Misión</h3>
+            <p>
+                Brindar asesoría profesional y soluciones prácticas que
+                contribuyan al crecimiento y desarrollo de las empresas,
+                ayudándolas a alcanzar sus objetivos.
+            </p>
+        </div>
+
+        <div class="info-item">
+            <h3>Visión</h3>
+            <p>
+                Ser una empresa reconocida por brindar asesoría de calidad
+                y aportar soluciones que impulsen el crecimiento de nuestros clientes.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="caracteristicas">
+
+    <h2>¿Qué nos caracteriza?</h2>
+
+    <div class="caracteristicas-contenido">
+
+        <div class="caracteristica-item">
+            <h3>📊 Análisis</h3>
+            <p>
+                Analizamos la información proporcionada para conocer
+                mejor la situación de cada empresa.
+            </p>
+        </div>
+
+        <div class="caracteristica-item">
+            <h3>💼 Orientación</h3>
+            <p>
+                Brindamos recomendaciones enfocadas en las necesidades
+                identificadas.
+            </p>
+        </div>
+
+        <div class="caracteristica-item">
+            <h3>📈 Mejora</h3>
+            <p>
+                Buscamos oportunidades para optimizar la gestión
+                y mejorar los resultados.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+    </section>
+    
+    <section id="servicios">
+
+        <h2>Nuestros servicios </h2>
+
+        <p class="servicios-intro">
+            Ofrecemos soluciones orientadas a mejorar la gestion, 
+            organizacion y crecimiento de tu empresa.
+        </p>
+
+
+        <div class="servicios-contenedor">
+
+            <!-- Asesoria Empresarial -->
+            <div class="tarjeta">
+
+                <div class="tarjeta-icono">📊</div>
+
+                    <h3>Soluciones para tu empresa</h3>
+
+                    <div class="tarjeta-descripcion">
+                        <p>
+                            Te ayudamos a identificar oportunidades de mejora y tomar mejores decisiones 
+                            para el crecimiento de tu empresa.
+                        </p>
+                    </div>
+
+                    <div class="tarjeta-programas">
+                        <p>Contabilidad</p>
+                        <p>Gestion Financiera</p>
+                    </div>
+
+                    <div class="tarjeta-detalle">
+                        <button onclick="abrirPrograma('asesoria')">
+                            Ver programas
+                        </button>
+                    </div>
+
+            </div>
+
+
+                <!-- Consultorio Empresarial -->
+                <div class="tarjeta">
+
+                    <div class="tarjeta-icono">💼</div>
+
+                        <h3>Areas de asesoria</h3>
+
+                        <div class="tarjeta-descripcion">
+                            <p>
+                                Analizamos las necesidades de tu negocio y proponemos estrategias 
+                                efectivas para optimizar su desempeño.
+                            </p>
+                        </div>
+
+                        <div class="tarjeta-programas">
+                            <p>Consultorio empresarial</p>
+                            <p>Comercio exterior</p>
+                            <p>Logistica internacional</p>
+                        </div>
+
+                        <div class="tarjeta-detalle">
+                            <button onclick="abrirPrograma('consultoria')">
+                                Ver programas
+                            </button>
+                        </div>
+
+                </div>
+
+
+                    <!-- Soluciones Digitales -->
+                    <div class="tarjeta">
+
+                        <div class="tarjeta-icono">💻</div>
+
+                            <h3>Soluciones y prevencion</h3>
+
+                            <div class="tarjeta-descripcion">
+                                <p>
+                                    Implementamos herramientas y soluciones digitales que ayudan
+                                    a optimizar procesos y mejorar la gestion.
+                                </p>
+                            </div>
+
+                            <div class="tarjeta-programas">
+                                <p>Soluciones digitales</p>
+                                <p>Prevencion de fraudes</p>
+                            </div>
+
+                            <div class="tarjeta-detalle">
+                                <button onclick="abrirPrograma('digital')">
+                                    Ver programas
+                                </button>
+                            </div>
+
+                    </div>
+
+        </div>
+
+    </section>
+
+    <!-- MODAL DE PROGRAMAS -->
+
+    <div id="modal-programas" class="modal-programas">
+        <div class="modal-contenido">
+            <button class="modal-cerrar" onclick="cerrarPrograma()">
+                x
+            </button>
+            <h2 id="modal-titulo"></h2>
+            <div id="modal-texto"></div>
+        </div>
+    </div>
+
+    <section id="evaluacion">
+        <div class="evaluacion-contenido">
+
+            <h2>¿Quieres conocer cómo está funcionando tu empresa?</h2>
+            <p>
+                Realiza una evaluación inicial gratuita de algunos indicadores 
+                de tu empresa y descubre posibles oportunidades de mejora.
+            </p>
+        
+            <a href="evaluacion.html" class="boton-evaluacion">
+                Realiza tu evaluación gratis
+            </a>
+            
+        </div>
+    </section>
+
+    <section id="contacto" class="contacto">
+        <h2>¿Necesitas asesoría para tu empresa?</h2>
+
+        <p>Estamos listos para conocer tus necesidades y ayudarte
+            a encontrar soluciones para tu negocio.
+        </p>
+
+        <a href="contacto.php" class="boton-contacto">
+            Contáctanos
+        </a>
+    </section>
+    
+    <footer class="footer">
+    <div class="footer-contenido">
+
+        <div class="footer-marca">
+            <h2>Asesoría</h2>
+            <p>
+                Soluciones profesionales para mejorar
+                la gestión y el crecimiento de tu empresa.
+            </p>
+        </div>
+
+        <div class="footer-enlaces">
+            <h3>Navegación</h3>
+            <a href="index.php">Inicio</a>
+            <a href="index.php#nosotros">Nosotros</a>
+            <a href="index.php#servicios">Servicios</a>
+            <a href="contacto.php">Contacto</a>
+        </div>
+
+        <div class="footer-contacto">
+            <h3>Contacto</h3>
+            <p>Av. Angamos Este 489</p>
+            <p>Lima, Perú</p>
+            <p>contacto@asesoria.com</p>
+        </div>
+
+    </div>
+
+    <div class="footer-inferior">
+        <p>© 2026 Asesoría · Todos los derechos reservados</p>
+    </div>
+</footer>
+
+    <div class="whatsapp-container">
+
+    <!-- VENTANA DE WHATSAPP -->
+    <div class="whatsapp-info" id="whatsappInfo">
+
+        <div class="whatsapp-header">
+            <strong>Asesoría</strong>
+
+            <button class="whatsapp-close" onclick="toggleWhatsapp()">
+                ×
+            </button>
+        </div>
+
+        <div class="whatsapp-body"> 
+            
+
+            <div class="whatsapp-typing" id="typing1">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="whatsapp-message" id="mensaje1">
+                Hey 👋, bienvenido a <strong>Asesoría</strong>
+            </div>
+
+            <div class="whatsapp-typing" id="typing2">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="whatsapp-message whatsapp-message-2" id="mensaje2">
+                ¿Cómo podemos ayudarte?
+            </div>
+
+            <a href="https://wa.me/51933754085"
+               class="whatsapp-contact"
+               id="whatsappContact"
+               target="_blank">
+                <span>Abrir chat</span>
+                <span class="whatsapp-arrow">➤</span>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="whatsapp-help">
+        💬 ¿Necesitas ayuda?
+    </div>
+
+    <!-- BOTÓN FLOTANTE -->
+    <button class="whatsapp-float"
+            type="button"
+            onclick="toggleWhatsapp()"
+            aria-label="Abrir WhatsApp">
+            <img src="assets/whatsapp.png" alt="Whatsapp">
+    </button>
+
+</div>
+
+    <script>
+        function toggleWhatsapp() {
+            const info = document.getElementById("whatsappInfo");
+            const boton = document.querySelector(".whatsapp-float");
+            const ayuda = document.querySelector(".whatsapp-help");
+
+            if (info.style.display === "block"){
+                info.style.display = "none";
+                boton.style.display = "flex";
+                ayuda.style.display = "block";
+            } else {
+                info.style.display = "block";
+                boton.style.display = "none";
+                ayuda.style.display = "none";
+
+                iniciarChat();
+            }
+        }
+
+         function iniciarChat() {
+
+            const typing1 = document.getElementById("typing1");
+            const mensaje1 = document.getElementById("mensaje1");
+            const typing2 = document.getElementById("typing2");
+            const mensaje2 = document.getElementById("mensaje2");
+
+            /* Estado inicial */
+            typing1.style.display = "flex";
+            mensaje1.style.display = "none";
+            typing2.style.display = "none";
+            mensaje2.style.display = "none";
+
+
+            /* PRIMER ... → PRIMER MENSAJE */
+            setTimeout(function() {
+
+                typing1.style.display = "none";
+                mensaje1.style.display = "block";
+
+            }, 1500);
+
+
+            /* SEGUNDO ... */
+            setTimeout(function() {
+
+                typing2.style.display = "flex";
+
+            }, 2100);
+
+
+            /* SEGUNDO ... → SEGUNDO MENSAJE */
+            setTimeout(function() {
+
+                typing2.style.display = "none";
+                mensaje2.style.display = "block";
+
+            }, 3300);
+        }
+
+        /* Mejora inicio */
+
+        const imagenes = document.querySelectorAll(".carrusel img");
+        const anterior = document.querySelector(".carrusel-anterior");
+        const siguiente = document.querySelector(".carrusel-siguiente");
+
+        let imagenActual = 0;
+
+        const titulos = [
+            "Impulsamos el crecimiento de tu empresa",
+            "¿Quieres conocer cómo está tu empresa?", 
+            "Estamos listos para ayudarte"
+        ];
+
+        const descripciones = [
+            "Asesoría y soluciones para ayudarte a tomar mejores decisiones.",
+            "Realiza una evaluación inicial gratuita y descubre oportunidades de mejora.",
+            "Encuentra soluciones y orientación para las necesidades de tu empresa"
+        ];
+
+        const botones =[
+            "Conoce nuestros servicios",
+            "Evalúa tu empresa gratis",
+            "Contáctanos"
+        ];
+
+        const enlaces = [
+            "#servicios",
+            "evaluacion.html",
+            "contacto.php"
+        ];
+
+        const titulo = document.getElementById("carrusel-titulo");
+        const descripcion = document.getElementById("carrusel-descripcion");
+        const boton = document.getElementById("carrusel-boton");
+
+        function cambiarCarrusel() {
+            imagenes.forEach(function(imagen) {
+                imagen.classList.remove("imagen-activa");
+            });
+
+            imagenes[imagenActual].classList.add("imagen-activa");
+
+            titulo.textContent = titulos[imagenActual];
+            descripcion.textContent = descripciones[imagenActual];
+            boton.textContent = botones[imagenActual];
+            boton.href = enlaces[imagenActual];
+        }
+
+        siguiente.addEventListener("click", function() {
+
+            imagenActual++;
+
+            if (imagenActual >= imagenes.length) {
+            imagenActual = 0;
+        }
+
+            cambiarCarrusel();
+        });
+
+        anterior.addEventListener("click", function() {
+
+            imagenActual--;
+
+            if (imagenActual < 0) {
+                imagenActual = imagenes.length - 1;
+            }
+
+            cambiarCarrusel();
+        });
+
+
+        setInterval(function() {
+
+            imagenActual++;
+
+            if(imagenActual >= imagenes.length) {
+                imagenActual = 0;
+            }
+
+            cambiarCarrusel();
+        }, 5000);
+
+        /* MODAL DE PROGRAMAS */
+
+        function abrirPrograma(programa) {
+            const modal = document.getElementById("modal-programas");
+            const titulo = document.getElementById("modal-titulo");
+            const texto = document.getElementById("modal-texto");
+
+            if (programa === "asesoria") {
+
+    titulo.textContent = "Soluciones para tu empresa";
+
+    texto.innerHTML = `
+        <div class="programa-detalle">
+
+            <div class="programa-imagen">
+                <img src="assets/contabilidad.jpg" alt="Asesoría empresarial">
+            </div>
+
+            <div class="programa-informacion">
+
+                <h3>Asesoría empresarial</h3>
+
+                <p>
+                    Te ayudamos a mejorar la gestión de tu empresa mediante
+                    orientación en aspectos contables y financieros,
+                    facilitando la organización y la toma de decisiones.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="programa-separador"></div>
+
+        <div class="programas-lista">
+
+            <div class="programa-item">
+
+                <h3>Contabilidad</h3>
+
+                <p>
+                    Brindamos orientación para organizar y mejorar la gestión
+                    contable de tu empresa, facilitando el control de la
+                    información y apoyando la toma de decisiones.
+                </p>
+
+                <h4>¿Qué podemos ayudarte a mejorar?</h4>
+
+                <ul>
+                    <li>Organización de la información contable</li>
+                    <li>Control de ingresos y gastos</li>
+                    <li>Seguimiento de la información financiera</li>
+                </ul>
+
+            </div>
+
+            <div class="programa-item">
+
+                <h3>Gestión financiera</h3>
+
+                <p>
+                    Analizamos los ingresos, gastos y otros aspectos financieros
+                    para identificar oportunidades de mejora y ayudarte a
+                    planificar mejor los recursos de tu empresa.
+                </p>
+
+                <h4>¿Qué podemos ayudarte a mejorar?</h4>
+
+                <ul>
+                    <li>Control de ingresos y gastos</li>
+                    <li>Organización de los recursos</li>
+                    <li>Planificación financiera</li>
+                </ul>
+
+            </div>
+
+        </div>
+    `;
+}
+
+            else if (programa === "consultoria") {
+
+    titulo.textContent = "Áreas de asesoría";
+
+    texto.innerHTML = `
+        <div class="programa-detalle">
+
+            <div class="programa-imagen">
+                <img src="assets/consultoria.jpg" alt="Consultoría empresarial">
+            </div>
+
+            <div class="programa-informacion">
+
+                <h3>Consultoría empresarial</h3>
+
+                <p>
+                    Analizamos las necesidades de tu negocio y brindamos
+                    orientación especializada para mejorar sus procesos,
+                    identificar oportunidades y facilitar la toma de decisiones.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="programa-separador"></div>
+
+        <div class="programas-lista">
+
+            <div class="programa-item">
+
+                <h3>Gestion empresarial</h3>
+
+                <p>
+                    Evaluamos diferentes aspectos de tu empresa para identificar
+                    oportunidades de mejora y plantear soluciones de acuerdo
+                    con sus necesidades.
+                </p>
+
+                <h4>¿Qué podemos ayudarte a mejorar?</h4>
+
+                <ul>
+                    <li>Organización y gestión empresarial</li>
+                    <li>Identificación de oportunidades de mejora</li>
+                    <li>Planificación y toma de decisiones</li>
+                </ul>
+
+            </div>
+
+            <div class="programa-item">
+
+                <h3>Comercio exterior</h3>
+
+                <p>
+                    Orientamos a las empresas en procesos relacionados con
+                    operaciones de comercio exterior y oportunidades de negocio
+                    en mercados internacionales.
+                </p>
+
+                <h4>¿Qué podemos ayudarte a mejorar?</h4>
+
+                <ul>
+                    <li>Procesos de importación y exportación</li>
+                    <li>Organización de operaciones internacionales</li>
+                    <li>Gestión documental</li>
+                </ul>
+
+            </div>
+
+            <div class="programa-item">
+
+                <h3>Logística internacional</h3>
+
+                <p>
+                    Apoyamos la planificación y organización de procesos
+                    logísticos relacionados con el movimiento de productos
+                    y operaciones internacionales.
+                </p>
+
+                <h4>¿Qué podemos ayudarte a mejorar?</h4>
+
+                <ul>
+                    <li>Planificación logística</li>
+                    <li>Coordinación de operaciones</li>
+                    <li>Organización de procesos de transporte</li>
+                </ul>
+
+            </div>
+
+        </div>
+    `;
+}
+
+            else if (programa === "digital") {
+
+    titulo.textContent = "Soluciones y prevencion";
+
+    texto.innerHTML = `
+        <div class="programa-detalle">
+
+            <div class="programa-imagen">
+                <img src="assets/soluciones-digitales.jpg" alt="Soluciones digitales">
+            </div>
+
+            <div class="programa-informacion">
+
+                <h3>Soluciones digitales</h3>
+
+                <p>
+                    Implementamos herramientas y soluciones digitales que ayudan
+                    a optimizar procesos, mejorar la gestión y facilitar el
+                    desarrollo de tu empresa.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="programa-separador"></div>
+
+        <div class="programas-lista">
+
+            <div class="programa-item">
+
+                <h3>Soluciones digitales</h3>
+
+                <p>
+                    Identificamos oportunidades para incorporar herramientas
+                    digitales que permitan mejorar los procesos y la gestión
+                    de información de tu empresa.
+                </p>
+
+                <h4>¿Qué podemos ayudarte a mejorar?</h4>
+
+                <ul>
+                    <li>Optimización de procesos</li>
+                    <li>Organización de información</li>
+                    <li>Implementación de herramientas digitales</li>
+                </ul>
+
+            </div>
+
+            <div class="programa-item">
+
+                <h3>Prevención de fraudes</h3>
+
+                <p>
+                    Orientamos a las empresas en la identificación de riesgos
+                    y en la implementación de medidas que ayuden a fortalecer
+                    sus procesos de control.
+                </p>
+
+                <h4>¿Qué podemos ayudarte a mejorar?</h4>
+
+                <ul>
+                    <li>Identificación de riesgos</li>
+                    <li>Controles internos</li>
+                    <li>Seguimiento de procesos</li>
+                </ul>
+
+            </div>
+
+        </div>
+    `;
+}
+
+            modal.style.display = "flex";
+        }
+
+        function cerrarPrograma() {
+            document.getElementById("modal-programas").style.display = "none";
+        }
+
+    </script>
+</body>
+</html>
