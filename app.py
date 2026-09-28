@@ -1016,6 +1016,15 @@ def evaluar():
 def inicio():
     return send_from_directory(".", "index.html")
 
+@app.route("/evaluacion.html")
+def pagina_evaluacion():
+    return send_from_directory(".", "evaluacion.html")
+
+
+@app.route("/contacto.html")
+def pagina_contacto():
+    return send_from_directory(".", "contacto.html")
+
 @app.route("/test")
 def test():
     return "Flask funciona correctamente en Vercel"
