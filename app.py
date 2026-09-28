@@ -1012,6 +1012,10 @@ def evaluar():
 </html>
 """
 
+@app.route("/")
+def inicio():
+    return "Flask funciona correctamente en Vercel"
+
 @app.route("/test")
 def test():
     return "Flask funciona correctamente en Vercel"
