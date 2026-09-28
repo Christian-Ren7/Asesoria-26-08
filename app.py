@@ -134,6 +134,7 @@ def evaluar():
     # ==========================================
     # GUARDAR DATOS EN LA BASE DE DATOS
     # ==========================================
+    print("INTENTANDO CONECTAR A MYSQL")
     conexion = mysql.connector.connect(
         host=os.getenv("DB_HOST", "localhost"),
         user=os.getenv("DB_USER", "root"),
@@ -165,6 +166,7 @@ def evaluar():
     cursor.execute(sql, valores)
     conexion.commit()
     cursor.close()
+    print("MYSQL FUNCIONA")
 
 
     # ==========================================
