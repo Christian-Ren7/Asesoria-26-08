@@ -135,11 +135,11 @@ def evaluar():
     # GUARDAR DATOS EN LA BASE DE DATOS
     # ==========================================
     conexion = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    
-    database="asesoria_bd"
+        host=os.getenv("DB_HOST", "localhost"),
+        user=os.getenv("DB_USER", "root"),
+        password=os.getenv("DB_PASSWORD", ""),
+        database=os.getenv("DB_NAME", "asesoria_bd"),
+        port=int(os.getenv("DB_PORT", "3306"))
 )
     cursor = conexion.cursor()
 
