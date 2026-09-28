@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 
 import matplotlib
 matplotlib.use("Agg")
@@ -1014,7 +1014,7 @@ def evaluar():
 
 @app.route("/")
 def inicio():
-    return "Flask funciona correctamente en Vercel"
+    return send_from_directory(".", "index.html")
 
 @app.route("/test")
 def test():
