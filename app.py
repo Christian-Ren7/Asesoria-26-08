@@ -1012,5 +1012,9 @@ def evaluar():
 </html>
 """
 
+@app.route("/test")
+def test():
+    return "Flask funciona correctamente en Vercel"
+
 if __name__ == "__main__":
     app.run(debug=True)
