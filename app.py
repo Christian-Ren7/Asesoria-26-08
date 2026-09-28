@@ -1,4 +1,4 @@
-from flask import Flask, request, send_from_directory
+from flask import Flask, request, render_template
 
 import matplotlib
 matplotlib.use("Agg")
@@ -1014,23 +1014,23 @@ def evaluar():
 
 @app.route("/")
 def inicio():
-    return """
-    <h1>Flask está funcionando</h1>
-    <p>La ruta principal está respondiendo correctamente.</p>
-    """
+    return render_template("index.html")
+
 
 @app.route("/evaluacion.html")
 def pagina_evaluacion():
-    return send_from_directory(".", "evaluacion.html")
+    return render_template("evaluacion.html")
 
 
 @app.route("/contacto.html")
 def pagina_contacto():
-    return send_from_directory(".", "contacto.html")
+    return render_template("contacto.html")
+
 
 @app.route("/test")
 def test():
     return "Flask funciona correctamente en Vercel"
+
 
 if __name__ == "__main__":
     app.run(debug=True)
