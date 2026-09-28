@@ -1,5 +1,7 @@
 from flask import Flask, request
 
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -139,7 +141,6 @@ def evaluar():
     
     database="asesoria_bd"
 )
-
     cursor = conexion.cursor()
 
     sql = """
