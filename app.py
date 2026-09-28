@@ -1014,7 +1014,10 @@ def evaluar():
 
 @app.route("/")
 def inicio():
-    return send_from_directory(".", "index.html")
+    return """
+    <h1>Flask está funcionando</h1>
+    <p>La ruta principal está respondiendo correctamente.</p>
+    """
 
 @app.route("/evaluacion.html")
 def pagina_evaluacion():
