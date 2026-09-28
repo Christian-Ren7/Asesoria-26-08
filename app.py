@@ -1014,7 +1014,7 @@ def evaluar():
 
 @app.route("/")
 def inicio():
-    return "FLASK OK"
+    return "PRUEBA 123 RENATO"
 
 
 @app.route("/evaluacion.html")
