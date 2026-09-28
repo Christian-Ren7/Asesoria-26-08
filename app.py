@@ -1014,7 +1014,7 @@ def evaluar():
 
 @app.route("/")
 def inicio():
-    return render_template("index.html")
+    return "FLASK OK"
 
 
 @app.route("/evaluacion.html")
