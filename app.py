@@ -135,37 +135,38 @@ def evaluar():
     # GUARDAR DATOS EN LA BASE DE DATOS
     # ==========================================
     print("INTENTANDO CONECTAR A MYSQL")
-    conexion = mysql.connector.connect(
-        host=os.getenv("DB_HOST", "localhost"),
-        user=os.getenv("DB_USER", "root"),
-        password=os.getenv("DB_PASSWORD", ""),
-        database=os.getenv("DB_NAME", "asesoria_bd"),
-        port=int(os.getenv("DB_PORT", "3306"))
-)
-    cursor = conexion.cursor()
-
-    sql = """
-        INSERT INTO evaluaciones
-        (nombre, empresa, correo, telefono, sector, ventas, gastos, clientes, problema, ganancia)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    """
-
-    valores = (
-        nombre,
-        empresa,
-        correo,
-        telefono,
-        sector,
-        ventas,
-        gastos,
-        clientes,
-        problema,
-        ganancia
-    )
-
-    cursor.execute(sql, valores)
-    conexion.commit()
-    cursor.close()
+    # conexion = mysql.connector.connect(
+#     host=os.getenv("DB_HOST", "localhost"),
+#     user=os.getenv("DB_USER", "root"),
+#     password=os.getenv("DB_PASSWORD", ""),
+#     database=os.getenv("DB_NAME", "asesoria_bd"),
+#     port=int(os.getenv("DB_PORT", "3306"))
+# )
+#
+# cursor = conexion.cursor()
+#
+# sql = """
+#     INSERT INTO evaluaciones
+#     (nombre, empresa, correo, telefono, sector, ventas, gastos, clientes, problema, ganancia)
+#     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+# """
+#
+# valores = (
+#     nombre,
+#     empresa,
+#     correo,
+#     telefono,
+#     sector,
+#     ventas,
+#     gastos,
+#     clientes,
+#     problema,
+#     ganancia
+# )
+#
+# cursor.execute(sql, valores)
+# conexion.commit()
+# cursor.close()
     print("MYSQL FUNCIONA")
 
 
