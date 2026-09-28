@@ -1014,8 +1014,7 @@ def evaluar():
 
 @app.route("/")
 def inicio():
-    return "PRUEBA 123 RENATO"
-
+    return render_template("index.html")
 
 @app.route("/evaluacion.html")
 def pagina_evaluacion():
