@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_from_directory
 
 import matplotlib
 matplotlib.use("Agg")
@@ -13,7 +13,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LinearRegression
 
 
-app = Flask(__name__, static_folder="graficos", static_url_path="/graficos")
+app = Flask(__name__)   
 
 # ==========================================
 # MODELO DE INTELIGENCIA ARTIFICIAL
@@ -1011,6 +1011,20 @@ def evaluar():
 
 </html>
 """
+
+@app.route("/style.css")
+def estilo():
+    return send_from_directory(".", "style.css")
+
+
+@app.route("/assets/<path:filename>")
+def assets(filename):
+    return send_from_directory("assets", filename)
+
+
+@app.route("/graficos/<path:filename>")
+def graficos(filename):
+    return send_from_directory("graficos", filename)
 
 @app.route("/")
 def inicio():
