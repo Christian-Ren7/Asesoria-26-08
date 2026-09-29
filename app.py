@@ -7,6 +7,8 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 import os
+import io
+import base64
 import mysql.connector
 
 from sklearn.tree import DecisionTreeClassifier
@@ -364,14 +366,15 @@ def evaluar():
 
     plt.tight_layout()
 
-    ruta_grafico = os.path.join(
-        os.path.dirname(__file__),
-        "graficos",
-        "ventas_gastos.png"
-    )
-
-    plt.savefig(ruta_grafico)
+    buffer_ventas = io.BytesIO()
+    plt.savefig(buffer_ventas, format="png")
     plt.close()
+        
+    grafico_ventas = base64.b64encode(
+        buffer_ventas.getvalue()
+        ).decode("utf-8")
+    
+    
 
 
     # ==========================================
@@ -393,14 +396,15 @@ def evaluar():
 
     plt.tight_layout()
 
-    ruta_margen = os.path.join(
-        os.path.dirname(__file__),
-        "graficos",
-        "margen_ganancia.png"
-    )
-
-    plt.savefig(ruta_margen)
+    buffer_margen = io.BytesIO()
+    plt.savefig(buffer_margen, format="png")        
     plt.close()
+    
+    grafico_margen = base64.b64encode(
+        buffer_margen.getvalue()
+    ).decode("utf-8")
+    
+    
 
 
     # ==========================================
@@ -420,14 +424,13 @@ def evaluar():
 
     plt.tight_layout()
 
-    ruta_clientes = os.path.join(
-        os.path.dirname(__file__),
-        "graficos",
-        "clientes.png"
-    )
-
-    plt.savefig(ruta_clientes)
+    buffer_clientes = io.BytesIO()
+    plt.savefig(buffer_clientes, format="png")        
     plt.close()
+        
+    grafico_clientes = base64.b64encode(
+        buffer_clientes.getvalue()
+    ).decode("utf-8")
 
 
     # ==========================================
@@ -473,14 +476,13 @@ def evaluar():
     plt.legend()
     plt.tight_layout()
 
-    ruta_regresion = os.path.join(
-        os.path.dirname(__file__),
-        "graficos",
-        "regresion_clientes_ganancias.png"
-    )
-
-    plt.savefig(ruta_regresion)
+    buffer_regresion = io.BytesIO()
+    plt.savefig(buffer_regresion, format="png")        
     plt.close()
+    
+    grafico_regresion = base64.b64encode(
+        buffer_regresion.getvalue()
+    ).decode("utf-8")
 
 
     # ==========================================
@@ -521,6 +523,21 @@ def evaluar():
         grafico_principal = "ventas_gastos.png"
         titulo_grafico = "Resumen de ventas y gastos"
         descripcion_grafico = "Vista general de los principales indicadores financieros."
+
+
+    if grafico_principal == "ventas_gastos.png":
+        grafico_principal_base64 = grafico_ventas
+
+    elif grafico_principal == "margen_ganancia.png":
+        grafico_principal_base64 = grafico_margen
+
+    elif grafico_principal == "regresion_clientes_ganancias.png":
+        grafico_principal_base64 = grafico_regresion
+
+    else:
+        grafico_principal_base64 = grafico_ventas
+        
+    
 
     # ==========================================
     # RESULTADO EN EL NAVEGADOR
@@ -932,7 +949,7 @@ def evaluar():
                     <h3>{titulo_grafico}</h3>
 
                     <img
-                        src="/graficos/{grafico_principal}"
+                        src="data:image/png;base64,{grafico_principal_base64}"
                         alt="{titulo_grafico}"
                     >
 
@@ -947,7 +964,7 @@ def evaluar():
                     <h3>Clientes vs. Ganancia</h3>
 
                     <img
-                        src="/graficos/regresion_clientes_ganancias.png"
+                        src="data:image/png;base64,{grafico_regresion}"
                         alt="Regresión entre clientes y ganancia"
                     >
 
