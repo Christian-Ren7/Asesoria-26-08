@@ -1021,7 +1021,7 @@ def estilo():
 
 
 @app.route("/assets/<path:filename>")
-def assets(filename):
+def servir_assets(filename):
     return send_from_directory("assets", filename)
 
 

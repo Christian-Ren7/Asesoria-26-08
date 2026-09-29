@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Evaluación Inicial | Asesoría</title>
-        <link rel="stylesheet" href="style.css?v=4">
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     </head>
 
     <style>
@@ -22,7 +22,7 @@
         <section class="formulario-evaluacion">
 
             <div class="volver-contenedor">
-                <a href="index.php" class="volver">← Volver al inicio</a>
+                <a href="{{ url_for('inicio') }}" class="volver">← Volver al inicio</a>
             </div>
 
             <!--Nuevo-->

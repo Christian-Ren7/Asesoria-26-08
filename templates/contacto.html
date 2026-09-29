@@ -6,7 +6,7 @@
 
     <title>Contacto | Asesoría</title>
 
-    <link rel="stylesheet" href="style.css?v=999">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
@@ -17,10 +17,10 @@
             </div>
             <ul>
                 
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="index.html#nosotros">Nosotros</a></li>
-                <li><a href="index.html#servicios">Servicios</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+                <li><a href="{{url_for('inicio')}}#nosotros">Nosotros</a></li>
+                <li><a href="{{url_for('inicio')}}#servicios">Servicios</a></li>
+                <li><a href="{{url_for('pagina_contacto')}}">Contacto</a></li>
             </ul>
         </nav>
     </header>
@@ -142,10 +142,10 @@
 
         <div class="footer-enlaces">
             <h3>Navegación</h3>
-            <a href="index.html">Inicio</a>
-            <a href="index.html#nosotros">Nosotros</a>
-            <a href="index.html#servicios">Servicios</a>
-            <a href="contacto.html">Contacto</a>
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('inicio') }}#nosotros">Nosotros</a>
+            <a href="{{ url_for('inicio') }}#servicios">Servicios</a>
+            <a href="{{ url_for('pagina_contacto') }}">Contacto</a>
         </div>
 
         <div class="footer-contacto">
@@ -219,7 +219,7 @@
             type="button"
             onclick="toggleWhatsapp()"
             aria-label="Abrir WhatsApp">
-            <img src= "assets/whatsapp.png" alt="Whatsapp">
+            <img src= "{{url_for('servir_assets', filename='whatsapp.png')}}" alt="Whatsapp">
     </button>
 
 </div>

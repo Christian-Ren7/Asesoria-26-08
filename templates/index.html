@@ -6,7 +6,7 @@
     
     <title>Asesoría</title>
 
-    <link rel="stylesheet" href="style.css"?v=2>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
 </head>
 
 <body>
@@ -17,10 +17,10 @@
             </div>
 
             <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="index.html#nosotros">Nosotros</a></li>
-                <li><a href="index.html#servicios">Servicios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="{{ url_for ('inicio') }}">Inicio</a></li>
+                <li><a href="{{ url_for('inicio') }}#nosotros">Nosotros</a></li>
+                <li><a href="{{ url_for('inicio') }}#servicios">Servicios</a></li>
+                <li><a href=" {{ url_for('pagina_contacto') }}">Contacto</a></li>
             </ul>
 
         </nav>
@@ -29,9 +29,9 @@
     <section id="inicio" class="inicio">
 
             <div class="carrusel">
-                <img src="assets/empresa.jpg" alt="Asesoría empresarial" class="imagen-activa">
-                <img src="assets/empresa2.jpg" alt="Servicios empresariales">
-                <img src="assets/empresa3.jpg" alt="Consultoría empresarial">
+                <img src="{{url_for('servir_assets', filename='empresa.jpg')}}" alt="Asesoría empresarial" class="imagen-activa">
+                <img src="{{url_for('servir_assets', filename='empresa2.jpg')}}" alt="Servicios empresariales">
+                <img src="{{url_for('servir_assets', filename='empresa3.jpg')}}" alt="Consultoría empresarial">
             </div>
 
             <div class="carrusel-info">
@@ -71,7 +71,7 @@
         </div>
 
         <div class="nosotros-imagen">
-            <img src="assets/nosotros.jpg" alt="Equipo de trabajo">
+            <img src="{{url_for('servir_assets', filename='nosotros.jpg')}}" alt="Equipo de trabajo">
         </div>
 
     </div>
@@ -256,7 +256,7 @@
                 de tu empresa y descubre posibles oportunidades de mejora.
             </p>
         
-            <a href="evaluacion.html" class="boton-evaluacion">
+            <a href="{{ url_for('pagina_evaluacion') }}" class="boton-evaluacion">
                 Realiza tu evaluación gratis
             </a>
             
@@ -270,7 +270,7 @@
             a encontrar soluciones para tu negocio.
         </p>
 
-        <a href="contacto.html" class="boton-contacto">
+        <a href="{{ url_for('pagina_contacto') }}" class="boton-contacto">
             Contáctanos
         </a>
     </section>
@@ -288,10 +288,10 @@
 
         <div class="footer-enlaces">
             <h3>Navegación</h3>
-            <a href="index.html">Inicio</a>
-            <a href="index.html#nosotros">Nosotros</a>
-            <a href="index.html#servicios">Servicios</a>
-            <a href="contacto.html">Contacto</a>
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('inicio') }}#nosotros">Nosotros</a>
+            <a href="{{ url_for('inicio') }}#servicios">Servicios</a>
+            <a href="{{ url_for('pagina_contacto') }}">Contacto</a>
         </div>
 
         <div class="footer-contacto">
@@ -365,7 +365,7 @@
             type="button"
             onclick="toggleWhatsapp()"
             aria-label="Abrir WhatsApp">
-            <img src="assets/whatsapp.png" alt="Whatsapp">
+            <img src="{{url_for('servir_assets', filename='whatsapp.png')}}" alt="Whatsapp">
     </button>
 
 </div>
@@ -457,8 +457,8 @@
 
         const enlaces = [
             "#servicios",
-            "evaluacion.html",
-            "contacto.html"
+            "{{ url_for('pagina_evaluacion') }}",
+            "{{ url_for('pagina_contacto') }}"
         ];
 
         const titulo = document.getElementById("carrusel-titulo");
@@ -527,7 +527,7 @@
         <div class="programa-detalle">
 
             <div class="programa-imagen">
-                <img src="assets/contabilidad.jpg" alt="Asesoría empresarial">
+                <img src="{{url_for('servir_assets', filename='contabilidad.jpg')}}" alt="Asesoría empresarial">
             </div>
 
             <div class="programa-informacion">
@@ -600,7 +600,7 @@
         <div class="programa-detalle">
 
             <div class="programa-imagen">
-                <img src="assets/consultoria.jpg" alt="Consultoría empresarial">
+                <img src="{{url_for('servir_assets', filename='consultoria.jpg')}}" alt="Consultoría empresarial">
             </div>
 
             <div class="programa-informacion">
@@ -693,7 +693,7 @@
         <div class="programa-detalle">
 
             <div class="programa-imagen">
-                <img src="assets/soluciones-digitales.jpg" alt="Soluciones digitales">
+                <img src="{{url_for('servir_assets', filename='soluciones-digitales.jpg')}}" alt="Soluciones digitales">
             </div>
 
             <div class="programa-informacion">
@@ -768,7 +768,7 @@
     </script>
 
     <a href="contacto.html" class="correo-float">
-        <img src="assets/correo.png" alt="Correo">
+        <img src="{{url_for('servir_assets', filename='correo.png')}}" alt="Correo">
     </a>
 </body>
 </html>
