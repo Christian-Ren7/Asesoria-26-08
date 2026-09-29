@@ -78,7 +78,7 @@ def evaluar():
         return """
         <h2>Error en el formulario</h2>
         <p>No se recibieron correctamente los datos de ventas, gastos o clientes.</p>
-        <a href="http://localhost/Asesoria-26-08/evaluacion.html">
+        <a href="/evaluacion.html">
             Volver al formulario
         </a>
         """
@@ -1009,14 +1009,14 @@ def evaluar():
             </p>
 
             <a
-                href="http://localhost/Asesoria-26-08/contacto.php"
+                href="/contacto.html"
                 class="boton-principal"
             >
                 Solicitar asesoría →
             </a>
 
             <a
-                href="http://localhost/Asesoria-26-08/evaluacion.html"
+                href="/evaluacion.html"
                 class="boton-secundario"
             >
                 Realizar otra evaluación
