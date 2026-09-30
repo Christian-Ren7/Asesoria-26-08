@@ -141,6 +141,17 @@ def evaluar():
     # ==========================================
     print("INTENTANDO CONECTAR A MYSQL")
     
+    ca_contenido = os.getenv("DB_CA")
+
+    if ca_contenido:
+        ca_path = "/tmp/aiven-ca.pem"
+
+        with open(ca_path, "w", encoding="utf-8") as archivo:
+            archivo.write(ca_contenido)
+
+    else:
+        ca_path = "ca.pem"
+    
     conexion = mysql.connector.connect(
     host=os.getenv("DB_HOST"),
     user=os.getenv("DB_USER"),
