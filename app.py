@@ -7,6 +7,9 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 import io
 import base64
 import mysql.connector
@@ -137,38 +140,44 @@ def evaluar():
     # GUARDAR DATOS EN LA BASE DE DATOS
     # ==========================================
     print("INTENTANDO CONECTAR A MYSQL")
-    # conexion = mysql.connector.connect(
-#     host=os.getenv("DB_HOST", "localhost"),
-#     user=os.getenv("DB_USER", "root"),
-#     password=os.getenv("DB_PASSWORD", ""),
-#     database=os.getenv("DB_NAME", "asesoria_bd"),
-#     port=int(os.getenv("DB_PORT", "3306"))
-# )
-#
-# cursor = conexion.cursor()
-#
-# sql = """
-#     INSERT INTO evaluaciones
-#     (nombre, empresa, correo, telefono, sector, ventas, gastos, clientes, problema, ganancia)
-#     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-# """
-#
-# valores = (
-#     nombre,
-#     empresa,
-#     correo,
-#     telefono,
-#     sector,
-#     ventas,
-#     gastos,
-#     clientes,
-#     problema,
-#     ganancia
-# )
-#
-# cursor.execute(sql, valores)
-# conexion.commit()
-# cursor.close()
+    
+    conexion = mysql.connector.connect(
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    ssl_ca= "ca.pem",
+    ssl_verify_cert=True,
+    ssl_verify_identity=True,
+    database=os.getenv("DB_NAME"),
+    port=(os.getenv("DB_PORT", "3306"))
+    )
+
+    cursor = conexion.cursor()
+
+    sql = """
+    INSERT INTO evaluaciones
+    (nombre, empresa, correo, telefono, sector, ventas, gastos, clientes, problema, ganancia)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """
+
+    valores = (
+        nombre,
+        empresa,
+        correo,
+        telefono,
+        sector,
+        ventas,
+        gastos,
+        clientes,
+        problema,
+        ganancia
+    )
+
+    cursor.execute(sql, valores)
+    conexion.commit()
+
+    cursor.close()
+    conexion.close()
     print("MYSQL FUNCIONA")
 
 
