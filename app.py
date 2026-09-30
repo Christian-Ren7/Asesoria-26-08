@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template, send_from_directory
-
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -143,11 +142,13 @@ def evaluar():
     
     ca_contenido = os.getenv("DB_CA")
 
+    ca_contenido = os.getenv("DB_CA_B64")
+
     if ca_contenido:
         ca_path = "/tmp/aiven-ca.pem"
 
-        with open(ca_path, "w", encoding="utf-8") as archivo:
-            archivo.write(ca_contenido)
+        with open(ca_path, "wb") as archivo:
+            archivo.write(base64.b64decode(ca_contenido))
 
     else:
         ca_path = "ca.pem"
