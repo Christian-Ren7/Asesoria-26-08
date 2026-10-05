@@ -620,91 +620,6 @@ section p {
 
     transform: translateY(-2px);
 }
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 900px) {
-
-    .servicios-contenedor {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-
-/* =========================
-   CELULAR
-========================= */
-
-@media (max-width: 600px) {
-
-    #servicios {
-        padding: 50px 5%;
-    }
-
-    #servicios h2 {
-        font-size: 28px;
-    }
-
-    .servicios-intro {
-        font-size: 15px;
-        margin-bottom: 30px;
-    }
-
-    .servicios-contenedor {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    #servicios .tarjeta {
-        min-height: 320px;
-        padding: 30px 20px 25px;
-    }
-
-    #servicios .tarjeta-icono {
-        font-size: 38px;
-    }
-
-    #servicios .tarjeta h3 {
-        font-size: 21px;
-    }
-
-    #servicios .tarjeta-programas {
-        top: 115px;
-        left: 20px;
-        right: 20px;
-    }
-
-    .modal-contenido {
-        padding: 30px 22px;
-    }
-
-    .modal-contenido h2 {
-        font-size: 24px;
-    }
-
-    .programa-detalle {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .programa-imagen {
-        width: 100%;
-        height: 180px;
-    }
-
-    .programa-imagen img {
-        width: 100%;
-        height: 180px;
-    }
-
-    .programas-lista {
-        grid-template-columns: 1fr;
-    }
-}
  
 /* =========================
    EVALUACIÓN INICIAL
@@ -1481,256 +1396,6 @@ section p {
     height: 100%; 
 } 
 
-/* ========================= 
-   CELULARES 
-========================= */ 
-
-@media (max-width: 768px) { 
- 
-    nav { 
-        flex-direction: column; 
-        gap: 15px; 
-    } 
- 
-    ul { 
-        gap: 15px; 
-    } 
- 
-    /* CARRUSEL */  
-
-    .inicio {
-        position: relative;
-        min-height: 650px;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-    }
-
-    .inicio .carrusel {
-        position: absolute !important;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 380px !important;
-        overflow: hidden;
-    }
-
-    .inicio .carrusel img {
-        height: 100%;
-    }
-
-    .carrusel-info {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        z-index: 5;
-        width: 90%;
-        max-width: none;
-        margin: 0 auto 30px;
-        padding: 25px 20px;
-        background-color: white;
-        border-radius: 12px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
-        text-align: center;
-    }
-
-    .carrusel-info h2 {
-        font-size: 28px;
-        line-height: 1.25;
-        margin-bottom: 12px;
-        text-align: center;
-    }
-
-    .carrusel-info p {
-        font-size: 15px;
-        line-height: 1.5;
-        text-align: center;
-    }
-
-    .carrusel-info .boton-inicio {
-        margin-top: 18px;
-        padding: 11px 20px;
-    }
-
-    .carrusel-anterior,
-    .carrusel-siguiente {
-        top: 190px;
-        width: 38px;
-        height: 38px;
-        font-size: 24px;
-    }
-
-    .carrusel-anterior {
-        left: 10px;
-    }
-
-    .carrusel-siguiente {
-        right: 10px;
-    }
- 
-    /* SERVICIOS */ 
- 
-    .servicios-contenedor { 
-        flex-direction: column; 
-        align-items: center; 
-    } 
- 
-    .tarjeta { 
-        width: 80%;
-        flex: none; 
-    } 
- 
-    /* NOSOTROS */ 
- 
-    .nosotros { 
-        display: flex;
-        flex-direction: column;  
-        gap: 35px;
-        padding: 50px 5%; 
-    }
-
-    .nosotros-info {
-        flex-direction: column !important;
-        gap: 20px;
-    }
-
-    /* MISION Y VISION */
-
-    .info-item {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 22px 20px;
-        text-align: left;
-        border-radius: 10px; 
-    }
-
-    .info-item h3 {
-        font-size: 21px;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-
-    .info-item p {
-        font-size: 18px;
-    }
-
-    .nosotros .nosotros-principal {
-        flex-direction: column !important;
-        gap: 25px !important;
-    }
-
-    .nosotros .nosotros-contenido {
-        width: 100%;
-        text-align: center;
-    }
-
-    .nosotros .nosotros-imagen {
-        width: 100%;
-        max-width: 380px;
-        margin: 0 auto;
-    }
-
-    .nosotros .nosotros-imagen img {
-        width: 100%;
-        height: auto;
-        margin: 0 auto;
-    }
-
-    /* ¿QUE NOS CARACTERIZA? */
-
-    .caracteristicas {
-        padding: 10px 0;
-    }
-
-    .caracteristicas h2 {
-        font-size: 27px;
-        margin-bottom: 25px;
-    }
-
-    .caracteristicas-contenido {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        width: 100%;
-    }
-
-    .caracteristica-item {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 22px 20px;
-        text-align: center;
-    }
-
-    .caracteristica-item h3 {
-        font-size: 19px;
-        margin-bottom: 8px;
-    }
-
-    .caracteristica-item p {
-        font-size: 14px;
-        line-height: 1.5;
-    }
- 
-    /* FORMULARIO DE EVALUACIÓN */ 
- 
-    .formulario-evaluacion { 
-        padding: 50px 5%; 
-    } 
- 
-    .formulario-evaluacion h1 { 
-        font-size: 30px; 
-    } 
- 
-    .formulario-evaluacion form { 
-        padding: 25px; 
-    } 
- 
-    /* WHATSAPP EN CELULAR */ 
- 
-    .whatsapp-container { 
-        right: 15px; 
-        bottom: 15px; 
-        width: 55px; 
-    } 
- 
-    .whatsapp-info { 
-        width: calc(100vw - 30px); 
-        max-width: 330px; 
-        right: 0; 
-        bottom: 0; 
-    } 
- 
-    /* CONTACTO */ 
- 
-    .contacto-pagina { 
-        padding: 50px 5%; 
-    } 
- 
-    .contacto-titulo h1 { 
-        font-size: 32px; 
-    } 
- 
-    .contacto-contenedor { 
-        flex-direction: column; 
-        gap: 20px; 
-    } 
- 
-    .contacto-informacion, 
-    .contacto-formulario { 
-        width: 100%; 
-        box-sizing: border-box; 
-        padding: 25px; 
-    } 
- 
-    .contacto-informacion iframe { 
-        height: 250px; 
-        width: 100%; 
-    }
-    
-}
-
 /* ===== EVALUACIÓN POR PASOS ===== */
 
 .evaluacion-intro {
@@ -1851,19 +1516,924 @@ section p {
     }
 }
 
-/* CELULAR */
+    /* ==================================================
+        RESPONSIVE COMPLETO DE CELULAR
+       ==================================================*/
+    
+    @media (max-width: 768px) {
+        * {
+            box-sizing: border-box;
+        }
 
-@media (max-width: 768px) {
+        body {
+            width: 100%;
+            overflow-x: hidden;
+        }
 
-    .evaluacion-intro h1 {
-        font-size: 30px;
-    }
+        section {
+            padding: 50px 5%;
+        }
 
-    .botones-paso {
-        flex-direction: column-reverse;
-    }
+        section h2 {
+            font-size: 28px;
+        }
 
-    .botones-paso button {
-        width: 100%;
+        section p {
+            font-size: 16px;
+        }
+
+        /* ==========================
+                    MENU
+           ========================== */
+
+        header {
+            padding: 15px 5%;
+        }
+
+        nav {
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        nav ul {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+        }
+
+        nav ul a {
+            font-size: 14px;
+        }
+
+        /* =======================
+                INICIO
+        ========================== */
+
+        .inicio {
+            position: relative;
+            min-height: 650px;
+            width: 100%;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+
+        .inicio .carrusel {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 380px !important; 
+        }
+
+        .inicio .carrusel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carrusel-info {
+            position: relative;
+            top: auto;
+            left: auto;
+            transform: none;
+            
+            width: 90%;
+            max-width: none;
+            
+            margin: 0 auto 30px;
+            padding: 25px 20px;
+
+            background-color: rgba(255, 255, 255, 0.96);
+            border-radius: 14px;
+            
+            text-align: center;
+
+            box-shadow: 0 5px 20px rgba (0, 0, 0, 0.12);
+        }
+
+        carrusel.info h2 {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 0;
+            text-align: center; 
+        }
+
+        .carrusel-info p {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .carrusel-info .boton-inicio {
+            margin-top: 18px;
+            padding: 11px 20px;
+            font-size: 14px; 
+        }
+
+        .carrusel-anterior,
+        .carrusel-siguiente {
+            top: 190px;
+            width: 38px;
+            height: 38px;
+            font-size: 22px; 
+        }
+
+        .carrusel-anterior {
+            left: 10px;
+        }
+
+        .carrusel-siguiente {
+            right: 10px;
+        }
+
+        /* ================================
+            NOSOTROS
+        ================================= */
+
+        .nosotros {
+            padding: 55px 5%;
+        }
+
+        .nosotros-principal {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100%;
+            gap: 25px !important;
+            margin-bottom: 40px; 
+        }
+
+        .nosotros-contenido {
+            width: 100%;
+            max-width: none;
+            text-align: center; 
+        }
+
+        .nosotros-contenido h2 {
+            font-size: 28px;
+            margin-bottom: 18px;
+        }
+
+        .nosotros-contenido p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .nosotros-imagen {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .nosotros-imagen img {
+            width: 100%;
+            height: auto;
+            min-height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+        } 
+
+        /* ============================
+            MISION Y VISION
+        ============================= */
+
+        .nosotros-info {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100%;
+            gap: 18px;
+        }
+
+        .info-item {
+            width: 100%;
+            padding: 22px 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .info-item h3 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .info-item p {
+            font-size: 15px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* ==================================
+            CARACTERISTICAS
+        ===================================*/
+
+        .caracteristicas {
+            width: 100%;
+            margin-top: 45px;
+            padding: 0; 
+        }
+
+        .caracteristicas h2 {
+            font-size: 27px;
+            margin-bottom: 25px;
+        }
+
+        .caracteristicas-contenido {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .caracteristicas-item {
+            width: 100%;
+            min-height: auto;
+            padding: 22px 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .caracteristicas-item h3 {
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .caracteristica-item p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* =============================
+            SERVICIOS
+        ============================= */
+
+        #servicios {
+            padding: 55px 5%;
+        }
+
+        #servicios h2 {
+            font-size: 28px;
+        }
+
+        .servicios-intro {
+            width: 100%;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .servicios-contenedor {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            width: 100%;
+        }
+
+        #servicios .tarjeta {
+            width: 100%;
+            min-height: 300px;
+            padding: 28px 20px 25px;
+            border-radius: 12px; 
+        }
+
+        #servicios .tarjeta-icono {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        #servicios .tarjeta h3 {
+            font-size: 21px;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        #servicios .tarjeta-descripcion p {
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        #servicios .tarjeta-programas {
+            top: 125px;
+            left: 20px;
+            right: 20px;
+        }
+
+        #servicios .tarjeta-programas p {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 10px;  
+        }
+
+        #servicios .tarjeta-detalle {
+            bottom: 18px;
+        }
+
+        #servicios .tarjeta-detalle button {
+            padding: 9px 16px;
+            font-size: 13px; 
+        }
+
+        /* ===============================
+            MODAL DE SERVICIOS
+        =============================== */
+
+        .modal-programas {
+            padding: 12px;
+            align-items: center;
+        }
+
+        .modal-contenido {
+            width: 100%;
+            max-width: 100%;
+            max-height: 92vh;
+            padding: 25px 18px;
+            border-radius: 12px;
+        }
+
+        .modal-contenido h2 {
+            font-size: 23px;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            padding-right: 25px; 
+        }
+
+        .modal-contenido h3 {
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        .modal-contenido p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .modal-cerrar {
+            top: 10px;
+            right: 12px;
+            font-size: 25px;
+        }
+
+        /* ==================================
+            DETALLE DE PROGRAMAS
+        ================================== */
+
+        .programa-detalle {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .programa-imagen {
+            width: 100%;
+            height: 180px;
+            transform: none;
+        }
+
+        .programa-imagen {
+            width: 100%;
+            height: 180px;
+            transform: none;
+        }
+
+        .programa-imagen img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .programa-informacion h3 {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+
+        .programa-informacion p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ==============================
+            LISTA DE PROGRAMAS
+        ============================== */
+
+        .programas-lista {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .programa-item {
+            min-height: auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .programa-item h3 {
+            font-size: 19px;
+        }
+
+        .programa-item p {
+            font-size: 14px;
+        }
+
+        .programa-item h4 {
+            font-size: 15px; 
+        }
+
+        .programa-item li {
+            font-size: 14px;
+            line-height: 1.6; 
+        }
+
+        /* ================================
+            EVALUACION INICIAL
+        ================================ */
+
+        #evaluacion {
+            padding: 50px 5%;
+        }
+
+        .evaluacion-contenido {
+            width: 100%;
+        }
+
+        .evaluacion-contenido h2 {
+            font-size: 27px;
+        }
+
+        .evaluacion-contenido p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .boton-evaluacion {
+            padding: 11px 20px;
+            font-size: 14px;
+        }
+
+        /* ===============================
+            FORMULARIO DE EVALUACION
+        =============================== */
+
+        .formulario-evaluacion {
+            width: 100%;
+            min-height: 100vh;
+            padding: 40px 5% 60px;
+        }
+
+        .formulario-evalucion h1 {
+            font-size: 29px;
+            line-height: 1.25; 
+        }
+
+        .formulario-evaluacion p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .formulario-evaluacion form {
+            width: 100%;
+            padding: 24px 18px;
+            border-radius: 12px;
+        }
+
+        .formulario-evaluacion label {
+            font-size: 14px;
+        }
+
+        .formulario-evaluacion input,
+        .formulario-evaluacion select {
+            width: 100%;
+            padding: 13px 12px;
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+
+        .formulario-evaluacion button {
+            width: 100%;
+            padding: 14px;
+            font-size: 15px;
+        }
+
+        /* ==================================
+            EVALUACION POR PASOS
+        ================================== */
+
+        .evaluacion-intro {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .evaluacion-intro h1 {
+            font-size: 29px;
+            line-height: 1.3;
+        }
+
+        .evaluacion-intro p {
+            font-size: 15px;
+        }
+
+        .evaluacion-intro span {
+            font-size: 13px;
+        }
+
+        .progreso {
+            width: 100%;
+        }
+
+        .progreso span {
+            font-size: 13px;
+        }
+
+        .barra-progreso {
+            height: 7px;
+        }
+
+        .paso h2 {
+            font-size: 22px;
+            line-height: 1.3;
+        }
+
+        .paso p {
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .botones-paso {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 10px;
+        }
+
+        .botones-paso button {
+            width: 100%;
+            margin: 0;
+        }
+
+        /* ====================================
+            CONTACTO
+        ==================================== */
+
+        .contacto-pagina {
+            width: 100%;
+            padding: 50px 5%;
+        }
+
+        .contacto-titulo {
+            margin-bottom: 30px;
+        }
+
+        .contacto-titulo h1 {
+            font-size: 31px;
+            line-height: 1.3;
+        }
+
+        .contacto-titulo p {
+            font-size: 15px;
+            line-height: 1.3;
+        }
+
+        .contacto-contenedor {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .contacto-informacion,
+        .contacto-formulario {
+            width: 100%;
+            padding: 24px 20px;
+            border-radius: 12px; 
+        }
+
+        .contacto-informacion h2,
+        .contacto-informacion h2 {
+            font-size: 22px;
+            line-height: 1.3;
+        }
+
+        .contacto-informacion p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .contacto-formulario label {
+            font-size: 14px;
+        }
+
+        .contacto-formulario input,
+        .contacto-formulario textarea {
+            width: 100%;
+            font-size: 16px;
+            padding: 12px;
+        }
+
+        .contacto-formulario textarea {
+            min-height: 120px;
+        }
+
+        .contacto-formulario button {
+            width: 100%;
+            padding: 13px;
+        }
+
+        .contacto-informacion iframe {
+            width: 100%;
+            height: 250px;
+            border: 0;
+        }
+
+        .boton-mapa {
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* =============================
+            BOTON VOLVER
+        ============================= */
+
+        .volver-contenedor {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .volver {
+            font-size: 14px;
+        }
+
+        /* ==================================
+            FOOTER
+        ================================== */
+
+        .footer {
+            width: 100%;
+        }
+
+        .footer-contenido {
+            width: 100%;
+            padding: 35px 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .footer-marca h2 {
+            font-size: 23px;
+        }
+
+        .footer-marca p {
+            max-width: 100%;
+            margin:0 auto;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-enlaces {
+            align-items: center;
+            gap: 9px;
+        }
+
+        .footer-enlaces a {
+            font-size: 14px;
+        }
+
+        .footer-contacto {
+            align-items: center;
+        }
+
+        .footer-contacto p {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .footer-inferior {
+            padding: 14px 15px;
+        }
+
+        .footer-inferior p {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* ==================================
+            WHATSAPP
+        ================================== */
+
+        .whatsapp-container {
+            right: 15px;
+            bottom: 15px;
+            width: 52px;
+        }
+
+        .whatsapp-float {
+            width: 52px;
+            height: 52px;
+        }
+
+        .whatsapp-float img {
+            width: 38px;
+            height: 38px;
+        }
+
+        .whatsapp-help {
+            display: none;
+        }
+
+        .whatsapp-info {
+            width: calc(100vw - 30px);
+            max-width: 330px;
+            right: 0;
+            bottom: 0;
+            padding: 18px;
+        }
+
+        .whatsapp-header {
+            margin: -18px -18px 15px;
+            font-size: 18px;
+        }
+
+        .whatsapp-body {
+            font-size: 14px;
+        }
+
+        .whatsapp-contact {
+            width: 140px; 
+            padding: 11px;
+            font-size: 14px;
+        }
+
+        /* =============================
+            CORREO FLOTANTE
+        ============================= */
+
+        .correo-float {
+            right: 15px;
+            bottom: 82px;
+            width: 52px;
+            height: 52px;
+        }
+
+        .correo-float img {
+            width: 57px;
+            height: 57px;
+        }
     }
 }
+
+/* ==================================
+        CELULARES PEQUEÑOS
+    ================================== */
+
+    @media (max-width: 480px) {
+        header {
+            padding: 14px 4%;
+        }
+
+        .logo {
+            font-size: 22px;
+        }
+
+        nav ul {
+            gap: 8px 20px;
+        }
+
+        nav ul a {
+            font-size: 13px;
+        }
+
+        /* INICIO */
+
+        .inicio {
+            min-height: 620px;
+        }
+
+        .inicio .carrusel {
+            height: 340px !important;
+        }
+
+        .carrusel-anterior,
+        .carrusel-siguiente {
+            top: 170px;
+            width: 34px;
+            height: 34px;
+            font-size: 20px;
+        }
+
+        .carrusel-info {
+            width: 92%;
+            padding: 20px 16px;
+            margin-bottom: 20px;
+        }
+
+        .carrusel-info h2 {
+            font-size: 24px;
+        }
+
+        .carrusel-info p {
+            font-size: 14px;
+        }
+
+        /* SECCIONES */
+
+        section {
+            padding: 45px 4%;
+        }
+
+        section h2 {
+            font-size: 25px;
+        }
+
+        /* SERVICIOS */
+
+        #servicios {
+            padding: 45px 4%;
+        }
+
+        #servicios .tarjeta {
+            min-height: 290px;
+            padding: 25px 18px;
+        }
+
+        #servicios .tarjeta h3 {
+            font-size: 20px;
+        }
+
+        /* MODAL */
+
+        .modal-programas {
+            padding: 8px;
+        }
+
+        .modal-contenido {
+            max-height: 94vh;
+            padding: 22px 15px;
+        }
+
+        .modal-contenido h2 {
+            font-size: 21px;
+        }
+
+        /* EVALUACION */
+
+        .formulario-evaluacion {
+            padding: 35px 4% 50px;
+        }
+
+        .formulario-evaluacion h1 {
+            font-size: 26px;
+        }
+
+        .formulario-evaluacion form {
+            padding: 20px 15px;
+        }
+
+        /* CONTACTO */
+
+        .contacto-pagina {
+            padding: 45px 4%;
+        }
+
+        .contacto-titulo h1 {
+            font-size: 28px;
+        }
+
+        .contacto-informacion,
+        .contacto-formulario {
+            padding: 22px 16px;
+        }
+
+        /* FOOTER */
+
+        .footer-contenido {
+            padding: 30px 15px;
+            gap: 25px;
+        }
+
+        /* FLOTANTES */
+
+        .whatsapp-container {
+            right: 12px;
+            bottom: 12px;
+        }
+
+        .correo-float {
+            right: 12px;
+            bottom: 76px;
+        }
+        
+    }
