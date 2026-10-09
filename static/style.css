@@ -431,194 +431,182 @@ section p {
     text-align: center;
 }
 
-/* =========================
-   MODAL DE PROGRAMAS
-========================= */
+/* =======================================
+    PROGRAMAS.HTML
+======================================= */
 
-.modal-programas {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;   
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box; 
+/* CONTENEDOR PRINCIPAL */
+
+.programas-principal {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 5%;
 }
 
-.modal-contenido {
-    position: relative;
-    width: 100%;
-    max-width: 1100px;
-    max-height: 100vh;
-    overflow-y: auto;
-    background-color: white;
-    border-radius: 12px;
-    padding: 35px;
-    box-sizing: border-box;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
-    text-align: left; 
+/* TITULO */
+
+.programas-titulo {
+    text-align: center;
+    margin-bottom: 45px;
 }
 
-.modal-contenido h2 {
-    color: #1e3a8a;
-    font-size: 28px;
-    margin-top: 0;
-    margin-bottom: 25px;
-}
-
-.modal-contenido h3 {
-    color: #1e3a8a;
-    font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 8px; 
-}
-
-.modal-contenido p {
-    color: #4b5563;
-    font-size: 15px;
-    line-height: 1.6;
+.programas-titulo h1 {
     margin: 0 0 15px;
+    font-size: 40px;
+    color: #1f2937;
 }
 
-.modal-cerrar {
-    position: absolute;
-    top: 15px;
-    right: 18px;
-    border: none;
-    background: none;
-    color: #374151;
-    font-size: 28px;
-    cursor: pointer;  
+.programas-titulo p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #666;
+    line-height: 1.6;
+    font-size: 17px;
 }
 
-.modal-cerrar:hover {
-    color: #1e3a8a;
-}
+/* MENU + INFORMACION */
 
-/* ===========================
-     DETALLE DEL PROGRAMA 
-============================*/
-
-.programa-detalle {
+.programas-contenedor {
     display: grid;
-    grid-template-columns: 30% 70%;
-    gap: 25px;
-    align-items: center;
+    grid-template-columns: 280px 1fr;
+    gap: 30px;
+    align-items: start;
 }
+
+/* ============================
+    MENU LATERAL
+============================ */
+
+.programas-menu {
+    background-color: white;
+    padding: 25px;
+    border-radius: 14px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+
+    position: sticky;
+    top: 100px;
+}
+
+.programas-menu h2 {
+    margin: 0 0 18px;
+    color: #1f2937;
+    font-size: 22px;
+}
+
+.programas-menu button {
+    width: 100%;
+    border:none;
+    background-color: transparent;
+    text-align: left;
+    padding: 14px 15px;
+    margin-bottom: 6px;
+    border-radius: 8px;
+    color: #444;
+    font-family: inherint;
+    font-size: 15px;
+    cursor: pointer;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.programas-menu button:hover {
+    background-color: #f0f2f5;
+    transform: translateX(3px);
+}
+
+.programas-menu .programa-menu-activo {
+    background-color: #1f2937;
+    color: white;
+}
+
+.programas-menu .programa-menu-activo:hover {
+    background-color: #1f2937;
+    transform: none;
+}
+
+/* =============================
+    INFORMACION DEL PROGRAMA
+============================= */
+
+.programa-informacion {
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+}
+
+/* IMAGEN */
 
 .programa-imagen {
-    width: 190px;
-    height: 130px;
-    transform: translateY(-5px);
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
 }
 
 .programa-imagen img {
-    display: block;
-    width: 190px;
-    height: 130px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    display: block;
+    transition: transform 0.4s ease;
 }
 
-.programa-informacion h3 {
-    color: #1e3a8a;
-    font-size: 23px;
-    margin-top: 0;
-    margin-bottom: 12px;
+.programa-informacion:hover .programa-imagen img {
+    transform: scale(1.03);
 }
 
-.programa-informacion p {
-    color: #4b5563;
-    font-size: 15px;
-    line-height: 1.6;
-    margin: 0;
+/* CONTENIDO */
+
+.programa-contenido {
+    padding: 35px;
 }
 
-/* PROGRAMAS */
-
-.programas-lista {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.programa-separador {
-    height: 1px;
-    background-color: #e5e7eb;
-    margin: 30px 0;
-}
-
-.programa-item {
-    padding: 25px;
-    min-height: 220px;
-    background-color: #f8fafc;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    border-left: 4px solid #1e3a8a;
-    box-sizing: border-box;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.programa-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); 
-}
-
-.programa-item h3 {
-    color: #1e3a8a;
-    font-size: 20px;
-    margin: 0 0 10px;
-}
-
-.programa-item p {
-    color: #4b5563;
-    font-size: 14px;
-    line-height: 1.6;
+.programa-contenido h2 {
     margin: 0 0 15px;
+    color: #1f2937;
+    font-size: 32px;
 }
 
-.programa-item h4 {
-    color: #1e3a8a;
-    font-size: 16px;
-    margin: 0 0 8px;
-}
-
-.programa-item ul {
-    margin: 0;
-    padding-left: 20px;
-}
-
-.programa-item li {
-    color: #4b5563;
-    font-size: 14px;
+.programa-contenido p {
+    margin-bottom: 25px;
+    color: #555;
     line-height: 1.7;
 }
 
-/* BOTON VER PROGRAMAS */
-
-#servicios .tarjeta-detalle button {
-    display: inline-block;
-    padding: 9px 18px;
-    border: 1px solid #1e3a8a;
-    border-radius: 6px;
-    background-color: white;
-    color: #1e3a8a;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease;
+.programa-contenido h3 {
+    margin: 25px 0 12px;
+    color: #1f2937;
+    font-size: 20px;
 }
 
-#servicios .tarjeta-detalle button:hover {
-    background-color: #1e3a8a;
-    color: white;
+.programa-contenido li {
+    margin-bottom: 4px;
+}
 
-    transform: translateY(-2px);
+/* ========================================
+    BOTON
+======================================== */
+
+.programa-boton {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 22px;
+    background-color: #1f2937;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 
+        background-color 0.3s ease,
+        transform 0.3s ease;  
+
+.programa-boton:hover {
+    background-color: #374151;
+    transform: translateY(-2px); 
+    }
 }
  
 /* =========================
@@ -1516,6 +1504,7 @@ section p {
     }
 }
 
+
     /* ==================================================
         RESPONSIVE COMPLETO DE CELULAR
        ==================================================*/
@@ -1623,7 +1612,7 @@ section p {
             box-shadow: 0 5px 20px rgba (0, 0, 0, 0.12);
         }
 
-        carrusel.info h2 {
+        carrusel-info h2 {
             font-size: 15px;
             line-height: 1.5;
             margin-bottom: 0;
@@ -1756,7 +1745,7 @@ section p {
             width: 100%;
         }
 
-        .caracteristicas-item {
+        .caracteristica-item {
             width: 100%;
             min-height: auto;
             padding: 22px 20px;
@@ -1764,7 +1753,7 @@ section p {
             text-align: center;
         }
 
-        .caracteristicas-item h3 {
+        .caracteristica-item h3 {
             font-size: 19px;
             margin-bottom: 8px;
         }
@@ -1844,116 +1833,50 @@ section p {
             font-size: 13px; 
         }
 
-        /* ===============================
-            MODAL DE SERVICIOS
-        =============================== */
+        /*=================================
+            PROGRAMAS
+        ================================ */
 
-        .modal-programas {
-            padding: 12px;
-            align-items: center;
+        .programas-principal {
+            padding: 50px 5%
         }
 
-        .modal-contenido {
-            width: 100%;
-            max-width: 100%;
-            max-height: 92vh;
-            padding: 25px 18px;
-            border-radius: 12px;
+        .programas-titulo {
+            margin-bottom: 30px;
         }
 
-        .modal-contenido h2 {
-            font-size: 23px;
-            line-height: 1.3;
-            margin-bottom: 20px;
-            padding-right: 25px; 
+        .programas-titulo h1 {
+            font-size: 32px;
         }
 
-        .modal-contenido h3 {
-            font-size: 18px;
-            line-height: 1.4;
+        .programas-titulo p {
+            font-size: 15px;
         }
 
-        .modal-contenido p {
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .modal-cerrar {
-            top: 10px;
-            right: 12px;
-            font-size: 25px;
-        }
-
-        /* ==================================
-            DETALLE DE PROGRAMAS
-        ================================== */
-
-        .programa-detalle {
-            display: grid;
+        .programas-contenedor {
             grid-template-columns: 1fr;
-            gap: 18px;
+            gap: 25px;
         }
 
-        .programa-imagen {
-            width: 100%;
-            height: 180px;
-            transform: none;
-        }
-
-        .programa-imagen {
-            width: 100%;
-            height: 180px;
-            transform: none;
-        }
-
-        .programa-imagen img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .programa-informacion h3 {
-            font-size: 20px;
-            line-height: 1.4;
-        }
-
-        .programa-informacion p {
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* ==============================
-            LISTA DE PROGRAMAS
-        ============================== */
-
-        .programas-lista {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-
-        .programa-item {
-            min-height: auto;
+        .programas-menu {
+            position: static;
             padding: 20px;
-            border-radius: 10px;
         }
 
-        .programa-item h3 {
-            font-size: 19px;
+        .programas-menu button {
+            padding: 13px;
         }
 
-        .programa-item p {
-            font-size: 14px;
+        .programa-imagen {
+            height: 230px;
         }
 
-        .programa-item h4 {
-            font-size: 15px; 
+        .programa-contenido {
+            padding: 25px;
         }
 
-        .programa-item li {
-            font-size: 14px;
-            line-height: 1.6; 
+        .programa-contenido h2 {
+            font-size: 27px
         }
 
         /* ================================
@@ -1992,7 +1915,7 @@ section p {
             padding: 40px 5% 60px;
         }
 
-        .formulario-evalucion h1 {
+        .formulario-evaluacion h1 {
             font-size: 29px;
             line-height: 1.25; 
         }
@@ -2119,7 +2042,6 @@ section p {
             border-radius: 12px; 
         }
 
-        .contacto-informacion h2,
         .contacto-informacion h2 {
             font-size: 22px;
             line-height: 1.3;
@@ -2293,7 +2215,6 @@ section p {
             height: 57px;
         }
     }
-}
 
 /* ==================================
         CELULARES PEQUEÑOS
@@ -2373,19 +2294,50 @@ section p {
             font-size: 20px;
         }
 
-        /* MODAL */
-
-        .modal-programas {
-            padding: 8px;
+        .programas-principal {
+            padding: 40px 4%;
         }
 
-        .modal-contenido {
-            max-height: 94vh;
-            padding: 22px 15px;
+        .programas-titulo h1 {
+            font-size: 28px;
         }
 
-        .modal-contenido h2 {
-            font-size: 21px;
+        .programa-titulo p {
+            font-size: 14px;
+        }
+
+        .programas-menu {
+            padding: 16px;
+        }
+
+        .programas-menu button {
+            font-size: 14px;
+            padding: 12px;
+        }
+
+        .programa-imagen {
+            height: 200px;
+        }
+
+        .programa-contenido {
+            padding: 20px;
+        }
+
+        .programa-contenido h2 {
+            font-size: 25px;
+        }
+
+        .programa-contenido p {
+            font-size: 15px;
+        }
+
+        .programa-contenido ul {
+            font-size: 14px;
+        }
+
+        .programa-boton {
+            width: 100%;
+            text-align: center;
         }
 
         /* EVALUACION */

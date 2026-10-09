@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> Nuestros Programas | Asesoria </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">Asesoria</a>
+            </div>
+
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/#nosotros">Nosotros</a></li>
+                <li><a href="/#servicios">Servicios</a></li>
+                <li><a href="/contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="programas-principal">
+            <div class="programas-titulo">
+                <h1>Nuestros programas</h1>
+                <p>
+                    Conoce nuestas soluciones y servicios diseñados
+                    para apoyar el crecimiento y desarrollo de tu empresa.
+                </p>
+            </div>
+
+            <div class="programas-contenedor">
+                
+                <!--MENU DE PROGRAMAS-->
+                <aside class="programas-menu">
+                    <h2>Programas</h2>
+
+                    <button class="programa-menu-activo" data-programa="contabilidad">
+                        Contabilidad
+                    </button>
+
+                    <button data-programa="financiera">
+                        Gestion financiera
+                    </button>
+
+                    <button data-programa="consultoria">
+                        Consultorio empresarial
+                    </button>
+
+                    <button data-programa="comercio">
+                        Comercio exterior
+                    </button>
+
+                    <button data-programa="logistica">
+                        Logistica internacional
+                    </button>
+                    
+                    <button data-programa="digital">
+                        Soluciones digitales
+                    </button>
+
+                    <button data-programa="fraudes">
+                        Prevencion de fraudes
+                    </button>
+                </aside>
+
+                <!--INFORMACION DEL PROGRAMA-->
+                <article class="programa-informacion">
+                    <div class="programa-imagen">
+                        <img 
+                            src="{{ url_for('servir_assets', filename='contabilidad.jpg') }}"
+                            alt="Servicio de contabilidad">
+                    </div>
+
+                    <div class="programa-contenido">
+
+                        <h2>Contabilidad</h2>
+
+                        <p>
+                            Brindamos apoyo en la organizacion y gestion
+                            contable de la empresa, facilitando el control 
+                            de la informacion financiera y la toma de decisiones.
+                        </p>
+
+                        <h3>¿Que incluye?</h3>
+
+                        <ul>
+                            <li>Organizacion de informacion contable.</li>
+                            <li>Control y seguimiento financiera.</li>
+                            <li>Apoyo en la gestion de registros.</li>
+                            <li>Informacion clara para la toma de decisiones.</li>
+                        </ul>
+
+                        <a href="/contacto.html" class="programa-boton">
+                            Solicitar informacion
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+    <div class="footer-contenido">
+
+        <div class="footer-marca">
+            <h2>Asesoría</h2>
+            <p>
+                Soluciones profesionales para mejorar
+                la gestión y el crecimiento de tu empresa.
+            </p>
+        </div>
+
+        <div class="footer-enlaces">
+            <h3>Navegación</h3>
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('inicio') }}#nosotros">Nosotros</a>
+            <a href="{{ url_for('inicio') }}#servicios">Servicios</a>
+            <a href="{{ url_for('pagina_contacto') }}">Contacto</a>
+        </div>
+
+        <div class="footer-contacto">
+            <h3>Contacto</h3>
+            <p>Av. Angamos Este 489</p>
+            <p>Lima, Perú</p>
+            <p>contacto@asesoria.com</p>
+        </div>
+
+    </div>
+
+    <div class="footer-inferior">
+        <p>© 2026 Asesoría · Todos los derechos reservados</p>
+    </div>
+</footer>
+
+<script>
+    const programas = {
+        contabilidad: {
+            titulo: "Contabilidad",
+            imagen: "assets/contabilidad.jpg",
+            alt: "Servicio de contabilidad",
+            descripcion: 
+                "Brindamos apoyo a la organizacion y gestion contable de la empresa, facilitando el control de la informacion financiera y la toma de decisiones.",
+            incluye: [
+                "Organizacion de informacion contable",
+                "Control y seguimiento financiero",
+                "Apoyo en la gestion de registros",
+                "Informacion clara para la toma de decisiones"
+            ]
+        },
+
+        financiera: {
+            titulo: "Gestion financiera",
+            imagen: "assets/empresa.jpg",
+            alt: "Gestion financiera",
+            descripcion: 
+                "Ayudamos a mejorar la organizacion financiera de la empresa mediante un mejor control de ingresos, gastos y recursos.",
+            incluye: [
+                "Control de ingresos y gastos",
+                "Analisis de la situacion financiera",
+                "Organizacion de recursos",
+                "Apoyo para la toma de decisiones"
+            ]
+        },
+
+        consultoria: {
+            titulo: "Consultorio empresarial",
+            imagen: "/assets/consultoria.jpg",
+            alt: "Consultoria empresarial",
+            descripcion:
+                "Analizamos las necesidades de la empresa para identificar oportunidades de mejora y plantear estrategias que ayuden a optimizar su funcionamiento",
+            incluye: [
+                "Analisis de necesidades",
+                "Identificacion de oportunidades de mejora.",
+                "Orientacion para la toma de decisiones.",
+                "Propuestas de mejora empresarial"
+            ]
+        },
+
+        comercio: {
+            titulo: "Comercio exterior",
+            imagen: "assets/empresa2.jpg",
+            alt: "comercio exterior",
+            descripcion:
+                "Brindamos orientacion para facilitar las operaciones relacionadas en el comercio exterior y mejorar la organizacion de los procesos.",
+            incluye: [
+                "Orientacion en operaciones internacionales.",
+                "Organizacion de procesos.",
+                "Apoyo en documentacion.",
+                "Analisis de oportunidades comerciales."
+            ]
+        },
+
+        logistica: {
+            titulo: "Logistica internacional",
+            imagen: "assets/Empresa3.jpg",
+            alt: "Logistica internacional",
+            descripcion: 
+                "Apoyamos en la organizacion de procesos logisticos para mejorar el manejo y coordinacion de operaciones relacionadas con el movimiento de productos.",
+            incluye: [
+                "Organizacion de procesos logisticos",
+                "Seguimiento de operaciones.",
+                "Coordinacion de actividades.",
+                "Identificacion de oportunidades de mejora."
+            ]
+        },
+
+        digital: {
+            titulo: "Soluciones digitales",
+            imagen: "assets/soluciones-digitales.jpg",
+            alt: "Soluciones digitales",
+            descripcion:
+                "Implementamos soluciones digitales que ayuden a optimizar procesos, mejorar la gestion y facilitar las actividades de la empresa.",
+            incluye: [
+                "Digitalizacion de procesos.",
+                "Herramientas para mejorar la gestion",
+                "Optimizacion de actividades.",
+                "Soluciones adaptadas a las necesidades."
+            ]
+        },
+
+        fraudes: {
+            titulo: "Prevencion de fraudes",
+            imagen: "assets/empresa.jpg",
+            alt: "Prevencion de fraudes",
+            descripcion: 
+                "Ayudamos a identificar posibles riesgos y fortalecer los controles internos para reducir situaciones que puedan afectar a la empresa.",
+            incluye: [
+                "Identificacion de riesgos",
+                "Revision de controles internos",
+                "Deteccion de posibles vulnerabilidades",
+                "Recomendaciones de prevencion"
+            ]
+        }
+    };
+
+    const botones = document.querySelectorAll(".programas-menu button");
+    const imagen = document.querySelector(".programa-imagen img");
+    const titulo = document.querySelector(".programa-contenido h2");
+    const descripcion = document.querySelector(".programa-contenido p");
+    const lista = document.querySelector(".programa-contenido ul");
+
+    botones.forEach(function(boton) {
+        boton.addEventListener("click", function() {
+            const nombrePrograma = boton.dataset.programa;
+            const programa = programas[nombrePrograma];
+
+            imagen.src = programa.imagen;
+            imagen.alt = programa.alt;
+
+            titulo.textContent = programa.titulo;
+            descripcion.textContent = programa.descripcion;
+
+            lista.innerHTML = "";
+
+            programa.incluye.forEach(function(item) {
+
+                const elemento = document.createElement("li");
+                elemento.textContent = item;
+                lista.appendChild(elemento);
+            });
+
+            botones.forEach(function(boton) {
+                boton.classList.remove("programa-menu-activo");
+            });
+
+            boton.classList.add("programa-menu-activo");
+        });
+    });
+</script>
+</body>

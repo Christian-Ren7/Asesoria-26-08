@@ -1071,6 +1071,10 @@ def graficos(filename):
 def inicio():
     return render_template("index.html")
 
+@app.route("/programas.html")
+def programas():
+    return render_template("programas.html")
+
 @app.route("/evaluacion.html")
 def pagina_evaluacion():
     return render_template("evaluacion.html")
