@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template, send_from_directory
+from flask import Flask, request, render_template, send_from_directory, redirect, url_for, session
+from werkzeug.security import generate_password_hash, check_password_hash
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -18,6 +19,31 @@ from sklearn.linear_model import LinearRegression
 
 
 app = Flask(__name__)   
+
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
+
+def conectar_aiven():
+    ca_contenido = os.getenv("DB_CA_B64")
+
+    if ca_contenido:
+        ca_path = "/tmp/aiven-ca.pem"
+
+        with open(ca_path, "wb") as archivo:
+            archivo.write(base64.b64decode(ca_contenido))
+    else:
+        ca_path = "ca.pem"
+
+    return mysql.connector.connect(
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", "3306")),
+        ssl_ca=ca_path,
+        ssl_verify_cert=True,
+        ssl_verify_identity=True,
+        connection_timeout=10
+    )
 
 # ==========================================
 # MODELO DE INTELIGENCIA ARTIFICIAL
@@ -140,7 +166,7 @@ def evaluar():
     # ==========================================
     print("INTENTANDO CONECTAR A MYSQL")
     
-    ca_contenido = os.getenv("DB_CA")
+    
 
     ca_contenido = os.getenv("DB_CA_B64")
 
@@ -149,19 +175,19 @@ def evaluar():
 
         with open(ca_path, "wb") as archivo:
             archivo.write(base64.b64decode(ca_contenido))
-
     else:
         ca_path = "ca.pem"
-    
+
     conexion = mysql.connector.connect(
-    host=os.getenv("DB_HOST"),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-    ssl_ca= "ca.pem",
-    ssl_verify_cert=True,
-    ssl_verify_identity=True,
-    database=os.getenv("DB_NAME"),
-    port=(os.getenv("DB_PORT", "3306"))
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", "3306")),
+        ssl_ca=ca_path,
+        ssl_verify_cert=True,
+        ssl_verify_identity=True,
+        connection_timeout=10
     )
 
     cursor = conexion.cursor()
@@ -395,7 +421,7 @@ def evaluar():
         buffer_ventas.getvalue()
         ).decode("utf-8")
     
-    
+     
 
 
     # ==========================================
@@ -1089,6 +1115,198 @@ def pagina_contacto():
 def test():
     return "Flask funciona correctamente en Vercel"
 
+@app.route("/guardar-contacto", methods=["POST"])
+def guardar_contacto():
+    conexion = None
+    cursor = None
+
+    try:
+        nombre = request.form.get("nombre", "").strip()
+        correo = request.form.get("correo", "").strip()
+        telefono = request.form.get("telefono", "").strip()
+        mensaje = request.form.get("mensaje", "").strip()
+
+        if not nombre or not correo or not mensaje:
+            return render_template(
+                "contacto.html",
+                error_estado="Completa los campos obligatorios."
+            )
+
+        ca_contenido = os.getenv("DB_CA_B64")
+
+        if ca_contenido:
+            ca_path = "/tmp/aiven-ca.pem"
+            with open(ca_path, "wb") as archivo:
+                archivo.write(base64.b64decode(ca_contenido))
+        else:
+            ca_path = "ca.pem"
+
+        conexion = mysql.connector.connect(
+            host=os.getenv("DB_HOST"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD"),
+            database=os.getenv("DB_NAME"),
+            port=int(os.getenv("DB_PORT", "3306")),
+            ssl_ca=ca_path,
+            ssl_verify_cert=True,
+            ssl_verify_identity=True,
+            connection_timeout=10
+        )
+
+        cursor = conexion.cursor()
+
+        sql = """
+            INSERT INTO contactos (nombre, correo, telefono, mensaje)
+            VALUES (%s, %s, %s, %s)
+        """
+
+        cursor.execute(sql, (nombre, correo, telefono, mensaje))
+        conexion.commit()
+
+        return render_template(
+            "contacto.html",
+            mensaje_estado="¡Mensaje enviado correctamente! Gracias por contactarnos."
+        )
+
+    except Exception as error:
+        print("Error al guardar el contacto:", error)
+
+        return render_template(
+            "contacto.html",
+            error_estado="No se pudo enviar el mensaje. Inténtalo nuevamente."
+        )
+
+    finally:
+        if cursor is not None:
+            cursor.close()
+
+        if conexion is not None and conexion.is_connected():
+            conexion.close()
+
+
+@app.route("/registro", methods=["GET", "POST"])
+def registro():
+    if request.method == "GET":
+        return render_template("registro.html")
+
+    nombre = request.form.get("nombre", "").strip()
+    correo = request.form.get("correo", "").strip().lower()
+    contrasena = request.form.get("contrasena", "")
+
+    if not nombre or not correo or not contrasena:
+        return render_template(
+            "registro.html",
+            error_estado="Completa todos los campos."
+        )
+
+    if len(contrasena) < 8:
+        return render_template(
+            "registro.html",
+            error_estado="La contraseña debe tener al menos 8 caracteres."
+        )
+
+    conexion = None
+    cursor = None
+
+    try:
+        conexion = conectar_aiven()
+        cursor = conexion.cursor()
+
+        contrasena_hash = generate_password_hash(contrasena)
+
+        cursor.execute(
+            """
+            INSERT INTO usuarios (nombre, correo, contrasena_hash)
+            VALUES (%s, %s, %s)
+            """,
+            (nombre, correo, contrasena_hash)
+        )
+
+        conexion.commit()
+
+        return render_template(
+            "login.html",
+            mensaje_estado="Cuenta creada correctamente. Ya puedes iniciar sesión."
+        )
+
+    except mysql.connector.IntegrityError:
+        return render_template(
+            "registro.html",
+            error_estado="Ese correo ya está registrado."
+        )
+
+    except Exception:
+        app.logger.exception("Error al registrar usuario")
+        return render_template(
+            "registro.html",
+            error_estado="No se pudo crear la cuenta. Inténtalo nuevamente."
+        )
+
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conexion is not None and conexion.is_connected():
+            conexion.close()
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "GET":
+        return render_template("login.html")
+
+    correo = request.form.get("correo", "").strip().lower()
+    contrasena = request.form.get("contrasena", "")
+
+    conexion = None
+    cursor = None
+
+    try:
+        conexion = conectar_aiven()
+        cursor = conexion.cursor(dictionary=True)
+
+        cursor.execute(
+            """
+            SELECT id, nombre, correo, contrasena_hash
+            FROM usuarios
+            WHERE correo = %s
+            """,
+            (correo,)
+        )
+
+        usuario = cursor.fetchone()
+
+        if usuario and check_password_hash(
+            usuario["contrasena_hash"], contrasena
+        ):
+            session.clear()
+            session["usuario_id"] = usuario["id"]
+            session["usuario_nombre"] = usuario["nombre"]
+
+            return redirect(url_for("inicio"))
+
+        return render_template(
+            "login.html",
+            error_estado="Correo o contraseña incorrectos."
+        )
+
+    except Exception:
+        app.logger.exception("Error al iniciar sesión")
+        return render_template(
+            "login.html",
+            error_estado="No se pudo iniciar sesión. Inténtalo nuevamente."
+        )
+
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conexion is not None and conexion.is_connected():
+            conexion.close()
+
+
+@app.route("/cerrar-sesion")
+def cerrar_sesion():
+    session.clear()
+    return redirect(url_for("inicio"))
 
 if __name__ == "__main__":
     app.run(debug=True)

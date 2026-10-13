@@ -81,7 +81,16 @@
 
             <div class="contacto-formulario">
                 <h2>Escríbenos</h2>
-                <form action="#" method="POST">
+
+                {% if mensaje_estado %}
+                    <p style="color: green;">{{ mensaje_estado }}</p>
+                {% endif %}
+
+                {% if error_estado %}
+                    <p style="color: red;">{{ error_estado }}</p>
+                {% endif %}
+
+                <form action="{{ url_for('guardar_contacto') }}" method="POST">
                     <label for="nombre">Nombre: </label>
 
                     <input 
