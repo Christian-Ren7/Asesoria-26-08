@@ -13,48 +13,135 @@ body {
    MENÚ 
 ========================= */ 
  
-header { 
-    background-color: #1f2937; 
-    padding: 18px 10%; 
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); 
-    position: relative; 
-    z-index: 100; 
-} 
- 
-nav { 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-    max-width: 1200px; 
-    margin: auto; 
-} 
- 
-.logo { 
-    color: white; 
-    font-size: 26px; 
-    font-weight: bold; 
-    letter-spacing: 0.5px; 
-} 
- 
-ul { 
-    display: flex; 
-    gap: 30px; 
-    list-style: none; 
-    margin: 0; 
-    padding: 0; 
-} 
- 
-ul a { 
-    color: #f9fafb; 
-    text-decoration: none; 
-    font-size: 16px; 
-    font-weight: 500; 
-    transition: 0.3s; 
-} 
- 
-ul a:hover { 
-    color: #60a5fa; 
-} 
+/* Encabezado */
+header {
+    width: 100%;
+    background-color: #1f2937;
+    position: relative;
+    z-index: 100;
+}
+
+header nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 75px;
+    padding: 0 25px;
+    gap: 20px;
+}
+
+/* Logo a la izquierda */
+header .logo {
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Menú principal centrado */
+header .menu-principal {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header .menu-principal li {
+    list-style: none;
+}
+
+header .menu-principal a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+header .menu-principal a:hover {
+    color: #93c5fd;
+}
+
+/* Opciones de usuario a la derecha */
+header .menu-usuario {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 auto;
+    flex-shrink: 0;
+}
+
+header .menu-usuario li {
+    list-style: none;
+}
+
+/* Saludo al usuario */
+header .menu-usuario .nav-usuario {
+    color: #ffffff;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* Botones de usuario */
+header .menu-usuario a {
+    display: inline-block;
+    padding: 9px 13px;
+    border-radius: 6px;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+
+    transition: background-color 0.2s ease;
+}
+
+/* Iniciar sesión */
+header .menu-usuario .btn-usuario {
+    color: #ffffff;
+    background-color: transparent;
+    border: 1px solid #9ca3af;
+}
+
+header .menu-usuario .btn-usuario:hover {
+    background-color: #374151;
+}
+
+/* Crear cuenta */
+header .menu-usuario .btn-registro {
+    color: #ffffff;
+    background-color: #2563eb;
+    border: 1px solid #2563eb;
+}
+
+header .menu-usuario .btn-registro:hover {
+    background-color: #1d4ed8;
+}
+
+/* Cerrar sesión */
+header .menu-usuario .btn-cerrar-sesion {
+    color: #ffffff;
+    background-color: #dc2626;
+    border: 1px solid #dc2626;
+}
+
+header .menu-usuario .btn-cerrar-sesion:hover {
+    background-color: #b91c1c;
+}
  
 /* ========================= 
    SECCIONES 
@@ -1504,6 +1591,174 @@ section p {
     }
 }
 
+
+/* ===================================
+   ESTILO PARA INICIAR SESIÓN Y REGISTRO
+=================================== */
+
+.pagina-acceso {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #edf2ff, #f6f0ff);
+}
+
+/* Tarjeta del formulario */
+
+.contenedor-acceso {
+    width: 100%;
+    max-width: 440px;
+    padding: 38px 32px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #e7e8f0;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(42, 46, 90, 0.12);
+    text-align: center;
+    animation: aparecerCuenta 0.5s ease;
+}
+
+/* Títulos */
+
+.contenedor-acceso h1 {
+    margin: 0 0 12px;
+    color: #292b55;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* Texto introductorio */
+
+.contenedor-acceso .texto-acceso {
+    margin: 0;
+    color: #74768a;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Formulario */
+
+.formulario-acceso {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* Etiquetas */
+
+.formulario-acceso label {
+    margin-top: 5px;
+    color: #363750;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Campos de entrada */
+
+.formulario-acceso input {
+    width: 100%;
+    padding: 13px 14px;
+    box-sizing: border-box;
+    border: 1px solid #dfe1eb;
+    border-radius: 10px;
+    outline: none;
+    background: #fafbff;
+    color: #292b45;
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.formulario-acceso input:focus {
+    border-color: #6865d9;
+    box-shadow: 0 0 0 3px rgba(104, 101, 217, 0.13);
+    background: #ffffff;
+}
+
+/* Botón principal */
+
+.formulario-acceso button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #5956c9, #8170e8);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 13px rgba(89, 86, 201, 0.2);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.formulario-acceso button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(89, 86, 201, 0.3);
+}
+
+/* Enlaces inferiores */
+
+.contenedor-acceso .enlace-acceso {
+    margin: 23px 0 0;
+    color: #74768a;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.contenedor-acceso .enlace-acceso a {
+    color: #625ed0;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.contenedor-acceso .enlace-acceso a:hover {
+    color: #403ca6;
+    text-decoration: underline;
+}
+
+/* Mensajes de estado */
+
+.contenedor-acceso .mensaje-acceso {
+    padding: 11px 13px;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.contenedor-acceso .mensaje-error {
+    color: #991b1b;
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+}
+
+.contenedor-acceso .mensaje-exito {
+    color: #166534;
+    background: #dcfce7;
+    border: 1px solid #bbf7d0;
+}
+
+/* Animación de entrada */
+
+@keyframes aparecerCuenta {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
     /* ==================================================
         RESPONSIVE COMPLETO DE CELULAR
