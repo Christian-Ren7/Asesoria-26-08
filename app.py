@@ -1257,6 +1257,32 @@ def login():
     correo = request.form.get("correo", "").strip().lower()
     contrasena = request.form.get("contrasena", "")
 
+    # Comprobar si inició sesión el administrador
+    correo_admin = os.getenv("ADMIN_EMAIL", "").strip().lower()
+    hash_admin = os.getenv("ADMIN_PASSWORD_HASH", "")
+    
+    print("Correo admin cargado:", bool(correo_admin))
+    print("Hash admin cargado:", bool(hash_admin))
+    print("Correo coincide:", correo == correo_admin)
+    print(
+    "Contraseña coincide:",
+    check_password_hash(hash_admin, contrasena) if hash_admin else False
+    )
+
+    if (
+        correo_admin
+        and hash_admin
+        and correo == correo_admin
+        and check_password_hash(hash_admin, contrasena)
+    ):
+        session.clear()
+        session["es_admin"] = True
+        session["admin_email"] = correo_admin
+        return redirect(url_for("admin"))
+
+    # Si no es el administrador, continúa el login normal
+    # de los usuarios registrados en la base de datos.
+
     conexion = None
     cursor = None
 
@@ -1281,6 +1307,7 @@ def login():
             session.clear()
             session["usuario_id"] = usuario["id"]
             session["usuario_nombre"] = usuario["nombre"]
+            session["usuario_correo"] = usuario["correo"]
 
             return redirect(url_for("inicio"))
 
@@ -1302,11 +1329,48 @@ def login():
         if conexion is not None and conexion.is_connected():
             conexion.close()
 
-
 @app.route("/cerrar-sesion")
 def cerrar_sesion():
     session.clear()
     return redirect(url_for("inicio"))
+
+
+@app.route("/admin")
+def admin():
+    if not session.get("es_admin"):
+        return redirect(url_for("login"))
+
+    conexion = None
+    cursor = None
+
+    try:
+        conexion = conectar_aiven()
+        cursor = conexion.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT nombre, empresa, correo, telefono, sector,
+                   ventas, gastos, clientes, problema, ganancia
+            FROM evaluaciones
+            ORDER BY id DESC
+        """)
+
+        evaluaciones = cursor.fetchall()
+
+        return render_template(
+            "admin.html",
+            evaluaciones=evaluaciones,
+            total=len(evaluaciones)
+        )
+
+    except Exception:
+        app.logger.exception("Error al cargar el panel de administración")
+        return "No se pudo cargar el panel. Revisa los registros del servidor.", 500
+
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conexion is not None and conexion.is_connected():
+            conexion.close()
 
 if __name__ == "__main__":
     app.run(debug=True)
