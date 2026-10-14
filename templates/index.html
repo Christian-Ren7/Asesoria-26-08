@@ -35,11 +35,21 @@ session_start();
             <li>
                 <a href="{{ url_for('pagina_contacto') }}">Contacto</a>
             </li>
-            {% if session.get('es_admin') %}
-                <li>
-                    <a href="{{ url_for('admin') }}">Panel de administración</a>
-                </li>
-            {% endif %}
+                {% if session.get('es_admin') %}
+            <li>
+                <a href="{{ url_for('admin') }}" class="btn-panel-admin">
+                    Panel de administración
+                </a>
+            </li>
+                {% else %}
+            <li>
+                <a href="{{ url_for('login') }}">Iniciar sesión</a>
+            </li>
+            
+            <li>
+                <a href="{{ url_for('registro') }}">Crear cuenta</a>
+            </li>
+                {% endif %}
         </ul>
 
         <!-- Opciones de usuario a la derecha -->

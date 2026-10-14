@@ -143,7 +143,23 @@ header .menu-usuario .btn-cerrar-sesion {
 header .menu-usuario .btn-cerrar-sesion:hover {
     background-color: #b91c1c;
 }
- 
+
+.btn-panel-admin {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #dc2626;
+    color: #fff !important;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-panel-admin:hover {
+    background-color: #b91c1c;
+}
+
+
 /* ========================= 
    SECCIONES 
 ========================= */ 
