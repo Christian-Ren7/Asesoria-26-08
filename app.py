@@ -1278,7 +1278,7 @@ def login():
         session.clear()
         session["es_admin"] = True
         session["admin_email"] = correo_admin
-        return redirect(url_for("admin"))
+        return redirect(url_for("inicio"))
 
     # Si no es el administrador, continúa el login normal
     # de los usuarios registrados en la base de datos.
