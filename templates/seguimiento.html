@@ -1,0 +1,332 @@
+<DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Seguimiento de clientes | Asesoria</title>
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background: #f3f6fa;
+                color: #1f2937;
+            }
+
+            header {
+                background: #1f2937;
+                color: white;
+                padding: 20px 5%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 15px;
+            }
+
+            header h1 {
+                margin: 0;
+                font-size: 22px;
+            }
+
+            header a {
+                color: white;
+                text-decoration: none;
+            }
+
+            main {
+                max-width: 1400px;
+                margin: 30px auto;
+                padding: 0 20px;
+            }
+
+            .resumen, .tabla-contenedor {
+                background: white;
+                padding: 24px;
+                border-radius: 12px;
+                box-shadow: 0 3px 12px #0000000d;
+                margin-bottom: 24px;
+            }
+
+            .resumen p {
+                margin: 0 0 8px;
+                color: #6b7280;
+            }
+
+            .resumen strong {
+                font-size: 30px;
+            }
+
+            .buscador {
+                width: 100%;
+                max-width: 400px;
+                padding: 11px 13px;
+                margin: 10px 0 20px;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                font-size: 14px;
+            }
+            
+            .tabla-scroll {
+                overflow-x: auto;
+            }
+
+            table {
+                width: 100%;
+                min-width: 1100px;
+                border-collapse: collapse;
+            }
+
+            th, td {
+                padding: 13px;
+                border-bottom: 1px solid #e5e7eb;
+                text-align: left;
+                vertical-align: top;
+                font-size: 14px;
+            }
+
+            th {
+                background: #f8fafc;
+                white-space: nowrap;
+            }
+
+            td {
+                max-width: 260px;
+                overflow-wrap: anywhere;
+            }
+
+            .estado {
+                display: inline-block;
+                padding: 5px 9px;
+                border-radius: 20px;
+                background: #fef3c7;
+                color: #92400e;
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+            .form-seguimiento {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                min-width: 220px; 
+            }
+
+            .form-seguimiento label {
+                font-size: 12px;
+                font-weight: 600;
+                color: #374151;
+            }
+
+            .form-seguimiento select,
+            .form-seguimiento input,
+            .form-seguimiento textarea {
+                width: 100%;
+                padding: 9px;
+                border: 1px solid #d1d5db;
+                border-radius: 6px;
+                font: inherit;
+                font-size: 13px;
+                background: #fff;
+            }
+
+            .form-seguimiento textarea {
+                resize: vertical;
+            }
+
+            .btn-guardar {
+                padding: 10px;
+                border: none;
+                border-radius: 6px;
+                background: #2563eb;
+                color: #fff;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+            .btn-guardar:hover {
+                background: #1d4ed8;
+            }
+
+            .vacio {
+                padding: 25px;
+                text-align: center;
+                color: #6b7280;
+            }
+
+            .acciones {
+                margin-top: 20px;
+            }
+
+            .btn-volver {
+                display: inline-block;
+                padding: 11px 16px;
+                background: #2563eb;
+                color: white;
+                border-radius: 8px;
+                text-decoration: none;
+            }
+
+            .btn-volver:hover {
+                background: #1d4ed8;
+            }
+
+            @media (max-width: 600px) {
+                header {
+                    align-items: flex-starts;
+                    flex-direction: column;
+                }
+
+                main {
+                    margin-top: 20px;
+                    padding: 0 12px;
+                }
+
+                .resumen, .tabla-contenedor {
+                    padding: 17px
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>Asesoria | Seguimiento de clientes</h1>
+            <a href="{{ url_for('cerrar_sesion') }}">Cerrar sesion</a>
+        </header>
+
+        <main>
+            <section class="resumen">
+                <p>Mensajes recibidos de clientes</p>
+                <strong>{{ total }}</strong>
+            </section>
+
+            <section class="tabla-contenedor">
+                <h2>Seguimiento de clientes</h2>
+                <p>Consulta los mensajes y revisa cuando debes contactar a cada cliente</p>
+
+                <input
+                    type="search"
+                    id="buscador"
+                    class="buscador"
+                    placeholder="Buscar por nombre, correo o empresa..."
+                    aria-label="Buscar clientes"
+                >
+
+                {% if contactos %}
+                <div class="tabla-scroll">
+                    <table id="tablaContactos"> 
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Telefono</th>
+                                <th>Asunto</th>
+                                <th>Mensaje</th>
+                                <th>Fecha recibido</th>
+                                <th>Estado</th>
+                                <th>Proximo contacto</th>
+                                <th>Observaciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for c in contactos %}
+                                <tr>
+                                    <td>{{ c.nombre }}</td>
+                                    <td>{{ c.correo }}</td>
+                                    <td>{{ c.telefono or 'No indicado' }}</td>
+                                    <td>{{ c.asunto or 'Sin asunto' }}</td>
+                                    <td>{{ c.mensaje }}</td>
+                                    <td>{{ c.fecha_envio or 'Sin fecha' }}</td>
+                                    <td colspan="3">
+                                        <form
+                                            action="{{ url_for('actualizar_seguimiento', contacto_id=c.id) }}"
+                                            method="POST"
+                                            class="form-seguimiento"
+                                        >
+                                            <label for="estado-{{ c.id }}">Estado</label>
+                                            <select id="estado-{{ c.id }}" name="estado" required>
+                                                <option value="pendiente"
+                                                    {% if (c.estado or 'pendiente') == 'pendiente' %}selected{% endif %}>
+                                                    Nuevo / pendiente
+                                                </option>
+
+                                               <option value="Contactado"
+                                                    {% if c.estado == 'Contactado' %}selected{% endif %}>
+                                                    Contactado
+                                                </option>
+
+                                                <option value="En seguimiento"
+                                                    {% if c.estado == 'En seguimiento' %}selected{% endif %}>
+                                                    En seguimiento
+                                                </option>
+
+                                                <option value="Cliente ganado"
+                                                    {% if c.estado == 'Cliente ganado' %}selected{% endif %}>
+                                                    Cliente ganado
+                                                </option>
+
+                                                <option value="No concretado"
+                                                    {% if c.estado == 'No concretado' %}selected{% endif %}>
+                                                    No concretado
+                                                </option>
+                                            </select>
+
+                                            <label for="fecha-{{ c.id }}">Proximo contacto</label>
+                                            <input
+                                                type="date"
+                                                id="fecha-{{ c.id }}"
+                                                name="proximo_contacto"
+                                                value="{{ c.proximo_contacto or '' }}"
+                                            >
+
+                                            <label for="observaciones-{{ c.id }}">Observaciones</label>
+                                            <textarea
+                                                id="observaciones-{{ c.id }}"
+                                                name="observaciones"
+                                                rows="3"
+                                                placeholder="Notas sobre el cliente..."
+                                            >{{ c.observaciones or '' }}</textarea>
+
+                                            <button type="submit" class="btn-guardar">
+                                                Guardar cambios
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}    
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="vacio">Todavia no hay mensajes de clientes registrados</p>
+                {% endif %}
+
+                <div class="acciones">
+                    <a href="{{ url_for('admin') }}" class="btn-volver">
+                        Volver al panel
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <script>
+            const buscador = document.getElementById("buscador");
+            const filas = document.querySelectorAll("#tablaContactos tbody tr");
+
+            buscador.addEventListener("input", function () {
+                const texto = this.value.toLowerCase().trim();
+
+                filas.forEach(function (fila) {
+                    fila.style.display = fila.textContent
+                    .toLowerCase()
+                    .includes(texto) ? "" : "none";
+                });
+            });
+        </script>
+    </body>
+</html>

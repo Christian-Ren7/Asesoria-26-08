@@ -1095,7 +1095,36 @@ def graficos(filename):
 
 @app.route("/")
 def inicio():
-    return render_template("index.html")
+    conexion = None
+    cursor = None
+
+    try:
+        conexion = conectar_aiven()
+        cursor = conexion.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT nombre, calificacion, comentario, fecha
+            FROM resenas
+            ORDER BY fecha DESC
+        """)
+
+        resenas = cursor.fetchall()
+
+        return render_template(
+            "index.html",
+            resenas=resenas
+        )
+
+    except Exception:
+        app.logger.exception("Error al cargar las reseñas")
+        return render_template("index.html", resenas=[])
+
+    finally:
+        if cursor is not None:
+            cursor.close()
+
+        if conexion is not None and conexion.is_connected():
+            conexion.close()
 
 @app.route("/programas.html")
 def programas():
@@ -1182,7 +1211,104 @@ def guardar_contacto():
 
         if conexion is not None and conexion.is_connected():
             conexion.close()
+            
+@app.route("/admin/seguimiento")
+def admin_seguimiento():
+    if not session.get("es_admin"):
+        return redirect(url_for("login"))
+    
+    conexion = None
+    cursor = None
+    
+    try:
+        conexion = conectar_aiven()
+        cursor = conexion.cursor(dictionary=True)
+        
+        cursor.execute("""
+                       SELECT id, nombre, correo, telefono, asunto, mensaje, fecha_envio, estado,
+                       proximo_contacto, observaciones
+                       FROM contactos
+                       ORDER BY fecha_envio DESC
+                    """)
+        
+        contactos = cursor.fetchall()
+        
+        return render_template(
+            "seguimiento.html",
+            contactos=contactos,
+            total=len(contactos)
+        )
+        
+    except Exception:
+        app.logger.exception("Error al cargar el seguimiento de clientes")
+        return "No se pudo cargar el seguimiento de clientes", 500
+    
+    finally:
+        if cursor is not None:
+            cursor.close()
+            
+        if conexion is not None and conexion.is_connected():
+            conexion.close()
+            
+@app.route("/admin/seguimiento/actualizar/<int:contacto_id>", methods=["POST"])
+def actualizar_seguimiento(contacto_id):
+    if not session.get("es_admin"):
+        return redirect(url_for("login"))
+    
+    estado = request.form.get("estado", "pendiente").strip()
+    proximo_contacto = request.form.get("proximo_contacto") or None
+    observaciones = request.form.get("observaciones","").strip()
+    
+    estados_permitidos = [
+        "pendiente",
+        "Contactado",
+        "En seguimiento",
+        "Cliente ganado",
+        "No concretado"
+    ]
+    
+    if estado not in estados_permitidos:
+        return "Estado no valido", 400
+    
+    conexion = None
+    cursor = None
+    
+    try:
+        conexion = conectar_aiven()
+        cursor = conexion.cursor()
+        
+        cursor.execute(
+                    """
+                    UPDATE contactos
+                    SET estado = %s,
+                        proximo_contacto = %s,
+                        observaciones = %s
+                    WHERE id = %s
+                       """, 
+                       (
+                           estado,
+                           proximo_contacto,
+                           observaciones,
+                           contacto_id
+                       ))
 
+        conexion.commit()
+
+        return redirect(url_for("admin_seguimiento"))
+    except Exception:
+        if conexion is not None:
+            conexion.rollback()
+                        
+        app.logger.exception("Error al actualizar el seguimiento")
+        
+        return "No se pudo guardar el seguimiento.", 500
+    
+    finally:
+        if cursor is not None:
+            cursor.close()
+            
+        if conexion is not None and conexion.is_connected():
+            conexion.close()
 
 @app.route("/registro", methods=["GET", "POST"])
 def registro():
@@ -1308,6 +1434,8 @@ def login():
             session["usuario_id"] = usuario["id"]
             session["usuario_nombre"] = usuario["nombre"]
             session["usuario_correo"] = usuario["correo"]
+            
+            app.logger.warning("Sesión de usuario iniciada: %s", dict(session))
 
             return redirect(url_for("inicio"))
 
@@ -1334,7 +1462,63 @@ def cerrar_sesion():
     session.clear()
     return redirect(url_for("inicio"))
 
-
+@app.route("/publicar-resena", methods=["POST"])
+def publicar_resena():
+    
+    nombre = session.get("usuario_nombre")
+    correo = session.get("usuario_correo")
+    
+    if not nombre or not correo:
+        return "Error: debes iniciar antes de publicar una reseña.", 401
+    
+    calificacion_texto = request.form.get("calificacion", "").strip()
+    comentario = request.form.get("comentario", "").strip()
+    
+    try:
+        calificacion = int(calificacion_texto)
+    except (ValueError, TypeError):
+        return "Error: la calificacion debe estar entre 1 y 5.", 400
+    
+    if not 1 <= calificacion <= 5:
+        return "Error: la calificacion debe estar entre 1 y 5.", 400
+    
+    if not comentario:
+        return "Error: el comentario no puede estar vacio.", 400
+    
+    if len(comentario) > 1000:
+        return "Error: el comentario no puede superar los 1000 caracteres.", 400
+    
+    conexion = None
+    cursor = None
+    
+    try: 
+        conexion = conectar_aiven()
+        cursor = conexion.cursor()
+        
+        cursor.execute("""
+                        INSERT INTO resenas
+                            (nombre, correo, calificacion, comentario)
+                        VALUES (%s,%s,%s,%s) 
+                       """, (nombre, correo, calificacion, comentario))
+        
+        conexion.commit()
+        
+        return redirect(url_for("inicio", resena="publicada") +"#resenas")
+    
+    except Exception:
+        if conexion is not None:
+            conexion.rollback()
+            
+        app.logger.exception("Error al guardar la reseña")
+        return "No se pudo guardar la reseña.", 500
+    
+    finally: 
+        if cursor is not None:
+            cursor.close()
+            
+        if conexion is not None and conexion.is_connected():
+            conexion.close()
+    
 @app.route("/admin")
 def admin():
     if not session.get("es_admin"):
@@ -1348,18 +1532,37 @@ def admin():
         cursor = conexion.cursor(dictionary=True)
 
         cursor.execute("""
-            SELECT nombre, empresa, correo, telefono, sector,
-                   ventas, gastos, clientes, problema, ganancia
+            SELECT id, nombre, empresa, correo, telefono, sector,
+            ventas, gastos, clientes, problema, ganancia
             FROM evaluaciones
             ORDER BY id DESC
         """)
 
         evaluaciones = cursor.fetchall()
 
+        ventas_total = sum (
+            float(e["ventas"] or 0 ) for e in evaluaciones
+        )
+            
+        gastos_total = sum (
+                float(e["gastos"] or 0 ) for e in evaluaciones
+        )
+            
+        ganancia_total = sum (
+                float(e["ganancia"] or 0) for e in evaluaciones
+        )
+            
+        cursor.execute("SELECT COUNT(*) AS total_contactos FROM contactos")
+        total_contactos = cursor.fetchone()["total_contactos"]    
+        
         return render_template(
             "admin.html",
             evaluaciones=evaluaciones,
-            total=len(evaluaciones)
+            total=len(evaluaciones),
+            ventas_total=ventas_total,
+            gastos_total=gastos_total,
+            ganancia_total=ganancia_total,
+            total_contactos=total_contactos
         )
 
     except Exception:
@@ -1371,6 +1574,47 @@ def admin():
             cursor.close()
         if conexion is not None and conexion.is_connected():
             conexion.close()
+
+@app.route("/admin/evaluacion/<int:evaluacion_id>")
+def detalle_evaluacion(evaluacion_id):
+    if not session.get("es_admin"):
+        return redirect(url_for("login"))
+
+    conexion = None
+    cursor = None
+
+    try:
+        conexion = conectar_aiven()
+        cursor = conexion.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT id, nombre, empresa, correo, telefono, sector,
+                   ventas, gastos, clientes, problema, ganancia
+            FROM evaluaciones
+            WHERE id = %s
+        """, (evaluacion_id,))
+
+        evaluacion = cursor.fetchone()
+
+        if not evaluacion:
+            return "Evaluación no encontrada.", 404
+
+        return render_template(
+            "detalle_evaluacion.html",
+            evaluacion=evaluacion
+        )
+
+    except Exception:
+        app.logger.exception("Error al consultar la evaluación")
+        return "No se pudo cargar el detalle de la evaluación.", 500
+
+    finally:
+        if cursor is not None:
+            cursor.close()
+
+        if conexion is not None and conexion.is_connected():
+            conexion.close()
+        
 
 if __name__ == "__main__":
     app.run(debug=True)

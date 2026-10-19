@@ -1,0 +1,184 @@
+<DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Detalle de evaluacion | Asesoria</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                padding: 30px 20px;
+                font-family: Arial, sans-serif;
+                background: #f3f6fa;
+                color: #1f2937;
+            }
+
+            .contenedor {
+                max-width: 850px;
+                margin: 0 auto;
+            }
+
+            .encabezado {
+                margin-bottom: 25px;
+            }
+
+            .encabezado h1 {
+                margin: 0 0 8px;
+                font-size: 28px;
+            }
+
+            .encabezado p {
+                color: #6b7280;
+                margin: 0;
+            }
+
+            .tarjeta {
+                background: #fff;
+                border: 1px solid #e5e7eb;
+                border-radius: 12px;
+                padding: 25px;
+                margin-bottom: 20px;
+            }
+
+            .tarjeta h2 {
+                margin: 0 0 20px;
+                font-size: 19px;
+            }
+
+            .datos {
+                display: grid;
+                grid-template-columns: repeat(2,minmax(0, 1fr));
+            }
+
+            .dato {
+                min-width: 0;
+            }
+
+            .dato span {
+                display: block;
+                color: #6b7280;
+                font-size: 13px;
+                margin-bottom: 7px;
+            }
+
+            .dato strong {
+                display: block;
+                overflow-wrap: anywhere;
+                font-size: 15px;
+            }
+
+            .botones {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .boton {
+                display: inline-block;
+                padding: 11px 16px;
+                border-radius: 7px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 14px;
+            }
+
+            .volver {
+                background: #1f2937;
+                color: #fff;
+            }
+
+            .salir {
+                background: #fee2e2;
+                color: #991b1b;
+            }
+
+            @media (max-width: 550px) {
+                .datos {
+                    grid-template-columns: 1fr;
+                }
+
+                .tarjeta {
+                    padding: 20px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <main class="contenedor">
+            <header class="encabezado">
+                <h1>Detalle de evaluacion</h1>
+                <p>Informacion registrada del cliente y su empresa.</p>
+            </header>
+
+            <section class="tarjeta">
+                <h2>Informacion del cliente</h2>
+
+                <div class="datos">
+                    <div class="dato">
+                        <span>Nombre</span>
+                        <strong>{{ evaluacion.nombre or 'No registrado' }}</strong>
+                    </div>
+
+                    <div class="dato">
+                        <span>Empresa</span>
+                        <strong>{{ evaluacion.empresa or 'No registrada' }}</strong>
+                    </div>
+
+                    <div class="dato">
+                        <span>Telefono</span>
+                        <strong>{{ evaluacion.telefono or 'No registrado' }}</strong>
+                    </div>
+
+                    <div class="dato">
+                        <span>Sector</span>
+                        <strong>{{ evaluacion.sector or 'No registrado' }}</strong>
+                    </div>
+
+                    <div class="dato">
+                        <span>Problema principal</span>
+                        <strong>{{ evaluacion.problema or 'No indicado' }}</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tarjeta">
+                <h2>Resultados financieros</h2>
+                <div class="dato">
+                    <span>Ventas</span>
+                    <strong>S/ {{ '{:,.2f}'.format(evaluacion.ventas or 0) }}</strong>
+                </div>
+
+                <div class="dato">
+                    <span>Gastos</span>
+                    <strong>S/ {{ '{:,.2f}'.format(evaluacion.gastos or 0) }}</strong>
+                </div>
+
+                <div class="dato">
+                    <span>Ganancia</span>
+                    <strong>S/ {{ '{:,.2f}'.format(evaluacion.ganancia or 0) }}</strong>
+                </div>
+
+                <div class="dato">
+                    <span>Numero de clientes</span>
+                    <strong>{{ evaluacion.clientes if evaluacion.clientes is not none else 'No registrado' }}</strong>
+                </div>
+            </section>
+
+            <div class="botones">
+                <a href="{{ url_for('admin') }}" class="boton volver">
+                    Volver al panel
+                </a>
+
+                <a href="{{ url_for('cerrar_sesion') }}" class"boton salir">
+                    Cerrar sesion
+                </a>
+            </div>
+        </main>
+    </body>
+</html>

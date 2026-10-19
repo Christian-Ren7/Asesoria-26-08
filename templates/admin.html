@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta charset="UTF=8">
-        <meta name="viewport" content="width=device-width", initial-scale=1.0>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Panel administracion | Asesoria</title>
 
         <style>
@@ -17,138 +17,537 @@
                 color: #1f2937;
             }
 
-            header {
+            /* Estructura principal */
+
+            .dashboard {
+                display: flex;
+                min-height: 100vh;
+            }
+
+            /* Menu lateral */
+            .sidebar {
+                width: 240px;
+                flex-shrink: 0;
                 background: #1f2937;
                 color: white;
-                padding: 22px 5%;
+                padding: 28px 18px;
                 display: flex;
-                justify-content:space-between;
+                flex-direction: column;
+            }
+
+            .logo {
+                font-size: 22px;
+                font-weight: bold;
+                padding: 0 10px;
+                margin-bottom: 40px;
+            }
+
+            .sidebar h3 {
+                color: #9ca3af;
+                font-size: 12px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                padding: 0 10px;
+                margin-bottom: 12px;
+            }
+
+            .menu {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .menu a {
+                color: #d1d5db;
+                text-decoration: none;
+                padding: 12px;
+                border-radius: 7px;
+                font-size: 14px;
+            }
+
+            .menu a.activo,
+            .menu a:hover {
+                background: #374151;
+                color: white;
+            }
+
+            .cerrar-sesion {
+                margin-top: auto;
+                padding-top: 30px;
+            }
+
+            .cerrar-sesion a {
+                display: block;
+                color: #fca5a5;
+                text-decoration: none;
+                padding: 12px;
+                border-radius: 7px;
+            }
+
+            .cerrar-sesion a:hover {
+                background: #374151;
+            }
+
+            /* Contenido */
+            .contenido {
+                flex: 1;
+                min-width: 0;
+                padding: 30px;
+            }
+
+            .encabezado {
+                display: flex;
+                justify-content: space-between;
                 align-items: center;
                 gap: 15px;
+                margin-bottom: 30px;
             }
 
-            header h1 {
+            .encabezado h1 {
+                margin: 0 0 8px;
+                font-size: 26px;
+            }
+
+            .encabezado p {
                 margin: 0;
-                font-size: 22px;
-            }
-
-            header a {
-                color: white;
-                text-decoration: none;
-            }
-
-            main {
-                max-width: 1200px;
-                margin: 35px auto;
-                padding: 0 20px;
-            }
-
-            .resumen p {
                 color: #6b7280;
-                margin-bottom: 25px;
+                font-size: 14px;
             }
 
-            .resumen strong {
-                font-size: 32px;
+            .etiqueta-admin {
+                background: #dbeafe;
+                color: #1d4ed8;
+                padding: 9px 13px;
+                border-radius: 20px;
+                font-size: 13px;
+                font-weight: bold;
+                white-space: nowrap;
             }
 
+            /* Tarjeta de resumen */
+            .tarjetas-resumen {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+
+            .tarjeta-estadistica {
+                min-width: 0;
+                padding: 23px;
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
+                border-radius: 14px;
+                box-shadow: 0 3px 10px rgba(31, 41, 55, 0.04);
+            }
+
+            .tarjeta-estadistica p {
+                margin: 0 0 12px;
+                color: #6b7280;
+                font-size: 13px;
+            }
+
+            .tarjeta-estadistica strong {
+                display: block;
+                color: #111827;
+                font-size: clamp(20px, 2vw, 27px);
+                margin-bottom: 10px;
+                overflow-wrap: anywhere;
+            }
+
+            .tarjeta-estadistica span {
+                color: #9ca3af;
+                font-size: 12px;
+            }
+
+            .estadistica-icono {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 42px;
+                height: 42px;
+                border-radius: 10px;
+                font-size: 20px;
+                margin-bottom: 18px;
+                font-weight: bold;
+            }
+
+            .azul {
+                background: #dbeafe;
+                color: #1d4ed8;
+            }
+
+            .verde {
+                background: #dcfce7;
+                color: #15803d;
+            }
+
+            .naranja {
+                background: #ffedd5;
+                color: #c2410c;
+            }
+
+            .morado {
+                background: #ede9fe;
+                color: #6d28d9;
+            }
+
+            /* Tabla */
             .tabla-contenedor {
                 background: white;
-                padding: 20px;
+                border: 1px solid #e5e7eb;
                 border-radius: 12px;
-                overflow-x: auto;
+                padding: 24px;
+            }
+
+            .tabla-encabezado {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 15px;
+                margin-bottom: 22px;
+            }
+
+            .tabla-encabezado h2 {
+                font-size: 19px;
+                margin: 0 0 7px;
+            }
+
+            .tabla-encabezado p {
+                margin: 0;
+                color: #6b7280;
+                font-size: 13px;
+            }
+
+            .buscador {
+                width: 280px;
+                max-width: 100%;
+                padding: 11px 13px;
+                border: 1px solid #d1d5db;
+                border-radius: 7px;
+                font-size: 14px;
+                outline: none;
+            }
+
+            .buscador:focus {
+                border-color: #2563eb;
+                box-shadow: 0 0 0 3px #dbeafe;
+            }
+
+            .tabla-scroll {
+                overflow-x: auto; 
             }
 
             table {
-                width: 100%
+                width: 100%;
                 border-collapse: collapse;
                 min-width: 1000px;
             }
 
+            .btn-detalle {
+                display: inline-block;
+                padding: 8px 12px;
+                background: #2563eb;
+                color: #fff;
+                border-radius: 6px;
+                text-decoration: none;
+                font-size: 13px;
+                font-weight: 600;
+                white-space: nowrap;
+            }
+
+            .btn-detalle:hover {
+                background: #1d4ed8;
+            }
+
             th, td {
                 text-align: left;
-                padding: 13px;
+                padding: 14px;
                 border-bottom: 1px solid #e5e7eb;
-                font-size: 14px;
+                font-size: 13px;
+                vertical-align: top;
             }
 
             th {
                 background: #f8fafc;
+                color: #4b5563;
+                font-weight: bold;
+                white-space: nowrap;
+            }
+
+            tbody tr:hover {
+                background: #f9fafb;
+            }
+
+            td {
+                overflow-wrap: anywhere;
             }
 
             .vacio {
+                padding: 30px;
+                text-align: center;
+                color: #6b7280;
+            }
+
+            .sin-resultados {
+                display: none;
                 padding: 25px;
                 text-align: center;
                 color: #6b7280;
             }
 
-            @media (max-width: 600px) {
-                header {
+            /* Adaptacion a moviles */
+            @media (max-width: 800px) {
+                .dashboard {
+                    flex-direction: column;
+                }
+
+                .sidebar {
+                    width: 100%;
+                    padding: 18px;
+                }
+
+                .logo {
+                    margin-bottom: 20px;
+                }
+
+                .menu {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+
+                .cerrar-sesion {
+                    margin-top: 12px;
+                    padding-top: 0;
+                }
+
+                .contenido {
+                    padding: 20px 14px;
+                }
+
+                .encabezado {
                     align-items: flex-start;
                     flex-direction: column;
                 }
 
-                main {
-                    margin-top: 20px;
+                .tarjetas-resumen {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                .tabla-contenedor {
+                    padding: 16px;
+                }
+
+                .buscador {
+                    width: 100%;
+                }
+
+                .tarjetas-resumen {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
                 }
             }
+
+            @media (max-width: 480px) {
+            
+            .tarjetas-resumen {
+                grid-template-columns: 1fr;
+            }
+        }
+
         </style>
     </head>
 
     <body>
-        <header>
-            <h1>Asesoria | Administracion</h1>
-            <a href="{{ url_for('cerrar_sesion') }}">Cerrar Sesion</a>
-        </header>
+        <div class="dashboard">
 
-        <main>
-            <section class="resumen">
-                <p>Evaluaciones registradas</p>
-                <strong>{{ total }}</strong>
-            </section>
+            <!-- Menu lateral -->
+             <aside class="sidebar">
+                <div class="logo">Asesoría</div>
 
-            <section class="tabla-contenedor">
-                <h2>Evaluaciones de clientes</h2>
+                <h3>Administracion</h3>
 
-                {% if evaluaciones %}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Empresa</th>
-                            <th>Correo</th>
-                            <th>Telefono</th>
-                            <th>Sector</th>
-                            <th>Ventas</th>
-                            <th>Gastos</th>
-                            <th>Clientes</th>
-                            <th>Problema</th>
-                            <th>Ganancia</th>
-                        </tr>
-                    </thead>
+                <nav class="menu">
+                    <a href="{{ url_for('admin') }}" class="activo">
+                        ▦ &nbsp; Dashboard
+                    </a>
 
-                    <tbody>
-                        {% for e in evaluaciones %}
-                        <tr>
-                            <td>{{ e.nombre }}</td>
-                            <td>{{ e.empresa }}</td>
-                            <td>{{ e.correo }}</td>
-                            <td>{{ e.telefono }}</td>
-                            <td>{{ e.sector }}</td>
-                            <td>{{ e.ventas }}</td>
-                            <td>{{ e.gastos }}</td>
-                            <td>{{ e.clientes }}</td>
-                            <td>{{ e.problema }}</td>
-                            <td>{{ e.ganancia }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                    <a href="#evaluaciones">
+                        ▤ &nbsp; Evaluaciones
+                    </a>
 
-                {% else %}
-                <p class="vacio">Todavia no hay evaluaciones registradas</p>
-                {% endif %}
-            </section>
-        </main>
+                    <a href="{{ url_for('admin_seguimiento') }}">
+                        👥 &nbsp; Seguimiento de clientes
+                    </a>
+                </nav>
+
+                <div class="cerrar-sesion">
+                    <a href="{{ url_for('cerrar_sesion') }}">
+                        ↪ &nbsp; Cerrar sesion
+                    </a>
+                </div>
+             </aside>
+
+             <!-- Contenido del dashboard -->
+              <main class="contenido">  
+                <header class="encabezado">
+                    <div>
+                        <h1>Panel de administracion</h1>
+                        <p>Resumen y gestion de las evaluaciones de clientes.</p>
+                    </div>
+
+                    <span class="etiqueta-admin">Administrador</span>
+                </header>
+
+                 <!-- Resumen del Dashboard -->
+                 <section class="tarjetas-resumen">
+                    <article class="tarjeta-estadistica">
+                        <div class="estadistica-icono azul">▤</div>
+                        <p>Evaluaciones registradas</p>
+                        <strong>{{ total }}</strong>
+                        <span>Registros recibidos</span>
+                    </article>
+
+                    <article class="tarjeta-estadistica">
+                        <div class="estadistica-icono verde">↗</div>
+                        <p>Ventas registradas</p>
+                        <strong>S/ {{ '{:,.2f}'.format(ventas_total) }}</strong>
+                        <span>Total acumulado</span>
+                    </article>
+
+                    <article class="tarjeta-estadistica">
+                        <div class="estadistica-icono naranja">↘</div>
+                        <p>Gastos registrados</p>
+                        <strong>S/ {{ '{:,.2f}'.format(gastos_total) }}</strong>
+                        <span>Total acumulado</span>
+                    </article>
+
+                    <article class="tarjeta-estadistica">
+                        <div class="estadistica-icono morado">S/</div>
+                        <p>Ganancias estimadas</p>
+                        <strong>S/ {{ '{:,.2f}'.format(ganancia_total) }}</strong>
+                        <span>Segun las evaluaciones</span>
+                    </article>
+
+                    <article class="tarjeta-estadistica">
+                        <div class="estadistica-icono azul">👥</div>
+                        <p>Mensajes de clientes</p>
+                        <strong>{{ total_contactos }}</strong>
+                        <span>Solicitudes recibidas</span>
+                        <a href="{{ url_for('admin_seguimiento') }}">
+                            Ver seguimiento
+                        </a>
+                    </article>
+                 </section>
+
+                 <!-- Tabla de evaluaciones -->
+                 <section class="tabla-contenedor" id="evaluaciones">
+                    <div class="tabla-encabezado">
+                        <div>
+                            <h2>Evaluaciones de clientes</h2>
+                            <p>Consulta los datos enviados mediante el formulario.</p>
+                        </div>
+                        {% if evaluaciones %}
+                        <input 
+                            type="search"
+                            id="buscarEvaluacion"
+                            class="buscador"
+                            placeholder="Buscar por nombre o empresa..."
+                            aria-label="Buscar evaluaciones por nombre o empresa"
+                        >
+
+                        {% endif %}
+                    </div>
+                    {% if evaluaciones %}
+
+                    <div class="tabla-scroll">
+                        <table id="tablaEvaluaciones">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Empresa</th>
+                                    <th>Correo</th>
+                                    <th>Telefono</th>
+                                    <th>Sector</th>
+                                    <th>Ventas</th>
+                                    <th>Gastos</th>
+                                    <th>Clientes</th>
+                                    <th>Problema</th>
+                                    <th>Ganancia</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for e in evaluaciones %}
+                                <tr>
+                                    <td>{{ e.nombre }}</td>
+                                    <td>{{ e.empresa }}</td>
+                                    <td>{{ e.correo }}</td>
+                                    <td>{{ e.telefono }}</td>
+                                    <td>{{ e.sector }}</td>
+                                    <td>{{ e.ventas }}</td>
+                                    <td>{{ e.gastos }}</td>
+                                    <td>{{ e.clientes }}</td>
+                                    <td>{{ e.problema }}</td>
+                                    <td>{{ e.ganancia }}</td>
+                                    <td>
+                                        <a
+                                            href="{{ url_for('detalle_evaluacion', evaluacion_id=e.id) }}"
+                                            class="btn-detalle"
+                                        >
+                                            Ver detalle
+                                        </a>
+                                    </td>     
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="sinResultados" class="sin-resultados">
+                        No se encontraron evaluaciones con esa busqueda
+                    </div>
+
+                    {% else %}
+                    <p class="vacio">
+                        Todavia no hay evaluaciones registradas
+                    </p>
+                    {% endif %}
+                 </section>
+              </main>
+        </div>
+
+        <script>
+            const buscador = document.getElementById("buscarEvaluacion");
+            const tabla = document.getElementById("tablaEvaluaciones");
+            const mensaje = document.getElementById("sinResultados");
+
+            if (buscador && tabla && mensaje) {
+                buscador.addEventListener("input",function () {
+                    const busqueda = this.value.toLowerCase().trim();
+                    const filas = tabla.querySelectorAll("tbody tr");
+                    let visibles = 0;
+
+                    filas.forEach(function (fila) {
+                        const nombre = fila.cells[0].textContent.toLowerCase();
+                        const empresa = fila.cells[1].textContent.toLowerCase();
+
+                        const coincide =
+                            nombre.includes(busqueda) || 
+                            empresa.includes(busqueda);
+
+                        fila.style.display = coincide ? "" : "none";
+                        
+                        if (coincide) {
+                            visibles++;
+                        }
+                    });
+
+                    mensaje.style.display = visibles == 0 ? "block" : "none";
+                    tabla.style.display = visibles == 0 ? "none" : "table";
+                });
+            }
+        </script>
     </body>
 </html>
