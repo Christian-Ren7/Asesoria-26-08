@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
@@ -12,181 +12,386 @@
 
             body {
                 margin: 0;
-                font-family: Arial, sans-serif;
-                background: #f3f6fa;
-                color: #1f2937;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+                background: #f8fafc;
+                color: #0f172a;
             }
 
             header {
-                background: #1f2937;
+                background: #0f172a;
                 color: white;
-                padding: 20px 5%;
+                padding: 20px 40px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                gap: 15px;
+                border-bottom: 1px solid #1e293b;
             }
 
             header h1 {
                 margin: 0;
-                font-size: 22px;
+                font-size: 20px;
+                font-weight: 700;
             }
 
             header a {
-                color: white;
+                color: #f87171;
                 text-decoration: none;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 8px 14px;
+                border-radius: 8px;
+                transition: background 0.2s ease;
+            }
+
+            header a:hover {
+                background: rgba(239, 68, 68, 0.1);
             }
 
             main {
                 max-width: 1400px;
-                margin: 30px auto;
-                padding: 0 20px;
+                margin: 32px auto;
+                padding: 0 24px;
             }
 
-            .resumen, .tabla-contenedor {
-                background: white;
-                padding: 24px;
-                border-radius: 12px;
-                box-shadow: 0 3px 12px #0000000d;
-                margin-bottom: 24px;
+            /* Tarjeta de Resumen Top */
+            .resumen {
+                background: #ffffff;
+                padding: 24px 28px;
+                border-radius: 16px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+                margin-bottom: 28px;
             }
 
             .resumen p {
-                margin: 0 0 8px;
-                color: #6b7280;
+                margin: 0 0 6px;
+                color: #64748b;
+                font-weight: 600;
+                font-size: 13px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
             }
 
             .resumen strong {
-                font-size: 30px;
+                font-size: 32px;
+                font-weight: 800;
+                color: #0f172a;
+            }
+
+            /* Contenedor de la Tabla */
+            .tabla-contenedor {
+                background: #ffffff;
+                padding: 32px;
+                border-radius: 16px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+            }
+
+            .tabla-contenedor h2 {
+                margin: 0 0 6px;
+                font-size: 20px;
+                font-weight: 700;
+            }
+
+            .tabla-contenedor p {
+                margin: 0 0 20px;
+                color: #64748b;
+                font-size: 14px;
             }
 
             .buscador {
                 width: 100%;
-                max-width: 400px;
-                padding: 11px 13px;
-                margin: 10px 0 20px;
-                border: 1px solid #d1d5db;
-                border-radius: 8px;
+                max-width: 420px;
+                padding: 11px 16px;
+                margin-bottom: 24px;
+                border: 1px solid #cbd5e1;
+                border-radius: 10px;
                 font-size: 14px;
+                outline: none;
+                background: #f8fafc;
+                transition: all 0.2s ease;
             }
-            
+
+            .buscador:focus {
+                background: #ffffff;
+                border-color: #2563eb;
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            }
+
             .tabla-scroll {
                 overflow-x: auto;
+                border: 1px solid #e2e8f0;
+                border-radius: 12px;
             }
 
             table {
                 width: 100%;
-                min-width: 1100px;
+                min-width: 1000px;
                 border-collapse: collapse;
             }
 
             th, td {
-                padding: 13px;
-                border-bottom: 1px solid #e5e7eb;
+                padding: 16px;
+                border-bottom: 1px solid #f1f5f9;
                 text-align: left;
                 vertical-align: top;
-                font-size: 14px;
+                font-size: 13px;
             }
 
             th {
                 background: #f8fafc;
+                color: #475569;
+                font-weight: 700;
                 white-space: nowrap;
+                text-transform: uppercase;
+                font-size: 11px;
+                letter-spacing: 0.5px;
             }
 
             td {
-                max-width: 260px;
-                overflow-wrap: anywhere;
+                color: #334155;
             }
 
-            .estado {
+            tbody tr:hover {
+                background: #f8fafc;
+            }
+
+            .badge-estado {
                 display: inline-block;
-                padding: 5px 9px;
+                padding: 6px 12px;
                 border-radius: 20px;
-                background: #fef3c7;
-                color: #92400e;
                 font-size: 12px;
-                font-weight: bold;
+                font-weight: 700;
+                white-space: nowrap;
             }
 
-            .form-seguimiento {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                min-width: 220px; 
-            }
+            .badge-pendiente { background: #fef3c7; color: #b45309; }
+            .badge-contactado { background: #dbeafe; color: #1d4ed8; }
+            .badge-seguimiento { background: #f3e8ff; color: #7e22ce; }
+            .badge-ganado { background: #dcfce7; color: #15803d; }
+            .badge-no-concretado { background: #fee2e2; color: #b91c1c; }
 
-            .form-seguimiento label {
-                font-size: 12px;
-                font-weight: 600;
-                color: #374151;
-            }
-
-            .form-seguimiento select,
-            .form-seguimiento input,
-            .form-seguimiento textarea {
-                width: 100%;
-                padding: 9px;
-                border: 1px solid #d1d5db;
-                border-radius: 6px;
-                font: inherit;
-                font-size: 13px;
-                background: #fff;
-            }
-
-            .form-seguimiento textarea {
-                resize: vertical;
-            }
-
-            .btn-guardar {
-                padding: 10px;
-                border: none;
-                border-radius: 6px;
+            .btn-editar {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 8px 12px;
                 background: #2563eb;
-                color: #fff;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 12px;
                 font-weight: 600;
+                cursor: pointer;
+                transition: background 0.2s ease;
+                white-space: nowrap;
+            }
+
+            .btn-editar:hover {
+                background: #1d4ed8;
+            }
+
+            .btn-eliminar {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                padding: 8px 12px;
+                background: #ef4444;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background 0.2s ease;
+                white-space: nowrap;
+            }
+
+            .btn-eliminar:hover {
+                background: #dc2626;
+            }
+
+            /* Modal Styling */
+            .modal-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(15, 23, 42, 0.6);
+                backdrop-filter: blur(4px);
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .modal-overlay.activo {
+                display: flex;
+            }
+
+            .modal-tarjeta {
+                background: #ffffff;
+                width: 100%;
+                max-width: 500px;
+                border-radius: 16px;
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+                overflow: hidden;
+                animation: modalEntrada 0.25s ease-out;
+            }
+
+            @keyframes modalEntrada {
+                from { transform: scale(0.95); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+            }
+
+            .modal-header {
+                padding: 20px 24px;
+                background: #f8fafc;
+                border-bottom: 1px solid #e2e8f0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center; 
+            }
+
+            .modal-header h3 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            .btn-cerrar-modal {
+                background: none;
+                border: none;
+                font-size: 20px;
+                color: #64748b;
+                cursor: pointer;
+                padding: 4px;
+            }
+
+            .modal-body {
+                padding: 24px;
+            }
+
+            .form-modal-grupo {
+                margin-bottom: 18px;
+            }
+
+            .form-modal-grupo label {
+                display: block;
+                font-size: 12px;
+                font-weight: 700;
+                color: #475569;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-bottom: 6px;
+            }
+
+            .form-modal-grupo select, 
+            .form-modal-grupo input,
+            .form-modal-grupo textarea {
+                width: 100%;
+                padding: 10px 12px;
+                border: 1px solid #cbd5e1;
+                border-radius: 8px;
+                font: inherit;
+                font-size: 14px;
+                background: #ffffff;
+                color: #0f172a;
+                transition: border-color 0.2s ease;
+            }
+
+            .form-modal-grupo select:focus, 
+            .form-modal-grupo input:focus,
+            .form-modal-grupo textarea:focus {
+                outline: none;
+                border-color: #2563eb;
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            }
+
+            .modal-footer {
+                padding: 16px 24px;
+                background: #f8fafc;
+                border-top: 1px solid #e2e8f0;
+                display: flex;
+                justify-content: flex-end;
+                gap: 12px;
+            }
+
+            .btn-cancelar {
+                padding: 10px 18px;
+                background: #ffffff;
+                border: 1px solid #cbd5e1;
+                border-radius: 8px;
+                font-size: 13px;
+                font-weight: 600;
+                color: #475569;
                 cursor: pointer;
             }
 
-            .btn-guardar:hover {
+            .btn-guardar-modal {
+                padding: 10px 20px;
+                background: #2563eb;
+                border: none;
+                border-radius: 8px;
+                font-size: 13px;
+                font-weight: 600;
+                color: #ffffff;
+                cursor: pointer;
+            }
+
+            .btn-guardar-modal:hover {
                 background: #1d4ed8;
             }
 
             .vacio {
-                padding: 25px;
+                padding: 40px;
                 text-align: center;
-                color: #6b7280;
+                color: #64748b;
             }
 
             .acciones {
-                margin-top: 20px;
+                margin-top: 28px;
             }
 
             .btn-volver {
                 display: inline-block;
-                padding: 11px 16px;
-                background: #2563eb;
-                color: white;
-                border-radius: 8px;
+                padding: 10px 18px;
+                background: #ffffff;
+                color: #0f172a;
+                border: 1px solid #cbd5e1;
+                border-radius: 10px;
                 text-decoration: none;
+                font-size: 13px;
+                font-weight: 600;
+                transition: all 0.2s ease;
             }
 
             .btn-volver:hover {
-                background: #1d4ed8;
+                background: #f1f5f9;
+                border-color: #94a3b8;
             }
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
                 header {
-                    align-items: flex-starts;
+                    padding: 16px 20px;
                     flex-direction: column;
+                    align-items: flex-start;
+                    gap: 12px;
                 }
 
                 main {
-                    margin-top: 20px;
-                    padding: 0 12px;
+                    margin: 20px auto;
+                    padding: 0 16px;
                 }
 
-                .resumen, .tabla-contenedor {
-                    padding: 17px
+                .tabla-contenedor {
+                    padding: 20px;
+                }
+
+                .buscador {
+                    max-width: 100%;
                 }
             }
         </style>
@@ -221,81 +426,134 @@
                     <table id="tablaContactos"> 
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Correo</th>
-                                <th>Telefono</th>
-                                <th>Asunto</th>
+                                <th>Cliente</th>
+                                <th>Contacto</th>
                                 <th>Mensaje</th>
                                 <th>Fecha recibido</th>
                                 <th>Estado</th>
-                                <th>Proximo contacto</th>
+                                <th>Próximo contacto</th>
                                 <th>Observaciones</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             {% for c in contactos %}
                                 <tr>
-                                    <td>{{ c.nombre }}</td>
-                                    <td>{{ c.correo }}</td>
-                                    <td>{{ c.telefono or 'No indicado' }}</td>
-                                    <td>{{ c.asunto or 'Sin asunto' }}</td>
-                                    <td>{{ c.mensaje }}</td>
+                                    <td><strong>{{ c.nombre }}</strong></td>
+                                    <td>
+                                        <div>{{ c.correo }}</div>
+                                        <div style="font-size: 12px; color: #64748b;">{{ c.telefono or 'No indicado' }}</div>
+                                    </td>
+                                    <td>
+                                        <p style="margin: 0; max-width: 250px;">{{ c.mensaje }}</p>
+                                    </td>
                                     <td>{{ c.fecha_envio or 'Sin fecha' }}</td>
-                                    <td colspan="3">
-                                        <form
-                                            action="{{ url_for('actualizar_seguimiento', contacto_id=c.id) }}"
-                                            method="POST"
-                                            class="form-seguimiento"
-                                        >
-                                            <label for="estado-{{ c.id }}">Estado</label>
-                                            <select id="estado-{{ c.id }}" name="estado" required>
-                                                <option value="pendiente"
-                                                    {% if (c.estado or 'pendiente') == 'pendiente' %}selected{% endif %}>
-                                                    Nuevo / pendiente
-                                                </option>
-
-                                               <option value="Contactado"
-                                                    {% if c.estado == 'Contactado' %}selected{% endif %}>
-                                                    Contactado
-                                                </option>
-
-                                                <option value="En seguimiento"
-                                                    {% if c.estado == 'En seguimiento' %}selected{% endif %}>
-                                                    En seguimiento
-                                                </option>
-
-                                                <option value="Cliente ganado"
-                                                    {% if c.estado == 'Cliente ganado' %}selected{% endif %}>
-                                                    Cliente ganado
-                                                </option>
-
-                                                <option value="No concretado"
-                                                    {% if c.estado == 'No concretado' %}selected{% endif %}>
-                                                    No concretado
-                                                </option>
-                                            </select>
-
-                                            <label for="fecha-{{ c.id }}">Proximo contacto</label>
-                                            <input
-                                                type="date"
-                                                id="fecha-{{ c.id }}"
-                                                name="proximo_contacto"
-                                                value="{{ c.proximo_contacto or '' }}"
+                                    <td>
+                                        {% set estado_clean = (c.estado or 'pendiente') | lower %}
+                                        {% if 'ganado' in estado_clean %}
+                                            <span class="badge-estado badge-ganado">Cliente ganado</span>
+                                        {% elif 'contactado' in estado_clean %}
+                                            <span class="badge-estado badge-contactado">Contactado</span>
+                                        {% elif 'seguimiento' in estado_clean %}
+                                            <span class="badge-estado badge-seguimiento">En seguimiento</span>
+                                        {% elif 'no' in estado_clean %}
+                                            <span class="badge-estado badge-no-concretado">No concretado</span>
+                                        {% else %}
+                                            <span class="badge-estado badge-pendiente">Nuevo / pendiente</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ c.proximo_contacto or 'Sin fecha' }}</td>
+                                    <td>
+                                        <span style="font-size: 12px; color: #64748b;">{{ c.observaciones or 'Sin notas' }}</span>
+                                    </td>
+                                    <td>
+                                        <div style="display: flex; gap: 8px; align-items: center;">
+                                            <!-- BOTÓN EDITAR -->
+                                            <button
+                                                type="button"
+                                                class="btn-editar"
+                                                onclick="abrirModal('{{ c.id }}')"
                                             >
-
-                                            <label for="observaciones-{{ c.id }}">Observaciones</label>
-                                            <textarea
-                                                id="observaciones-{{ c.id }}"
-                                                name="observaciones"
-                                                rows="3"
-                                                placeholder="Notas sobre el cliente..."
-                                            >{{ c.observaciones or '' }}</textarea>
-
-                                            <button type="submit" class="btn-guardar">
-                                                Guardar cambios
+                                                Editar
                                             </button>
-                                        </form>
+
+                                            <!-- BOTÓN ELIMINAR -->
+                                            <form
+                                                action="{{ url_for('eliminar_contacto', contacto_id=c.id) }}"
+                                                method="POST"
+                                                style="margin: 0;"
+                                                onsubmit="return confirm('¿Estas seguro de que deseas eliminar el registro de {{ c.nombre }}?');"
+                                            >
+                                                <button type="submit" class="btn-eliminar">
+                                                    Eliminar
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                        <!-- MODAL INDIVIDUAL POR CLIENTE -->
+                                        <div id="modal-{{ c.id }}" class="modal-overlay">
+                                            <div class="modal-tarjeta">
+                                                <div class="modal-header">
+                                                    <h3>Actualizar Seguimiento</h3>
+                                                    <button type="button" class="btn-cerrar-modal" onclick="cerrarModal('{{ c.id }}')">&times;</button>
+                                                </div>
+
+                                                <form action="{{ url_for('actualizar_seguimiento', contacto_id=c.id) }}" method="POST">
+                                                    <div class="modal-body">
+                                                        <p style="margin-top: 0; font-size: 14px; color: #64748b;">
+                                                            Cliente: <strong>{{ c.nombre }}</strong>
+                                                        </p>
+
+                                                        <div class="form-modal-grupo">
+                                                            <label for="estado-{{ c.id }}">Estado</label>
+                                                            <select id="estado-{{ c.id }}" name="estado" required>
+                                                                <option value="pendiente" {% if (c.estado or 'pendiente') == 'pendiente' %}selected{% endif %}>
+                                                                    Nuevo / pendiente
+                                                                </option>
+                                                                <option value="Contactado" {% if c.estado == 'Contactado' %}selected{% endif %}>
+                                                                    Contactado
+                                                                </option>
+                                                                <option value="En seguimiento" {% if c.estado == 'En seguimiento' %}selected{% endif %}>
+                                                                    En seguimiento
+                                                                </option>
+                                                                <option value="Cliente ganado" {% if c.estado == 'Cliente ganado' %}selected{% endif %}>
+                                                                    Cliente ganado
+                                                                </option>
+                                                                <option value="No concretado" {% if c.estado == 'No concretado' %}selected{% endif %}>
+                                                                    No concretado
+                                                                </option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-modal-grupo">
+                                                            <label for="fecha-{{ c.id }}">Proximo contacto</label>
+                                                            <input
+                                                                type="date"
+                                                                id="fecha-{{ c.id }}"
+                                                                name="proximo_contacto"
+                                                                value="{{ c.proximo_contacto or '' }}"
+                                                            >
+                                                        </div>
+
+                                                        <div class="form-modal-grupo">
+                                                            <label for="observaciones-{{ c.id }}">Observaciones</label>
+                                                            <textarea
+                                                                id="observaciones-{{ c.id }}"
+                                                                name="observaciones"
+                                                                rows="3"
+                                                                placeholder="Notas sobre el cliente..."
+                                                            >{{ c.observaciones or '' }}</textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn-cancelar" onclick="cerrarModal('{{ c.id }}')">Cancelar</button>
+                                                        <button type="submit" class="btn-guardar-modal">Guardar cambios</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             {% endfor %}    
@@ -318,14 +576,31 @@
             const buscador = document.getElementById("buscador");
             const filas = document.querySelectorAll("#tablaContactos tbody tr");
 
-            buscador.addEventListener("input", function () {
-                const texto = this.value.toLowerCase().trim();
+            if (buscador) {
+                buscador.addEventListener("input", function () {
+                    const texto = this.value.toLowerCase().trim();
 
-                filas.forEach(function (fila) {
-                    fila.style.display = fila.textContent
-                    .toLowerCase()
-                    .includes(texto) ? "" : "none";
+                    filas.forEach(function (fila) {
+                        fila.style.display = fila.textContent.toLowerCase().includes(texto) ? "" : "none";
+                    });
                 });
+            }
+
+            // Funciones del Modal Flotante
+            function abrirModal(id) {
+                const modal = document.getElementById('modal-' + id);
+                if (modal) modal.classList.add('activo');
+            }
+
+            function cerrarModal(id) {
+                const modal = document.getElementById('modal-' + id);
+                if (modal) modal.classList.remove('activo');
+            }
+
+            window.addEventListener('click', function(e) {
+                if (e.target.classList.contains('modal-overlay')) {
+                    e.target.classList.remove('activo');
+                }
             });
         </script>
     </body>

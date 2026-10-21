@@ -1615,6 +1615,34 @@ def detalle_evaluacion(evaluacion_id):
         if conexion is not None and conexion.is_connected():
             conexion.close()
         
+@app.route("/admin/seguimiento/eliminar/<int:contacto_id>", methods=["POST"])
+def eliminar_contacto(contacto_id):
+    if not session.get("es_admin"):
+        return redirect(url_for("login"))
+    
+    conexion = None
+    cursor = None
+    
+    try:
+        conexion = conectar_aiven()
+        cursor = conexion.cursor()
+        
+        cursor.execute("DELETE FROM contactos WHERE id = %s", (contacto_id,))
+        conexion.commit()
+
+        return redirect(url_for("admin_seguimiento"))
+
+    except Exception:
+        if conexion is not None:
+            conexion.rollback()
+        app.logger.exception("Error al eliminar el contacto")
+        return "No se pudo eliminar el contacto.", 500
+    
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conexion is not None and conexion.is_connected():
+            conexion.close()
 
 if __name__ == "__main__":
     app.run(debug=True)

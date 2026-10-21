@@ -21,6 +21,38 @@
                 <li><a href="{{url_for('inicio')}}#nosotros">Nosotros</a></li>
                 <li><a href="{{url_for('inicio')}}#servicios">Servicios</a></li>
                 <li><a href="{{url_for('pagina_contacto')}}">Contacto</a></li>
+
+                 <!-- Opciones de usuario a la derecha -->
+        <ul class="menu-usuario">
+    {% if session.get('es_admin') %}
+        <li>
+            <a href="{{ url_for('admin') }}" class="btn-panel-admin">
+                Panel de administración
+            </a>
+        </li>
+
+{% elif session.get('usuario_id') %}
+    <li>
+        <a href="{{ url_for('cerrar_sesion') }}"
+           class="btn-cerrar-sesion">
+            Cerrar sesión
+        </a>
+    </li>
+
+    {% else %}
+        <li>
+            <a href="{{ url_for('login') }}" class="btn-usuario">
+                Iniciar sesión
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('registro') }}"
+               class="btn-usuario btn-registro">
+                Crear cuenta
+            </a>
+        </li>
+    {% endif %}
+</ul>
             </ul>
         </nav>
     </header>
