@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guía práctica para iniciar un negocio en Perú: idea de negocio, mercado, finanzas, formalización y primeros clientes.">
+    <title>Guía para emprender | Asesoría</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='responsive.css') }}">
+
+    <style>
+        /* ESTILOS ESPECÍFICOS PARA LA GUÍA EMPRENDEDORA */
+        .ge-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .ge-section-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .ge-eyebrow {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .ge-eyebrow-blue { color: #2563eb; }
+        .ge-eyebrow-light { color: #93c5fd; }
+
+        .ge-roadmap {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            margin-bottom: 40px;
+        }
+
+        .ge-step-nav {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .ge-step-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #0f172a;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .ge-step-nav a:hover {
+            background: #eff6ff;
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+
+        .ge-step-nav span:first-child {
+            background: #2563eb;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .ge-content-section {
+            display: flex;
+            gap: 25px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .ge-step-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2563eb;
+            background: #eff6ff;
+            height: 60px;
+            width: 60px;
+            min-width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .ge-advice {
+            background: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 16px 20px;
+            border-radius: 0 10px 10px 0;
+            margin-top: 20px;
+        }
+
+        .ge-advice h3 {
+            margin: 0 0 6px;
+            font-size: 15px;
+            color: #15803d;
+        }
+
+        .ge-advice p {
+            margin: 0;
+            font-size: 14px;
+            color: #166534;
+        }
+
+        .ge-official-links {
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .ge-official-links a {
+            display: block;
+            margin-top: 10px;
+            color: #2563eb;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .ge-cta-section {
+            background: #0f172a;
+            color: white;
+            padding: 50px 20px;
+            border-radius: 20px;
+            margin: 40px auto;
+            max-width: 900px;
+        }
+
+        .ge-cta-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            text-align: center;
+        }
+
+        .ge-cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .ge-button {
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .ge-button-white {
+            background: white;
+            color: #0f172a;
+        }
+
+        .ge-button-outline {
+            border: 1px solid white;
+            color: white;
+        }
+
+        .ge-cta-text-link {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .ge-footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .ge-footer-home {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* ADAPTACIÓN RESPONSIVA PARA MÓVILES (< 768px) */
+        @media (max-width: 768px) {
+            .ge-step-nav {
+                grid-template-columns: 1fr !important;
+            }
+
+            .ge-content-section {
+                flex-direction: column !important;
+                padding: 20px 16px !important;
+            }
+
+            .ge-step-number {
+                width: 48px !important;
+                height: 48px !important;
+                min-width: 48px !important;
+                font-size: 24px !important;
+            }
+
+            .ge-cta-actions {
+                flex-direction: column !important;
+            }
+
+            .ge-button {
+                width: 100% !important;
+                text-align: center !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <main>
+
+        <!-- INTRODUCCIÓN -->
+        <section class="ge-intro ge-container">
+            <div class="ge-section-heading">
+                <span class="ge-eyebrow ge-eyebrow-blue">
+                    ANTES DE EMPEZAR
+                </span>
+
+                <h2>Emprender empieza con una buena planificación</h2>
+            </div>
+
+            <p>
+                No necesitas tener todo resuelto desde el primer día. Lo
+                importante es entender qué quieres ofrecer, comprobar si existe
+                interés, calcular los recursos que necesitarás y avanzar con
+                objetivos claros. Esta guía reúne los aspectos fundamentales
+                para comenzar.
+            </p>
+        </section>
+
+        <!-- ÍNDICE DE LA GUÍA -->
+        <section class="ge-roadmap ge-container" id="ruta-emprendedora">
+            <div class="ge-section-heading">
+                <span class="ge-eyebrow ge-eyebrow-blue">
+                    TU RUTA EMPRENDEDORA
+                </span>
+
+                <h2>Los pasos para iniciar tu negocio</h2>
+
+                <p>
+                    Selecciona un tema para ir directamente a la información
+                    que necesitas.
+                </p>
+            </div>
+
+            <nav class="ge-step-nav" aria-label="Apartados de la guía">
+                <a href="#idea"><span>01</span><span>Tu idea de negocio</span></a>
+                <a href="#mercado"><span>02</span><span>El mercado y los clientes</span></a>
+                <a href="#finanzas"><span>03</span><span>Inversión y finanzas</span></a>
+                <a href="#formalizacion"><span>04</span><span>Formalización</span></a>
+                <a href="#promocion"><span>05</span><span>Promoción y ventas</span></a>
+                <a href="#organizacion"><span>06</span><span>Organización y crecimiento</span></a>
+            </nav>
+        </section>
+
+        <!-- 1. DEFINE TU IDEA -->
+        <section class="ge-content-section ge-container" id="idea">
+            <div class="ge-step-number">01</div>
+
+            <div class="ge-section-body">
+                <span class="ge-eyebrow ge-eyebrow-blue">
+                    DEFINE TU PROPUESTA
+                </span>
+
+                <h2>Define tu idea de negocio</h2>
+
+                <p class="ge-lead">
+                    Identifica el producto o servicio, la necesidad que resolverás y a quién ayudarás. 
+                    Define tu diferenciación para destacar en el mercado.
+                </p>
+
+                <div class="ge-advice">
+                    <h3>Consejo de Asesoría</h3>
+                    <p>
+                        Escribe y explica tu idea de negocio en una frase, comprobando si tiene potencial.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CONOCE EL MERCADO -->
+        <section class="ge-content-section ge-container" id="mercado">
+            <div class="ge-step-number">02</div>
+
+            <div class="ge-section-body">
+                <span class="ge-eyebrow ge-eyebrow-blue">
+                    INVESTIGA ANTES DE INVERTIR
+                </span>
+
+                <h2>Conoce el mercado y a tus posibles clientes</h2>
+
+                <p class="ge-lead">
+                    Averigua quiénes necesitan tu producto o servicio, cuánto estarían dispuestos a pagar y qué alternativas ofrece la competencia.
+                </p>
+
+                <div class="ge-advice">
+                    <h3>Antes de decidir</h3>
+                    <p>
+                        Conversa con tus clientes para conocer sus necesidades y si pagarían por tu producto.
+                        Los comentarios validan tu idea y potencial.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. ORGANIZA TUS FINANZAS -->
+        <section class="ge-content-section ge-container" id="finanzas">
+            <div class="ge-step-number">03</div>
+
+            <div class="ge-section-body">
+                <span class="ge-eyebrow ge-eyebrow-blue">
+                    PLANIFICA TUS RECURSOS
+                </span>
+
+                <h2>Organiza tu inversión y tus finanzas</h2>
+
+                <p class="ge-lead">
+                    Calcula tu inversión inicial, registra ingresos y gastos, establece precios que cubran costos.
+                </p>
+
+                <div class="ge-advice">
+                    <h3>Un hábito que conviene adoptar desde el primer día</h3>
+
+                    <p>
+                       Registra ingresos y egresos, conserva comprobantes, separa dinero personal del negocio y
+                        revisa resultados periódicamente para decisiones financieras.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. FORMALIZA TU EMPRESA -->
+        <section class="ge-content-section ge-container ge-section-tinted" id="formalizacion">
+            <div class="ge-step-number">04</div>
+
+            <div class="ge-section-body">
+                <span class="ge-eyebrow ge-eyebrow-blue">
+                    CONOCE LOS REQUISITOS
+                </span>
+
+                <h2>Infórmate sobre la formalización en Perú</h2>
+
+                <p class="ge-lead">
+                    Infórmate sobre el RUC, obligaciones tributarias y permisos según tu actividad. Los trámites 
+                    dependen de si eres persona natural o jurídica. Verifica requisitos en fuentes oficiales.
+                </p>
+
+                <div class="ge-official-links">
+                    <h3>Consulta información oficial</h3>
+
+                    <p>
+                        Los requisitos pueden variar según el caso. Utiliza fuentes
+                        oficiales para confirmar los pasos aplicables a tu negocio.
+                    </p>
+
+                    <a href="https://www.gob.pe/" target="_blank" rel="noopener noreferrer">
+                        Plataforma del Estado peruano <span aria-hidden="true">↗</span>
+                    </a>
+
+                    <a href="https://www.sunat.gob.pe/" target="_blank" rel="noopener noreferrer">
+                        SUNAT: información tributaria <span aria-hidden="true">↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. PROMOCIONA Y CONSIGUE CLIENTES -->
+        <section class="ge-content-section ge-container" id="promocion">
+            <div class="ge-step-number">05</div>
+
+            <div class="ge-section-body">
+                <span class="ge-eyebrow ge-eyebrow-blue">
+                    LLEGA A TUS CLIENTES
+                </span>
+
+                <h2>Promociona tu negocio y consigue tus primeras ventas</h2>
+
+                <p class="ge-lead">
+                   Usa redes sociales y recomendaciones para promover tu negocio, explicar tus productos y generar confianza en clientes.
+                </p>
+
+                <div class="ge-advice">
+                    <h3>Construye confianza</h3>
+                    <p>
+                        Comunica qué ofreces y resuelve problemas. Utilizar testimonios realmente ayuda mucho.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. ORGANIZA Y MEJORA -->
+        <section class="ge-content-section ge-container ge-section-tinted" id="organizacion">
+            <div class="ge-step-number">06</div>
+
+            <div class="ge-section-body">
+                <span class="ge-eyebrow ge-eyebrow-blue">
+                    CRECE CON ORDEN
+                </span>
+
+                <h2>Organiza, evalúa y mejora tu empresa</h2>
+
+                <p class="ge-lead">
+                    Revisa ventas, gastos, ganancias y satisfacción de los clientes 
+                    para identificar oportunidades y mejorar tu negocio.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- INVITACIÓN A CONTACTAR CON ASESORÍA -->
+        <section class="ge-cta-section">
+            <div class="ge-container ge-cta-inner">
+                <div>
+                    <span class="ge-eyebrow ge-eyebrow-light">
+                        CUENTA CON ASESORÍA
+                    </span>
+
+                    <h2>¿Necesitas orientación para dar el siguiente paso?</h2>
+
+                    <p>
+                        Cada negocio tiene necesidades diferentes. Conoce los
+                        servicios de Asesoría y revisa qué aspectos de tu empresa
+                        podrías organizar o mejorar.
+                    </p>
+                </div>
+
+                <div class="ge-cta-actions">
+                    <a class="ge-button ge-button-white" href="{{ url_for('inicio') }}#servicios">
+                        Conoce nuestros servicios
+                    </a>
+
+                    <a class="ge-button ge-button-outline" href="{{ url_for('pagina_evaluacion') }}">
+                        Realizar evaluación empresarial
+                    </a>
+
+                    <a class="ge-cta-text-link" href="{{ url_for('pagina_contacto') }}">
+                        Contactar con Asesoría →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="ge-footer">
+        <div class="ge-container ge-footer-inner">
+            <a href="{{ url_for('inicio') }}" class="ge-footer-home">
+                ← Volver al inicio
+            </a>
+
+            <p>&copy; 2026 Asesoría. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

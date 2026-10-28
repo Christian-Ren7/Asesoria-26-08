@@ -1,0 +1,722 @@
+/* ==================================================
+   REESTRUCTURACIÓN RESPONSIVA COMPLETA (MÓVIL Y TABLET)
+   ================================================== */
+
+@media screen and (max-width: 768px) {
+
+    /* Reset estructural para evitar desbordes */
+    *, *::before, *::after {
+        box-sizing: border-box !important;
+    }
+
+    body {
+        width: 100% !important;
+        overflow-x: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    section {
+        padding: 30px 16px !important;
+    }
+
+    /* --------------------------------------------------
+       1. CABECERA (HEADER Y NAVEGACIÓN)
+    -------------------------------------------------- */
+    header {
+        position: relative !important;
+        width: 100% !important;
+        padding: 15px 12px !important;
+        background-color: #1f2937 !important;
+        z-index: 1000 !important;
+    }
+
+    header nav {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        gap: 12px !important;
+        position: static !important;
+        transform: none !important;
+    }
+
+    /* Logo limpiando posiciones absolutas */
+    header .logo,
+    header .logo a {
+        position: static !important;
+        transform: none !important;
+        font-size: 22px !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        text-align: center !important;
+        margin: 0 !important;
+        display: block !important;
+        text-decoration: none !important;
+    }
+
+    /* Menú principal de enlaces */
+    header .menu-principal {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px 14px !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+    }
+
+    header .menu-principal li {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    header .menu-principal a {
+        font-size: 13.5px !important;
+        color: #e2e8f0 !important;
+        text-decoration: none !important;
+        font-weight: 500 !important;
+    }
+
+    /* Menú de usuario (Iniciar Sesión / Registro) */
+    header .menu-usuario {
+        position: static !important;
+        transform: none !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+        margin: 4px 0 0 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+    }
+
+    header .menu-usuario li {
+        margin: 0 !important;
+    }
+
+    header .menu-usuario a {
+        display: inline-block !important;
+        font-size: 12.5px !important;
+        padding: 7px 12px !important;
+        border-radius: 6px !important;
+        text-decoration: none !important;
+    }
+
+    /* --------------------------------------------------
+       2. CARRUSEL (TEXTO UBICADO DEBAJO DE LA IMAGEN)
+    -------------------------------------------------- */
+    .inicio {
+        display: flex !important;
+        flex-direction: column !important;
+        position: relative !important;
+        width: 100% !important;
+        min-height: auto !important;
+        height: auto !important;
+        padding: 0 0 25px 0 !important;
+        margin: 0 !important;
+        background-color: #f8fafc !important;
+    }
+
+    .inicio .carrusel {
+        position: relative !important;
+        width: 100% !important;
+        height: 210px !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+    }
+
+    .inicio .carrusel img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+    }
+
+    /* Botones flotantes de navegación (< y >) */
+    .carrusel-anterior,
+    .carrusel-siguiente {
+        position: absolute !important;
+        top: 85px !important;
+        z-index: 10 !important;
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 16px !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        border: none !important;
+        border-radius: 50% !important;
+        color: #1e3a8a !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .carrusel-anterior { left: 8px !important; }
+    .carrusel-siguiente { right: 8px !important; }
+
+    /* Tarjeta de información debajo de la foto */
+    .carrusel-info {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        width: 92% !important;
+        max-width: 420px !important;
+        margin: 15px auto 0 auto !important;
+        padding: 20px 16px !important;
+        background: #ffffff !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+        text-align: center !important;
+    }
+
+    .carrusel-info h2 {
+        position: static !important;
+        font-size: 18px !important;
+        line-height: 1.35 !important;
+        margin: 0 0 8px 0 !important;
+        color: #1e3a8a !important;
+        text-align: center !important;
+    }
+
+    .carrusel-info p {
+        position: static !important;
+        font-size: 13.5px !important;
+        line-height: 1.45 !important;
+        color: #475569 !important;
+        margin: 0 0 14px 0 !important;
+        text-align: center !important;
+    }
+
+    .carrusel-info .boton-inicio {
+        display: block !important;
+        width: 100% !important;
+        padding: 11px !important;
+        font-size: 13.5px !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+    }
+
+    /* --------------------------------------------------
+       3. NUESTROS SERVICIOS (TARJETAS DE PORTADA)
+    -------------------------------------------------- */
+    #servicios {
+        padding: 35px 16px !important;
+        background-color: #f3f6fb !important;
+    }
+
+    #servicios h2 {
+        font-size: 24px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .servicios-intro {
+        font-size: 14px !important;
+        margin-bottom: 25px !important;
+    }
+
+    .servicios-contenedor {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 18px !important;
+        width: 100% !important;
+    }
+
+    #servicios .tarjeta {
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 22px 18px 20px !important;
+        position: relative !important;
+        border-radius: 12px !important;
+        box-sizing: border-box !important;
+    }
+
+    #servicios .tarjeta-icono {
+        font-size: 36px !important;
+        margin-bottom: 10px !important;
+    }
+
+    #servicios .tarjeta h3 {
+        font-size: 20px !important;
+        margin-bottom: 12px !important;
+    }
+
+    #servicios .tarjeta-descripcion p {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 15px !important;
+    }
+
+    #servicios .tarjeta-programas {
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        margin-bottom: 15px !important;
+    }
+
+    #servicios .tarjeta-programas p {
+        font-size: 13.5px !important;
+        margin-bottom: 4px !important;
+    }
+
+    #servicios .tarjeta-detalle {
+        position: static !important;
+        margin-top: 15px !important;
+    }
+
+    #servicios .boton-programas {
+        display: block !important;
+        width: 100% !important;
+        padding: 10px !important;
+        background-color: #1e3a8a !important;
+        color: #ffffff !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        border-radius: 8px !important;
+        font-size: 13.5px !important;
+        font-weight: bold !important;
+    }
+
+    /* --------------------------------------------------
+       4. SECCIÓN NOSOTROS
+    -------------------------------------------------- */
+    .nosotros {
+        padding: 35px 16px !important;
+        background-color: #f8fafc !important;
+    }
+
+    .nosotros-principal {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    .nosotros-contenido {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .nosotros-contenido h2 {
+        font-size: 22px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .nosotros-contenido p {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+    }
+
+    .nosotros-imagen {
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .nosotros-imagen img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 210px !important;
+        object-fit: cover !important;
+        border-radius: 12px !important;
+    }
+
+    .nosotros-info,
+    .caracteristicas-contenido {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 14px !important;
+    }
+
+    .info-item,
+    .caracteristica-item {
+        width: 100% !important;
+        padding: 18px 15px !important;
+    }
+
+    /* --------------------------------------------------
+       5. PÁGINA DE ASESORÍAS (PROGRAMAS.HTML)
+    -------------------------------------------------- */
+    .programas-principal {
+        padding: 25px 14px !important;
+    }
+
+    .programas-titulo h1 {
+        font-size: 23px !important;
+        line-height: 1.3 !important;
+    }
+
+    .programas-titulo p {
+        font-size: 13.5px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .programas-contenedor {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 18px !important;
+    }
+
+    .programas-menu {
+        position: static !important;
+        width: 100% !important;
+        padding: 14px !important;
+        border-radius: 12px !important;
+    }
+
+    .programas-menu h2 {
+        font-size: 16px !important;
+        text-align: center !important;
+    }
+
+    .filtro-empresa span {
+        display: block !important;
+        text-align: center !important;
+        font-size: 12px !important;
+    }
+
+    .selector-botones {
+        display: flex !important;
+        gap: 8px !important;
+        margin-top: 6px !important;
+    }
+
+    .btn-tipo-empresa {
+        flex: 1 !important;
+        padding: 10px 4px !important;
+        font-size: 12px !important;
+        text-align: center !important;
+        border-radius: 8px !important;
+    }
+
+    .programas-menu button[data-programa] {
+        display: block !important;
+        width: 100% !important;
+        padding: 11px 12px !important;
+        font-size: 13.5px !important;
+        text-align: left !important;
+        margin-bottom: 4px !important;
+    }
+
+    .programa-informacion {
+        border-radius: 12px !important;
+    }
+
+    .programa-imagen {
+        height: 180px !important;
+    }
+
+    .programa-contenido {
+        padding: 18px 14px !important;
+    }
+
+    .encabezado-tarjeta {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+    }
+
+    .encabezado-tarjeta h2 {
+        font-size: 20px !important;
+    }
+
+    .badge-empresa {
+        font-size: 11px !important;
+        padding: 4px 10px !important;
+    }
+
+    .programa-contenido ul {
+        padding-left: 18px !important;
+        margin-left: 0 !important;
+        font-size: 13.5px !important;
+    }
+
+    .programa-boton {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding: 12px !important;
+        font-size: 14px !important;
+        margin-top: 15px !important;
+    }
+
+    /* --------------------------------------------------
+       6. CONTACTO (MAPA Y FORMULARIO)
+    -------------------------------------------------- */
+    .contacto-pagina {
+        padding: 30px 16px !important;
+        min-height: auto !important;
+    }
+
+    .contacto-titulo {
+        margin-bottom: 25px !important;
+        text-align: center !important;
+    }
+
+    .contacto-titulo h1 {
+        font-size: 26px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .contacto-titulo p {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+    }
+
+    .contacto-contenedor {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    .contacto-informacion, 
+    .contacto-formulario {
+        width: 100% !important;
+        padding: 20px 16px !important;
+        border-radius: 12px !important;
+        box-sizing: border-box !important;
+    }
+
+    .contacto-informacion h2,
+    .contacto-formulario h2 {
+        font-size: 20px !important;
+        margin-bottom: 15px !important;
+    }
+
+    .contacto-informacion p {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* Ajuste responsivo del mapa de Google Maps */
+    .contacto-informacion iframe {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 220px !important;
+        border-radius: 10px !important;
+        margin-top: 10px !important;
+        margin-bottom: 15px !important;
+        display: block !important;
+    }
+
+    .boton-mapa {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding: 11px !important;
+        font-size: 13.5px !important;
+        box-sizing: border-box !important;
+    }
+
+    .contacto-formulario label {
+        font-size: 13.5px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .contacto-formulario input,
+    .contacto-formulario textarea {
+        width: 100% !important;
+        font-size: 14px !important;
+        padding: 10px 12px !important;
+        margin-bottom: 14px !important;
+        border-radius: 8px !important;
+        box-sizing: border-box !important;
+    }
+
+    .contacto-formulario textarea {
+        min-height: 100px !important;
+    }
+
+    .contacto-formulario button {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 14px !important;
+    }
+
+    /* --------------------------------------------------
+       7. FORMULARIO DE EVALUACIÓN POR PASOS
+    -------------------------------------------------- */
+    .formulario-evaluacion {
+        padding: 25px 14px !important;
+    }
+
+    .formulario-evaluacion form {
+        width: 100% !important;
+        padding: 18px 14px !important;
+        border-radius: 12px !important;
+    }
+
+    .botones-paso {
+        display: flex !important;
+        flex-direction: column-reverse !important;
+        gap: 10px !important;
+    }
+
+    .botones-paso button {
+        width: 100% !important;
+    }
+
+    /* --------------------------------------------------
+       8. ACCESO, REGISTRO Y VISTAS DE ADMIN
+    -------------------------------------------------- */
+    .pagina-acceso {
+        padding: 20px 12px !important;
+    }
+
+    .contenedor-acceso {
+        width: 100% !important;
+        max-width: 400px !important;
+        padding: 22px 16px !important;
+    }
+
+    .tabla-scroll {
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .modal-tarjeta {
+        width: 95% !important;
+        margin: 10px auto !important;
+    }
+
+    /* --------------------------------------------------
+       9. PIE DE PÁGINA (FOOTER CENTRADO Y LIMPIO)
+    -------------------------------------------------- */
+    .footer {
+        width: 100% !important;
+        background-color: #1f2937 !important;
+        padding: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .footer-contenido {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 28px !important;
+        padding: 35px 20px !important;
+        width: 100% !important;
+    }
+
+    .footer-marca,
+    .footer-enlaces,
+    .footer-contacto {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        margin: 0 !important;
+    }
+
+    .footer-marca h2 {
+        font-size: 22px !important;
+        margin: 0 0 8px 0 !important;
+        color: #ffffff !important;
+    }
+
+    .footer-marca p {
+        font-size: 13.5px !important;
+        line-height: 1.5 !important;
+        color: #cbd5e1 !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .footer-enlaces h3,
+    .footer-contacto h3 {
+        font-size: 16px !important;
+        margin: 0 0 10px 0 !important;
+        color: #ffffff !important;
+    }
+
+    .footer-enlaces a {
+        color: #cbd5e1 !important;
+        font-size: 14px !important;
+        text-decoration: none !important;
+        margin-bottom: 8px !important;
+    }
+
+    .footer-contacto p {
+        color: #cbd5e1 !important;
+        font-size: 13.5px !important;
+        margin: 0 0 6px 0 !important;
+        text-align: center !important;
+    }
+
+    .footer-inferior {
+        border-top: 1px solid #374151 !important;
+        padding: 15px 16px !important;
+        text-align: center !important;
+    }
+
+    .footer-inferior p {
+        font-size: 12px !important;
+        color: #9ca3af !important;
+        margin: 0 !important;
+    }
+
+    /* --------------------------------------------------
+       10. BOTONES FLOTANTES (WHATSAPP Y CORREO)
+    -------------------------------------------------- */
+    .whatsapp-container {
+        right: 12px !important;
+        bottom: 12px !important;
+        z-index: 999 !important;
+    }
+
+    .whatsapp-float,
+    .correo-float {
+        width: 48px !important;
+        height: 48px !important;
+    }
+
+    .correo-float {
+        right: 12px !important;
+        bottom: 70px !important;
+        z-index: 998 !important;
+    }
+
+    .whatsapp-info {
+        width: calc(100vw - 24px) !important;
+        max-width: 310px !important;
+        right: 0 !important;
+        bottom: 0 !important;
+    }
+}
+
+/* Pantallas pequeñas (< 400px) */
+@media screen and (max-width: 400px) {
+    header .logo {
+        font-size: 18px !important;
+    }
+
+    .carrusel-info h2 {
+        font-size: 16px !important;
+    }
+
+    .programas-titulo h1 {
+        font-size: 21px !important;
+    }
+
+    .btn-tipo-empresa {
+        font-size: 11px !important;
+        padding: 8px 2px !important;
+    }
+}

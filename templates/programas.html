@@ -5,23 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> Nuestros Programas | Asesoria </title>
+    <title>Nuestras Asesorías | Asesoría</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='responsive.css') }}">
 </head>
 
 <body>
     <header>
         <nav>
             <div class="logo">
-                <a href="/">Asesoria</a>
+                <a href="{{ url_for('inicio') }}">Asesoría</a>
             </div>
 
             <ul class="menu-principal">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/#nosotros">Nosotros</a></li>
-                <li><a href="/#servicios">Servicios</a></li>
-                <li><a href="/contacto.html">Contacto</a></li>
+                <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+                <li><a href="{{ url_for('inicio') }}#nosotros">Nosotros</a></li>
+                <li><a href="{{ url_for('inicio') }}#servicios">Servicios</a></li>
+                <li><a href="{{ url_for('pagina_contacto') }}">Contacto</a></li>
             </ul>
         </nav>
     </header>
@@ -29,77 +30,90 @@
     <main>
         <section class="programas-principal">
             <div class="programas-titulo">
-                <h1>Nuestros programas</h1>
+                <h1>Nuestras Asesorías Especializadas</h1>
                 <p>
-                    Conoce nuestas soluciones y servicios diseñados
-                    para apoyar el crecimiento y desarrollo de tu empresa.
+                    Conoce nuestras soluciones diseñadas para apoyar el crecimiento y desarrollo de tu empresa.
                 </p>
             </div>
 
             <div class="programas-contenedor">
                 
-                <!--MENU DE PROGRAMAS-->
+                <!-- MENU DE ASESORIAS -->
                 <aside class="programas-menu">
-                    <h2>Programas</h2>
+                    <h2>Áreas de Asesoría</h2>
+
+                    <!-- SELECTOR DE TIPO DE EMPRESA -->
+                    <div class="filtro-empresa">
+                        <span>Tamaño de Empresa:</span>
+                        <div class="selector-botones">
+                            <button type="button" class="btn-tipo-empresa activo" data-tipo="micro">
+                                Empresa Micro
+                            </button>
+                            <button type="button" class="btn-tipo-empresa" data-tipo="pequena">
+                                Empresa Pequeña
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="separador-menu"></div>
 
                     <button class="programa-menu-activo" data-programa="contabilidad">
-                        Contabilidad
+                        Asesoría Contable
                     </button>
 
                     <button data-programa="financiera">
-                        Gestion financiera
+                        Asesoría Financiera
                     </button>
 
                     <button data-programa="consultoria">
-                        Consultorio empresarial
+                        Consultoría Empresarial
                     </button>
 
                     <button data-programa="comercio">
-                        Comercio exterior
+                        Asesoría en Comercio Exterior
                     </button>
 
                     <button data-programa="logistica">
-                        Logistica internacional
+                        Asesoría en Logística Internacional
                     </button>
                     
                     <button data-programa="digital">
-                        Soluciones digitales
+                        Asesoría en Soluciones Digitales
                     </button>
 
                     <button data-programa="fraudes">
-                        Prevencion de fraudes
+                        Asesoría en Prevención de Fraudes
                     </button>
                 </aside>
 
-                <!--INFORMACION DEL PROGRAMA-->
+                <!-- INFORMACION DE LA ASESORIA -->
                 <article class="programa-informacion">
                     <div class="programa-imagen">
                         <img 
+                            id="imagenAsesoria"
                             src="{{ url_for('servir_assets', filename='contabilidad.jpg') }}"
-                            alt="Servicio de contabilidad">
+                            alt="Servicio de Asesoría Contable">
                     </div>
 
                     <div class="programa-contenido">
 
-                        <h2>Contabilidad</h2>
+                        <div class="encabezado-tarjeta">
+                            <h2 id="tituloAsesoria">Asesoría Contable</h2>
+                            <span id="badgeTipoEmpresa" class="badge-empresa">Enfoque: Microempresa</span>
+                        </div>
 
-                        <p>
-                            Brindamos apoyo en la organizacion y gestion
-                            contable de la empresa, facilitando el control 
-                            de la informacion financiera y la toma de decisiones.
+                        <p id="descripcionAsesoria">
+                            Optimizamos la organización contable de tu empresa, garantizando un control riguroso de la información financiera para facilitar decisiones estratégicas.
                         </p>
 
-                        <h3>¿Que incluye?</h3>
+                        <h3>¿Qué incluye esta asesoría?</h3>
 
-                        <ul>
-                            <li>Organizacion de informacion contable.</li>
-                            <li>Control y seguimiento financiera.</li>
-                            <li>Apoyo en la gestion de registros.</li>
-                            <li>Informacion clara para la toma de decisiones.</li>
+                        <ul id="listaIncluye">
+                            <!-- Se llena dinámicamente con JavaScript -->
                         </ul>
 
-                        <a href="/contacto.html" class="programa-boton">
-                            Solicitar informacion
+                        <a href="{{ url_for('pagina_contacto') }}" id="btnSolicitar" class="programa-boton">
+                            Solicitar asesoría 
                         </a>
                     </div>
                 </article>
@@ -108,171 +122,220 @@
     </main>
 
     <footer class="footer">
-    <div class="footer-contenido">
+        <div class="footer-contenido">
 
-        <div class="footer-marca">
-            <h2>Asesoría</h2>
-            <p>
-                Soluciones profesionales para mejorar
-                la gestión y el crecimiento de tu empresa.
-            </p>
+            <div class="footer-marca">
+                <h2>Asesoría</h2>
+                <p>
+                    Soluciones profesionales para mejorar
+                    la gestión y el crecimiento de tu empresa.
+                </p>
+            </div>
+
+            <div class="footer-enlaces">
+                <h3>Navegación</h3>
+                <a href="{{ url_for('inicio') }}">Inicio</a>
+                <a href="{{ url_for('inicio') }}#nosotros">Nosotros</a>
+                <a href="{{ url_for('inicio') }}#servicios">Servicios</a>
+                <a href="{{ url_for('pagina_contacto') }}">Contacto</a>
+            </div>
+
+            <div class="footer-contacto">
+                <h3>Contacto</h3>
+                <p>Av. Angamos Este 489</p>
+                <p>Lima, Perú</p>
+                <p>contacto@asesoria.com</p>
+            </div>
+
         </div>
 
-        <div class="footer-enlaces">
-            <h3>Navegación</h3>
-            <a href="{{ url_for('inicio') }}">Inicio</a>
-            <a href="{{ url_for('inicio') }}#nosotros">Nosotros</a>
-            <a href="{{ url_for('inicio') }}#servicios">Servicios</a>
-            <a href="{{ url_for('pagina_contacto') }}">Contacto</a>
+        <div class="footer-inferior">
+            <p>© 2026 Asesoría · Todos los derechos reservados</p>
         </div>
+    </footer>
 
-        <div class="footer-contacto">
-            <h3>Contacto</h3>
-            <p>Av. Angamos Este 489</p>
-            <p>Lima, Perú</p>
-            <p>contacto@asesoria.com</p>
-        </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let tipoEmpresaActual = "micro";
+            let asesoriaActual = "contabilidad";
 
-    </div>
+            const asesorias = {
+                contabilidad: {
+                    titulo: "Asesoría Contable",
+                    imagen: "{{ url_for('servir_assets', filename='contabilidad.jpg') }}",
+                    alt: "Servicio de Asesoría Contable",
+                    descripcion: "Optimizamos la organización contable de tu empresa, garantizando un control riguroso de la información financiera para facilitar decisiones estratégicas.",
+                    micro: [
+                        "Organización de comprobantes y libros contables básicos.",
+                        "Declaraciones mensuales y anuales ante SUNAT.",
+                        "Orientación en Régimen MIPE Tributario o RER.",
+                        "Control esencial de ingresos y egresos."
+                    ],
+                    pequena: [
+                        "Gestión contable integral y estados financieros periódicos.",
+                        "Planeamiento tributario avanzado y optimización de impuestos.",
+                        "Soporte en auditorías y requerimientos de SUNAT.",
+                        "Análisis de costos operativos para toma de decisiones ejecutivas."
+                    ]
+                },
 
-    <div class="footer-inferior">
-        <p>© 2026 Asesoría · Todos los derechos reservados</p>
-    </div>
-</footer>
+                financiera: {
+                    titulo: "Asesoría Financiera",
+                    imagen: "{{ url_for('servir_assets', filename='gestion_financiera.jpg') }}",
+                    alt: "Servicio de Asesoría Financiera",
+                    descripcion: "Estructuramos la salud financiera de tu negocio mediante un control optimizado de flujo de caja, presupuestos, ingresos y gastos.",
+                    micro: [
+                        "Ordenamiento del flujo de caja diario/mensual.",
+                        "Separación de finanzas personales y del negocio.",
+                        "Elaboración de presupuestos básicos de operación."
+                    ],
+                    pequena: [
+                        "Diagnóstico de liquidez, endeudamiento y rentabilidad.",
+                        "Proyecciones financieras a mediano y largo plazo.",
+                        "Estrategias para la protección del margen de ganancia.",
+                        "Gestión y evaluación de créditos bancarios e inversiones."
+                    ]
+                },
 
-<script>
-    const programas = {
-        contabilidad: {
-            titulo: "Contabilidad",
-            imagen: "assets/contabilidad.jpg",
-            alt: "Servicio de contabilidad",
-            descripcion: 
-                "Brindamos apoyo a la organizacion y gestion contable de la empresa, facilitando el control de la informacion financiera y la toma de decisiones.",
-            incluye: [
-                "Organizacion de informacion contable",
-                "Control y seguimiento financiero",
-                "Apoyo en la gestion de registros",
-                "Informacion clara para la toma de decisiones"
-            ]
-        },
+                consultoria: {
+                    titulo: "Consultoría Empresarial",
+                    imagen: "{{ url_for('servir_assets', filename='consultoria.jpg') }}",
+                    alt: "Servicio de Consultoría Empresarial",
+                    descripcion: "Analizamos a fondo los procesos de tu negocio para identificar cuellos de botella, oportunidades de mercado y estrategias de crecimiento.",
+                    micro: [
+                        "Diagnóstico rápido de problemas operativos principales.",
+                        "Estructuración básica de funciones del personal.",
+                        "Recomendaciones clave para incrementar ventas."
+                    ],
+                    pequena: [
+                        "Auditoría de procesos operativos y comerciales.",
+                        "Diseño de planes estratégicos de crecimiento anual.",
+                        "Reestructuración de áreas de trabajo y KPIs directivos.",
+                        "Soporte en la gestión del cambio organizacional."
+                    ]
+                },
 
-        financiera: {
-            titulo: "Gestion financiera",
-            imagen: "assets/empresa.jpg",
-            alt: "Gestion financiera",
-            descripcion: 
-                "Ayudamos a mejorar la organizacion financiera de la empresa mediante un mejor control de ingresos, gastos y recursos.",
-            incluye: [
-                "Control de ingresos y gastos",
-                "Analisis de la situacion financiera",
-                "Organizacion de recursos",
-                "Apoyo para la toma de decisiones"
-            ]
-        },
+                comercio: {
+                    titulo: "Asesoría en Comercio Exterior",
+                    imagen: "{{ url_for('servir_assets', filename='comercio_exterior.jpg') }}",
+                    alt: "Servicio de Asesoría en Comercio Exterior",
+                    descripcion: "Orientación técnica y normativa para facilitar las operaciones de importación/exportación y conectar tu empresa con mercados globales.",
+                    micro: [
+                        "Guía paso a paso para primeras importaciones/exportaciones.",
+                        "Revisión básica de partidas arancelarias.",
+                        "Orientación en trámites aduaneros simplificados."
+                    ],
+                    pequena: [
+                        "Gestión integral de la cadena aduanera internacional.",
+                        "Negociación de Incoterms y contratos internacionales.",
+                        "Análisis de costos de importación/exportación a escala.",
+                        "Búsqueda y evaluación de proveedores o compradores internacionales."
+                    ]
+                },
 
-        consultoria: {
-            titulo: "Consultorio empresarial",
-            imagen: "/assets/consultoria.jpg",
-            alt: "Consultoria empresarial",
-            descripcion:
-                "Analizamos las necesidades de la empresa para identificar oportunidades de mejora y plantear estrategias que ayuden a optimizar su funcionamiento",
-            incluye: [
-                "Analisis de necesidades",
-                "Identificacion de oportunidades de mejora.",
-                "Orientacion para la toma de decisiones.",
-                "Propuestas de mejora empresarial"
-            ]
-        },
+                logistica: {
+                    titulo: "Asesoría en Logística Internacional",
+                    imagen: "{{ url_for('servir_assets', filename='logistica_internacional.jpg') }}",
+                    alt: "Servicio de Asesoría en Logística Internacional",
+                    descripcion: "Diseñamos la cadena de suministro y la coordinación logística necesaria para mover tus mercancías con eficiencia y menor costo.",
+                    micro: [
+                        "Coordinación de envíos pequeños y consolidación de carga.",
+                        "Seguimiento básico de mercancía en tránsito."
+                    ],
+                    pequena: [
+                        "Optimización de rutas y selección de agentes de carga.",
+                        "Gestión e inspección de almacenes e inventarios.",
+                        "Reducción estratégica de tiempos y costos fletadores."
+                    ]
+                },
 
-        comercio: {
-            titulo: "Comercio exterior",
-            imagen: "assets/empresa2.jpg",
-            alt: "comercio exterior",
-            descripcion:
-                "Brindamos orientacion para facilitar las operaciones relacionadas en el comercio exterior y mejorar la organizacion de los procesos.",
-            incluye: [
-                "Orientacion en operaciones internacionales.",
-                "Organizacion de procesos.",
-                "Apoyo en documentacion.",
-                "Analisis de oportunidades comerciales."
-            ]
-        },
+                digital: {
+                    titulo: "Asesoría en Soluciones Digitales",
+                    imagen: "{{ url_for('servir_assets', filename='soluciones-digitales.jpg') }}",
+                    alt: "Servicio de Asesoría en Soluciones Digitales",
+                    descripcion: "Acompañamos la digitalización de tu empresa mediante la integración de herramientas que automatizan tareas y mejoran la gestión.",
+                    micro: [
+                        "Implementación de facturación electrónica sencilla.",
+                        "Uso de herramientas gratuitas de control y cobros.",
+                        "Digitalización de base de datos de clientes."
+                    ],
+                    pequena: [
+                        "Integración de sistemas ERP / CRM de gestión empresarial.",
+                        "Automatización de procesos administrativos y ventas.",
+                        "Análisis de datos para tableros ejecutivos de control."
+                    ]
+                },
 
-        logistica: {
-            titulo: "Logistica internacional",
-            imagen: "assets/Empresa3.jpg",
-            alt: "Logistica internacional",
-            descripcion: 
-                "Apoyamos en la organizacion de procesos logisticos para mejorar el manejo y coordinacion de operaciones relacionadas con el movimiento de productos.",
-            incluye: [
-                "Organizacion de procesos logisticos",
-                "Seguimiento de operaciones.",
-                "Coordinacion de actividades.",
-                "Identificacion de oportunidades de mejora."
-            ]
-        },
+                fraudes: {
+                    titulo: "Asesoría en Prevención de Fraudes",
+                    imagen: "{{ url_for('servir_assets', filename='prevencion.jpg') }}",
+                    alt: "Servicio de Asesoría en Prevención de Fraudes",
+                    descripcion: "Fortalecemos tus sistemas de control interno y auditoría para blindar la empresa ante riesgos operativos, fuga de dinero o vulnerabilidades.",
+                    micro: [
+                        "Revisión de controles de caja chica y pagos a proveedores.",
+                        "Identificación de riesgos de fuga de dinero más comunes."
+                    ],
+                    pequena: [
+                        "Diseño de protocolos rigurosos de control interno.",
+                        "Auditoría sorpresiva e investigación de vulnerabilidades.",
+                        "Capacitación al equipo directivo en mitigación de riesgos."
+                    ]
+                }
+            };
 
-        digital: {
-            titulo: "Soluciones digitales",
-            imagen: "assets/soluciones-digitales.jpg",
-            alt: "Soluciones digitales",
-            descripcion:
-                "Implementamos soluciones digitales que ayuden a optimizar procesos, mejorar la gestion y facilitar las actividades de la empresa.",
-            incluye: [
-                "Digitalizacion de procesos.",
-                "Herramientas para mejorar la gestion",
-                "Optimizacion de actividades.",
-                "Soluciones adaptadas a las necesidades."
-            ]
-        },
+            const botonesAsesoria = document.querySelectorAll(".programas-menu > button[data-programa]");
+            const botonesTipoEmpresa = document.querySelectorAll(".btn-tipo-empresa");
+            
+            const imagen = document.getElementById("imagenAsesoria");
+            const titulo = document.getElementById("tituloAsesoria");
+            const descripcion = document.getElementById("descripcionAsesoria");
+            const lista = document.getElementById("listaIncluye");
+            const badge = document.getElementById("badgeTipoEmpresa");
+            const btnSolicitar = document.getElementById("btnSolicitar");
 
-        fraudes: {
-            titulo: "Prevencion de fraudes",
-            imagen: "assets/empresa.jpg",
-            alt: "Prevencion de fraudes",
-            descripcion: 
-                "Ayudamos a identificar posibles riesgos y fortalecer los controles internos para reducir situaciones que puedan afectar a la empresa.",
-            incluye: [
-                "Identificacion de riesgos",
-                "Revision de controles internos",
-                "Deteccion de posibles vulnerabilidades",
-                "Recomendaciones de prevencion"
-            ]
-        }
-    };
+            function actualizarVista() {
+                const datos = asesorias[asesoriaActual];
+                if (!datos) return;
 
-    const botones = document.querySelectorAll(".programas-menu button");
-    const imagen = document.querySelector(".programa-imagen img");
-    const titulo = document.querySelector(".programa-contenido h2");
-    const descripcion = document.querySelector(".programa-contenido p");
-    const lista = document.querySelector(".programa-contenido ul");
+                if (imagen) {
+                    imagen.src = datos.imagen;
+                    imagen.alt = datos.alt;
+                }
+                if (titulo) titulo.textContent = datos.titulo;
+                if (descripcion) descripcion.textContent = datos.descripcion;
 
-    botones.forEach(function(boton) {
-        boton.addEventListener("click", function() {
-            const nombrePrograma = boton.dataset.programa;
-            const programa = programas[nombrePrograma];
+                
+                if (lista) {
+                    lista.innerHTML = "";
+                    const puntos = datos[tipoEmpresaActual] || [];
+                    puntos.forEach(function (item) {
+                        const li = document.createElement("li");
+                        li.textContent = item;
+                        lista.appendChild(li);
+                    });
+                }
+            }
 
-            imagen.src = programa.imagen;
-            imagen.alt = programa.alt;
-
-            titulo.textContent = programa.titulo;
-            descripcion.textContent = programa.descripcion;
-
-            lista.innerHTML = "";
-
-            programa.incluye.forEach(function(item) {
-
-                const elemento = document.createElement("li");
-                elemento.textContent = item;
-                lista.appendChild(elemento);
+            botonesAsesoria.forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    asesoriaActual = this.getAttribute("data-programa");
+                    botonesAsesoria.forEach(b => b.classList.remove("programa-menu-activo"));
+                    this.classList.add("programa-menu-activo");
+                    actualizarVista();
+                });
             });
 
-            botones.forEach(function(boton) {
-                boton.classList.remove("programa-menu-activo");
+            botonesTipoEmpresa.forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    tipoEmpresaActual = this.getAttribute("data-tipo");
+                    botonesTipoEmpresa.forEach(b => b.classList.remove("activo"));
+                    this.classList.add("activo");
+                    actualizarVista();
+                });
             });
 
-            boton.classList.add("programa-menu-activo");
+            actualizarVista();
         });
-    });
-</script>
+    </script>
 </body>
+</html>

@@ -11,6 +11,7 @@ session_start();
     <title>Asesoría</title>
 
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}?v=10">
+    <link rel="stylesheet" href="{{ url_for('static', filename='responsive.css') }}">
 </head>
 
 <body>
@@ -281,6 +282,44 @@ session_start();
         </div>
 
     </section>
+
+    <!-- INVITACIÓN A LA GUÍA PARA EMPRENDER -->
+    <header class="ge-hero">
+        <div class="ge-container ge-hero-inner">
+            <div class="ge-hero-content">
+                <span class="ge-eyebrow ge-eyebrow-light">
+                    GUÍA PARA EMPRENDER
+                </span>
+
+                <h1>Da el primer paso para crear tu propio negocio</h1>
+
+                <p>
+                    Aprende los pasos básicos para iniciar, organizar y hacer crecer tu negocio con mejores decisiones.
+                </p>
+
+                <a class="ge-button ge-button-primary" href="{{ url_for('guia_emprender') }}">
+                    Explorar la guía <span aria-hidden="true">→</span>
+                </a>
+            </div>
+
+            <div class="ge-hero-panel">
+                <div class="ge-hero-panel-icon" aria-hidden="true">↗</div>
+
+                <h2>Tu idea puede convertirse en un proyecto real</h2>
+
+                <p>
+                    Avanza paso a paso, investiga antes de invertir y toma
+                    decisiones con información.
+                </p>
+
+                <ul>
+                    <li><span>01</span> Planificación</li>
+                    <li><span>02</span> Finanzas</li>
+                    <li><span>03</span> Crecimiento</li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
     <section id="resenas" class="seccion-resenas">
     <h2>Opiniones de nuestros clientes</h2>
@@ -565,10 +604,10 @@ session_start();
         ];
 
         const enlaces = [
-            "#servicios",
-            "{{ url_for('pagina_evaluacion') }}",
-            "{{ url_for('pagina_contacto') }}"
-        ];
+    "#servicios",
+    "{{ url_for('pagina_evaluacion') }}",
+    "{{ url_for('pagina_contacto') }}"
+];
 
         const titulo = document.getElementById("carrusel-titulo");
         const descripcion = document.getElementById("carrusel-descripcion");

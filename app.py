@@ -1615,6 +1615,10 @@ def detalle_evaluacion(evaluacion_id):
         if conexion is not None and conexion.is_connected():
             conexion.close()
         
+@app.route('/guia-emprender')
+def guia_emprender():
+    return render_template('guia-emprender.html')
+        
 @app.route("/admin/seguimiento/eliminar/<int:contacto_id>", methods=["POST"])
 def eliminar_contacto(contacto_id):
     if not session.get("es_admin"):
