@@ -185,103 +185,85 @@ session_start();
     
     <section id="servicios">
 
-        <h2>Nuestros servicios </h2>
+    <h2>Nuestros servicios</h2>
 
-        <p class="servicios-intro">
-            Ofrecemos soluciones orientadas a mejorar la gestion, 
-            organizacion y crecimiento de tu empresa.
-        </p>
+    <p class="servicios-intro">
+        Ofrecemos soluciones orientadas a mejorar la gestión, 
+        organización y crecimiento de tu empresa.
+    </p>
 
+    <div class="servicios-contenedor">
 
-        <div class="servicios-contenedor">
+        <!-- Tarjeta 1 -->
+        <div class="tarjeta-servicio">
+            <div class="tarjeta-icono">📊</div>
 
-            <!-- Asesoria Empresarial -->
-            <div class="tarjeta">
+            <h3>Asesoría Empresarial</h3>
 
-                <div class="tarjeta-icono">📊</div>
+            <p class="descripcion-normal">
+                Te ayudamos a identificar oportunidades de mejora y tomar mejores decisiones para el crecimiento de tu empresa.
+            </p>
 
-                    <h3>Soluciones para tu empresa</h3>
+            <ul class="lista-hover">
+                <li>✓ Contabilidad</li>
+                <li>✓ Gestión de Activos</li>
+            </ul>
 
-                    <div class="tarjeta-descripcion">
-                        <p>
-                            Te ayudamos a identificar oportunidades de mejora y tomar mejores decisiones 
-                            para el crecimiento de tu empresa.
-                        </p>
-                    </div>
-
-                    <div class="tarjeta-programas">
-                        <p>Contabilidad</p>
-                        <p>Gestion Financiera</p>
-                    </div>
-
-                    <div class="tarjeta-detalle">
-                        <a href="/programas.html" class="boton-programas">
-                            Ver programas
-                        </a>
-                    </div>
-
+            <div class="tarjeta-detalle">
+                <a href="{{ url_for('programas') }}" class="boton-programas">
+                    Ver programas
+                </a>
             </div>
-
-
-                <!-- Consultorio Empresarial -->
-                <div class="tarjeta">
-
-                    <div class="tarjeta-icono">💼</div>
-
-                        <h3>Areas de asesoria</h3>
-
-                        <div class="tarjeta-descripcion">
-                            <p>
-                                Analizamos las necesidades de tu negocio y proponemos estrategias 
-                                efectivas para optimizar su desempeño.
-                            </p>
-                        </div>
-
-                        <div class="tarjeta-programas">
-                            <p>Consultorio empresarial</p>
-                            <p>Comercio exterior</p>
-                            <p>Logistica internacional</p>
-                        </div>
-
-                        <div class="tarjeta-detalle">
-                            <a href="/programas.html" class="boton-programas">
-                                Ver programas
-                            </a>
-                        </div>
-
-                </div>
-
-
-                    <!-- Soluciones Digitales -->
-                    <div class="tarjeta">
-
-                        <div class="tarjeta-icono">💻</div>
-
-                            <h3>Soluciones y prevencion</h3>
-
-                            <div class="tarjeta-descripcion">
-                                <p>
-                                    Implementamos herramientas y soluciones digitales que ayudan
-                                    a optimizar procesos y mejorar la gestion.
-                                </p>
-                            </div>
-
-                            <div class="tarjeta-programas">
-                                <p>Soluciones digitales</p>
-                                <p>Prevencion de fraudes</p>
-                            </div>
-
-                            <div class="tarjeta-detalle">
-                                <a href="/programas.html" class="boton-programas">
-                                    Ver programas
-                                </a>
-                            </div>
-
-                    </div>
-
         </div>
 
-    </section>
+        <!-- Tarjeta 2 -->
+        <div class="tarjeta-servicio">
+            <div class="tarjeta-icono">💼</div>
+
+            <h3>Consultoría Empresarial</h3>
+
+            <p class="descripcion-normal">
+                Analizamos las necesidades de tu negocio y proponemos estrategias efectivas para optimizar su desempeño.
+            </p>
+
+            <ul class="lista-hover">
+                <li>✓ Consultoría empresarial</li>
+                <li>✓ Comercio exterior</li>
+                <li>✓ Logística internacional</li>
+            </ul>
+
+            <div class="tarjeta-detalle">
+                <a href="{{ url_for('programas') }}" class="boton-programas">
+                    Ver programas
+                </a>
+            </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="tarjeta-servicio">
+            <div class="tarjeta-icono">💻</div>
+
+            <h3>Soluciones Digitales y Control</h3>
+
+            <p class="descripcion-normal">
+                Implementamos herramientas y soluciones digitales que ayudan a optimizar procesos y mejorar la gestión.
+            </p>
+
+            <ul class="lista-hover">
+                <li>✓ Soluciones digitales</li>
+                <li>✓ Prevención de fraudes</li>
+            </ul>
+
+            <div class="tarjeta-detalle">
+                <a href="{{ url_for('programas') }}" class="boton-programas">
+                    Ver programas
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
 
     <!-- INVITACIÓN A LA GUÍA PARA EMPRENDER -->
     <header class="ge-hero">

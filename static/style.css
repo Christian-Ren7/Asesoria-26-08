@@ -472,6 +472,53 @@ section p {
     PROGRAMAS / ASESORÍAS.HTML
 ======================================= */
 
+.tarjeta-servicio {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 20px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-servicio:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Manejo de visibilidad Hover */
+.tarjeta-servicio .descripcion-normal {
+    display: block;
+    color: #4b5563;
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 15px 0;
+}
+
+.tarjeta-servicio .lista-hover {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.tarjeta-servicio .lista-hover li {
+    font-size: 15px;
+    color: #1f2937;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* Al pasar el mouse por la tarjeta */
+.tarjeta-servicio:hover .descripcion-normal {
+    display: none; /* Oculta totalmente la descripción explicativa */
+}
+
+.tarjeta-servicio:hover .lista-hover {
+    display: block; /* Revela únicamente la lista con viñetas de verificación */
+}
+
 .programas-principal {
     max-width: 1150px;
     margin: 0 auto;

@@ -22,26 +22,18 @@ app = Flask(__name__)
 
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
-def conectar_aiven():
-    ca_contenido = os.getenv("DB_CA_B64")
-
-    if ca_contenido:
-        ca_path = "/tmp/aiven-ca.pem"
-
-        with open(ca_path, "wb") as archivo:
-            archivo.write(base64.b64decode(ca_contenido))
-    else:
-        ca_path = "ca.pem"
-
+# ==========================================
+# FUNCIÓN DE CONEXIÓN A BASE DE DATOS (TiDB / MySQL)
+# ==========================================
+def obtener_conexion():
     return mysql.connector.connect(
         host=os.getenv("DB_HOST"),
         user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD"),
         database=os.getenv("DB_NAME"),
-        port=int(os.getenv("DB_PORT", "3306")),
-        ssl_ca=ca_path,
-        ssl_verify_cert=True,
-        ssl_verify_identity=True,
+        port=int(os.getenv("DB_PORT", "4000")),
+        ssl_disabled=False,
+        ssl_verify_cert=False,
         connection_timeout=10
     )
 
@@ -164,59 +156,46 @@ def evaluar():
     # ==========================================
     # GUARDAR DATOS EN LA BASE DE DATOS
     # ==========================================
-    print("INTENTANDO CONECTAR A MYSQL")
+    print("INTENTANDO CONECTAR A MYSQL / TIDB")
     
-    
+    conexion = None
+    cursor = None
 
-    ca_contenido = os.getenv("DB_CA_B64")
+    try:
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
 
-    if ca_contenido:
-        ca_path = "/tmp/aiven-ca.pem"
+        sql = """
+        INSERT INTO evaluaciones
+        (nombre, empresa, correo, telefono, sector, ventas, gastos, clientes, problema, ganancia)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """
 
-        with open(ca_path, "wb") as archivo:
-            archivo.write(base64.b64decode(ca_contenido))
-    else:
-        ca_path = "ca.pem"
+        valores = (
+            nombre,
+            empresa,
+            correo,
+            telefono,
+            sector,
+            ventas,
+            gastos,
+            clientes,
+            problema,
+            ganancia
+        )
 
-    conexion = mysql.connector.connect(
-        host=os.getenv("DB_HOST"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASSWORD"),
-        database=os.getenv("DB_NAME"),
-        port=int(os.getenv("DB_PORT", "3306")),
-        ssl_ca=ca_path,
-        ssl_verify_cert=True,
-        ssl_verify_identity=True,
-        connection_timeout=10
-    )
-
-    cursor = conexion.cursor()
-
-    sql = """
-    INSERT INTO evaluaciones
-    (nombre, empresa, correo, telefono, sector, ventas, gastos, clientes, problema, ganancia)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    """
-
-    valores = (
-        nombre,
-        empresa,
-        correo,
-        telefono,
-        sector,
-        ventas,
-        gastos,
-        clientes,
-        problema,
-        ganancia
-    )
-
-    cursor.execute(sql, valores)
-    conexion.commit()
-
-    cursor.close()
-    conexion.close()
-    print("MYSQL FUNCIONA")
+        cursor.execute(sql, valores)
+        conexion.commit()
+        print("MYSQL FUNCIONA")
+    except Exception as error:
+        print("Error al guardar la evaluación:", error)
+        if conexion:
+            conexion.rollback()
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conexion is not None and conexion.is_connected():
+            conexion.close()
 
 
     # ==========================================
@@ -1099,7 +1078,7 @@ def inicio():
     cursor = None
 
     try:
-        conexion = conectar_aiven()
+        conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
 
         cursor.execute("""
@@ -1161,27 +1140,7 @@ def guardar_contacto():
                 error_estado="Completa los campos obligatorios."
             )
 
-        ca_contenido = os.getenv("DB_CA_B64")
-
-        if ca_contenido:
-            ca_path = "/tmp/aiven-ca.pem"
-            with open(ca_path, "wb") as archivo:
-                archivo.write(base64.b64decode(ca_contenido))
-        else:
-            ca_path = "ca.pem"
-
-        conexion = mysql.connector.connect(
-            host=os.getenv("DB_HOST"),
-            user=os.getenv("DB_USER"),
-            password=os.getenv("DB_PASSWORD"),
-            database=os.getenv("DB_NAME"),
-            port=int(os.getenv("DB_PORT", "3306")),
-            ssl_ca=ca_path,
-            ssl_verify_cert=True,
-            ssl_verify_identity=True,
-            connection_timeout=10
-        )
-
+        conexion = obtener_conexion()
         cursor = conexion.cursor()
 
         sql = """
@@ -1221,7 +1180,7 @@ def admin_seguimiento():
     cursor = None
     
     try:
-        conexion = conectar_aiven()
+        conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
         
         cursor.execute("""
@@ -1274,7 +1233,7 @@ def actualizar_seguimiento(contacto_id):
     cursor = None
     
     try:
-        conexion = conectar_aiven()
+        conexion = obtener_conexion()
         cursor = conexion.cursor()
         
         cursor.execute(
@@ -1335,7 +1294,7 @@ def registro():
     cursor = None
 
     try:
-        conexion = conectar_aiven()
+        conexion = obtener_conexion()
         cursor = conexion.cursor()
 
         contrasena_hash = generate_password_hash(contrasena)
@@ -1413,7 +1372,7 @@ def login():
     cursor = None
 
     try:
-        conexion = conectar_aiven()
+        conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
 
         cursor.execute(
@@ -1492,7 +1451,7 @@ def publicar_resena():
     cursor = None
     
     try: 
-        conexion = conectar_aiven()
+        conexion = obtener_conexion()
         cursor = conexion.cursor()
         
         cursor.execute("""
@@ -1528,7 +1487,7 @@ def admin():
     cursor = None
 
     try:
-        conexion = conectar_aiven()
+        conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
 
         cursor.execute("""
@@ -1584,7 +1543,7 @@ def detalle_evaluacion(evaluacion_id):
     cursor = None
 
     try:
-        conexion = conectar_aiven()
+        conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
 
         cursor.execute("""
@@ -1628,7 +1587,7 @@ def eliminar_contacto(contacto_id):
     cursor = None
     
     try:
-        conexion = conectar_aiven()
+        conexion = obtener_conexion()
         cursor = conexion.cursor()
         
         cursor.execute("DELETE FROM contactos WHERE id = %s", (contacto_id,))
